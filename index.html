@@ -7,8 +7,8 @@
 <meta name="description" content="In2Cell Biosciences — DNA break detection powered by nanopore sequencing and AI. Mapping single- and double-strand breaks at base resolution to make DNA damage visible at the scale disease actually happens."/>
 
 <!-- Favicon -->
-<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
-<link rel="apple-touch-icon" href="favicon.svg"/>
+<link rel="icon" type="image/svg+xml" href="images/logos/in2cell.svg"/>
+<link rel="apple-touch-icon" href="images/logos/in2cell.svg"/>
 
 <!-- Open Graph (Facebook / LinkedIn / Slack previews) -->
 <meta property="og:type" content="website"/>
@@ -16,13 +16,13 @@
 <meta property="og:description" content="DNA break detection powered by nanopore sequencing and AI. Single-base resolution, genome-wide."/>
 <meta property="og:url" content="https://in2cell.com"/>
 <meta property="og:site_name" content="In2Cell Biosciences"/>
-<meta property="og:image" content="https://in2cell.com/favicon.svg"/>
+<meta property="og:image" content="https://in2cell.com/images/logos/in2cell.svg"/>
 
 <!-- Twitter / X card -->
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="In2Cell Biosciences"/>
 <meta name="twitter:description" content="DNA break detection powered by nanopore sequencing and AI."/>
-<meta name="twitter:image" content="https://in2cell.com/favicon.svg"/>
+<meta name="twitter:image" content="https://in2cell.com/images/logos/in2cell.svg"/>
 
 <!-- =================================================================
      In2Cell Biosciences — single-file site
@@ -41,19 +41,33 @@
 
 <style>
 /* ============================================================
-   SELECTIVE HIDES
+   COMING SOON MODE
    ------------------------------------------------------------
-   Hides specific things, full site otherwise visible.
-   To re-show any of these, delete its selector below.
-   #investor   = "Pre-seed round opening" funding section
-   #partners   = "Supported by" + "In collaboration with" strip
-   advisor2    = Mike Boemo's team card
+   Hides every section + nav link except the hero and footer,
+   so the landing page shows only the hero + Get in touch button.
+   "Get in touch" routes to contact.html (full site reachable from there).
+   To re-activate the FULL site: delete this entire block.
+   To re-show one section: remove its selector from the list below.
 ============================================================ */
+.nav-links,
+.mobile-menu-btn,
+.mobile-menu,
+#about,
+#app-areas,
+#platform-teaser,
+#research,
+#team,
+#timeline,
+#news,
 #investor,
 #partners,
-.person[data-bio="advisor2"] {
-  display: none !important;
-}
+#contact,
+section.newsletter,
+.foot-grid > div:not(.foot-about) { display: none !important; }
+
+/* Compact the footer to a single tidy line */
+footer .foot-grid { display: block !important; text-align: center !important; }
+footer .foot-bottom { justify-content: center !important; gap: 14px !important; }
 
 /* ================= THEME ================= */
 :root{
@@ -1577,7 +1591,7 @@ html{scroll-padding-top:86px}
       <h1>Reading the breaks<br/>in <span class="accent">every strand</span>.</h1>
       <p class="lede">In2Cell is a DNA break detection platform powered by <b style="color:#e5ecf8">nanopore sequencing</b> and AI. We map single- and double-strand breaks at base resolution — turning raw ionic signal into genome-wide damage landscapes in hours, not weeks.</p>
       <div class="cta-row">
-        <a class="btn primary" href="mailto:shashisantosh2007@gmail.com?subject=In2Cell%20enquiry" style="font-size:16px;padding:14px 32px">Get in touch &rarr;</a>
+        <a class="btn primary" href="contact.html" style="font-size:16px;padding:14px 32px">Get in touch &rarr;</a>
       </div>
     </div>
 
