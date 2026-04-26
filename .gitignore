@@ -1,0 +1,52 @@
+# -----------------------------------------------------------------------------
+# .gitignore — files git should NOT track / push to GitHub
+# -----------------------------------------------------------------------------
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Temp / scratch
+*.tmp
+.tmp*
+*.bak
+*.log
+
+# Working notes — keep these off the live repo
+DEPLOY.md
+LOTTIE_GUIDE.md
+images/README.txt
+
+# Local archive of working files — never push
+_archive/
+
+# If you ever add tooling (npm, yarn, build scripts)
+node_modules/
+dist/
+build/
+.env
+.env.local
+.env.*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Raw / source versions of images you don't want publicly downloadable
+# (uncomment these lines if you want to keep high-res originals off the repo)
+# images/*.psd
+# images/*.ai
+# images/*-source.*
+
+# Archives / backups
+*.zip
+*.tar
+*.tar.gz
+*.7z
