@@ -3,8 +3,26 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>In2Cell Biosciences</title>
-<meta name="description" content="In2Cell Biosciences — engineering the inside of the cell."/>
+<title>In2Cell Biosciences — DNA damage on your radar</title>
+<meta name="description" content="In2Cell Biosciences — DNA break detection powered by nanopore sequencing and AI. Mapping single- and double-strand breaks at base resolution to make DNA damage visible at the scale disease actually happens."/>
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="apple-touch-icon" href="favicon.svg"/>
+
+<!-- Open Graph (Facebook / LinkedIn / Slack previews) -->
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="In2Cell Biosciences — DNA damage on your radar"/>
+<meta property="og:description" content="DNA break detection powered by nanopore sequencing and AI. Single-base resolution, genome-wide."/>
+<meta property="og:url" content="https://in2cell.com"/>
+<meta property="og:site_name" content="In2Cell Biosciences"/>
+<meta property="og:image" content="https://in2cell.com/favicon.svg"/>
+
+<!-- Twitter / X card -->
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="In2Cell Biosciences"/>
+<meta name="twitter:description" content="DNA break detection powered by nanopore sequencing and AI."/>
+<meta name="twitter:image" content="https://in2cell.com/favicon.svg"/>
 
 <!-- =================================================================
      In2Cell Biosciences — single-file site
@@ -23,32 +41,19 @@
 
 <style>
 /* ============================================================
-   COMING SOON MODE
+   SELECTIVE HIDES
    ------------------------------------------------------------
-   Hides every section + nav link except the hero and footer,
-   so visitors see only the landing card.
-   To re-activate the FULL site: delete this entire block.
-   To re-activate just one section: remove its selector below.
+   Hides specific things, full site otherwise visible.
+   To re-show any of these, delete its selector below.
+   #investor   = "Pre-seed round opening" funding section
+   #partners   = "Supported by" + "In collaboration with" strip
+   advisor2    = Mike Boemo's team card
 ============================================================ */
-.nav-links,
-.mobile-menu-btn,
-.mobile-menu,
-#about,
-#app-areas,
-#platform-teaser,
-#research,
-#team,
-#timeline,
-#news,
 #investor,
 #partners,
-#contact,
-section.newsletter,
-.foot-grid > div:not(.foot-about) { display: none !important; }
-
-/* Compact the footer to a single tidy line */
-footer .foot-grid { display: block !important; text-align: center !important; }
-footer .foot-bottom { justify-content: center !important; gap: 14px !important; }
+.person[data-bio="advisor2"] {
+  display: none !important;
+}
 
 /* ================= THEME ================= */
 :root{
