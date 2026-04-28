@@ -2377,9 +2377,8 @@ document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeBio(); });
         return {
           x: Math.random()*w, y: Math.random()*h,
           vx: (Math.random()-.5)*.28, vy:(Math.random()-.5)*.28,
-          // Star-like dots — slightly larger than before but still subtle vs the radar:
-          // 0.45-1.20 px (DPR-scaled)
-          r:  (Math.random()*0.75 + 0.45) * devicePixelRatio,
+          // Star-like dots — bumped slightly for more presence (0.55-1.40 px DPR-scaled)
+          r:  (Math.random()*0.85 + 0.55) * devicePixelRatio,
           base: Math.random()*0.35 + 0.5,
           col: col,
           blinkAt: performance.now() + Math.random()*16000 + 7000,
@@ -2402,13 +2401,13 @@ document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeBio(); });
           const d = Math.sqrt(dx*dx+dy*dy);
           const maxD = MAX_DIST*devicePixelRatio;
           if (d < maxD){
-            const alpha = (1 - d/maxD) * 0.25;  // soft constellation web — visible but not dominant
+            const alpha = (1 - d/maxD) * 0.30;  // brighter constellation web — clearly readable, still ambient
             // Blend the two endpoint colours
             const r = Math.round((p.col.r + q.col.r)/2);
             const g = Math.round((p.col.g + q.col.g)/2);
             const b = Math.round((p.col.b + q.col.b)/2);
             ctx.strokeStyle = `rgba(${r},${g},${b},${alpha})`;
-            ctx.lineWidth = devicePixelRatio*.75;
+            ctx.lineWidth = devicePixelRatio*.8;
             ctx.beginPath();
             ctx.moveTo(p.x,p.y);
             ctx.lineTo(q.x,q.y);
