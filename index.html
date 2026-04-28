@@ -1559,7 +1559,7 @@ html{scroll-padding-top:86px}
     </div>
 
     <div class="reveal" style="margin-top:18px">
-      <div class="radar-slogan" aria-label="DNA damage on your radar">
+      <div class="radar-slogan" aria-label="Your own sentinel for estimating DNA damage">
         <div class="rs-bg" aria-hidden="true">
           <svg viewBox="0 0 600 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -1574,18 +1574,17 @@ html{scroll-padding-top:86px}
               <ellipse cx="300" cy="60" rx="210" ry="60" stroke="rgba(47,212,193,.15)"/>
               <ellipse cx="300" cy="60" rx="290" ry="60" stroke="rgba(47,212,193,.18)"/>
             </g>
-            <line x1="0" y1="60" x2="600" y2="60" stroke="rgba(47,212,193,.15)" stroke-dasharray="3 6" stroke-width="1"/>
             <g class="radar-slogan-sweep" style="transform-origin:300px 60px">
               <path d="M 300,60 L 600,60 A 300 60 0 0 0 520,-20 Z" fill="url(#rssSweep)"/>
             </g>
-            <circle cx="300" cy="60" r="3" fill="#2fd4c1" opacity=".95"/>
+            <circle cx="300" cy="60" r="2" fill="#2fd4c1" opacity=".4"/>
           </svg>
         </div>
         <span class="rs-blip" style="top:30%;left:22%"></span>
         <span class="rs-blip b2" style="top:70%;left:38%"></span>
         <span class="rs-blip b3" style="top:25%;left:68%"></span>
         <span class="rs-blip b4" style="top:62%;left:82%"></span>
-        <span class="rs-text">DNA damage. On your radar.</span>
+        <span class="rs-text">Your own sentinel for estimating DNA damage</span>
       </div>
 
       <h1>Reading the breaks<br/>in <span class="accent">every strand</span>.</h1>
@@ -2963,5 +2962,107 @@ document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeBio(); });
 </script>
 
 <script src="nav-logo.js" defer></script>
+
+<!-- Radar phosphor: blips illuminate ONLY when the rotating sweep arm passes over them.
+     Both the arm rotation and the blip brightness are driven from a single JS clock,
+     so they're guaranteed to stay in lockstep. -->
+<script>
+(function(){
+  const radar = document.querySelector('.radar-slogan');
+  if(!radar) return;
+  const sweep = radar.querySelector('.radar-slogan-sweep');
+  const blips = radar.querySelectorAll('.rs-blip');
+  if(!sweep || !blips.length) return;
+
+  // Respect reduced-motion preference: leave CSS animation as-is
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // Take over from CSS — JS will drive both the sweep rotation and blip illumination.
+  // setProperty with 'important' is needed because the stylesheet uses !important.
+  sweep.style.setProperty('animation', 'none', 'important');
+  sweep.style.setProperty('transform-origin', '300px 60px', 'important');
+
+  blips.forEach(function(b){
+    b.style.setProperty('animation', 'none', 'important');
+    b.style.setProperty('transition', 'none', 'important');
+    b.style.willChange = 'opacity, transform';
+  });
+
+  const CYCLE_MS = 6000;        // 6 s per full rotation (matches the original CSS feel)
+  const ARM_SPAN = 22;          // wedge covers ~22° — peak brightness window
+  const TAIL    = 55;           // afterglow decay constant (degrees)
+
+  // Each blip's angular position around the radar centre (degrees, clockwise from right)
+  let blipAngles = [];
+  function computeAngles(){
+    const r = radar.getBoundingClientRect();
+    const cx = r.left + r.width / 2;
+    const cy = r.top + r.height / 2;
+    blipAngles = Array.from(blips).map(function(b){
+      const br = b.getBoundingClientRect();
+      const bx = br.left + br.width / 2;
+      const by = br.top + br.height / 2;
+      let a = Math.atan2(by - cy, bx - cx) * 180 / Math.PI;
+      if(a < 0) a += 360;
+      return a;
+    });
+  }
+
+  function recalc(){ computeAngles(); }
+  if(document.readyState === 'complete') recalc();
+  else window.addEventListener('load', recalc);
+  window.addEventListener('resize', recalc);
+  setTimeout(recalc, 50);
+  setTimeout(recalc, 400);
+  setTimeout(recalc, 1200);
+
+  let start = performance.now();
+  let rafId = null;
+
+  function tick(now){
+    const elapsed = (now - start) % CYCLE_MS;
+    const sweepAngle = (elapsed / CYCLE_MS) * 360; // clockwise from 0°
+
+    // Drive the SVG sweep arm directly, locked to the same clock as the blips
+    sweep.style.setProperty('transform', 'rotate(' + sweepAngle + 'deg)', 'important');
+
+    for(let i = 0; i < blips.length; i++){
+      const blipAngle = blipAngles[i] || 0;
+      // lag = how far the sweep arm has travelled past this blip (0 = arm is just over it)
+      const lag = (sweepAngle - blipAngle + 360) % 360;
+
+      // Pulse profile: full-bright while the wedge overlaps the blip,
+      // then exponential phosphor afterglow, then near-off.
+      let intensity;
+      if(lag <= ARM_SPAN){
+        intensity = 1;                          // arm is on top of blip
+      } else {
+        intensity = Math.exp(-(lag - ARM_SPAN) / TAIL);  // afterglow tail
+      }
+
+      const opacity = 0.06 + 0.94 * intensity;  // very dim baseline → bright on hit
+      const scale   = 0.45 + 0.95 * intensity;  // small when off → grow on hit
+      blips[i].style.opacity   = opacity.toFixed(3);
+      blips[i].style.transform = 'scale(' + scale.toFixed(3) + ')';
+    }
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function startLoop(){
+    if(rafId) return;
+    start = performance.now();
+    rafId = requestAnimationFrame(tick);
+  }
+  function stopLoop(){
+    if(rafId){ cancelAnimationFrame(rafId); rafId = null; }
+  }
+
+  document.addEventListener('visibilitychange', function(){
+    if(document.hidden) stopLoop(); else startLoop();
+  });
+
+  startLoop();
+})();
+</script>
 </body>
 </html>
