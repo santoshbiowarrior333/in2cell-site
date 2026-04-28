@@ -58,7 +58,6 @@
 #research,
 #team,
 #timeline,
-#news,
 #investor,
 #partners,
 #contact,
@@ -882,7 +881,7 @@ img[loading="lazy"]{min-height:1px}
 .reveal-stagger.in>*:nth-child(6){transition-delay:.4s;opacity:1;transform:none}
 
 /* Hero particle canvas */
-#heroParticles{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.42;mix-blend-mode:screen;display:block;mask-image:radial-gradient(ellipse 65% 80% at 50% 30%, #000 50%, transparent 95%);-webkit-mask-image:radial-gradient(ellipse 65% 80% at 50% 30%, #000 50%, transparent 95%)}
+#heroParticles{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.32;mix-blend-mode:screen;display:block;mask-image:radial-gradient(ellipse 65% 80% at 50% 30%, #000 50%, transparent 95%);-webkit-mask-image:radial-gradient(ellipse 65% 80% at 50% 30%, #000 50%, transparent 95%)}
 
 /* Newsletter section */
 .newsletter{
@@ -1569,10 +1568,10 @@ html{scroll-padding-top:86px}
               </linearGradient>
             </defs>
             <g fill="none" stroke-width="1.2">
-              <ellipse cx="300" cy="60" rx="55"  ry="38" stroke="rgba(47,212,193,.30)"/>
-              <ellipse cx="300" cy="60" rx="125" ry="52" stroke="rgba(47,212,193,.22)"/>
-              <ellipse cx="300" cy="60" rx="210" ry="60" stroke="rgba(47,212,193,.15)"/>
-              <ellipse cx="300" cy="60" rx="290" ry="60" stroke="rgba(47,212,193,.18)"/>
+              <ellipse cx="300" cy="60" rx="55"  ry="38" stroke="rgba(47,212,193,.35)"/>
+              <ellipse cx="300" cy="60" rx="125" ry="52" stroke="rgba(47,212,193,.27)"/>
+              <ellipse cx="300" cy="60" rx="210" ry="60" stroke="rgba(47,212,193,.20)"/>
+              <ellipse cx="300" cy="60" rx="290" ry="60" stroke="rgba(47,212,193,.23)"/>
             </g>
             <g class="radar-slogan-sweep" style="transform-origin:300px 60px">
               <path d="M 300,60 L 600,60 A 300 60 0 0 0 520,-20 Z" fill="url(#rssSweep)"/>
@@ -1990,24 +1989,26 @@ html{scroll-padding-top:86px}
       <h2>Latest from the lab.</h2>
     </div>
     <div class="pubs">
-      <article class="pub reveal">
-        <div class="kind">Publication</div>
-        <h3>First peer-reviewed paper in preparation.</h3>
-        <p>Methods paper describing AnaLog&rsquo;s nanopore-based break detection pipeline and validation across cancer and neurodegeneration models. Submission planned for 2026.</p>
-        <div class="meta"><span>To be updated</span><span style="color:var(--fog)">In progress</span></div>
+      <!-- Featured news entry: CTA 5.0 (newest, spans full row) -->
+      <article class="pub reveal" style="grid-column:1/-1">
+        <div class="kind">Event</div>
+        <h3>In2Cell selected for CTA 5.0 &mdash; Cancer Tech Accelerator.</h3>
+        <p>In2Cell Biosciences was selected to attend the fifth cohort of the <strong>Cancer Tech Accelerator (CTA 5.0)</strong> Bootcamp &mdash; chosen from <strong>89 applicant teams spanning 12 countries across four continents</strong>. The one-week intensive brings together early-stage cancer-tech founders for commercialisation training, investor-readiness, and clinical-translation guidance. Day four was hosted at Triton Square, Cancer Research UK&rsquo;s London headquarters, with sessions on European biotech investor activity and a founder Q&amp;A panel.</p>
+        <!-- Image gallery -->
+        <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:10px;margin-top:16px">
+          <!-- Cohort meeting screenshot — Santosh tile highlighted -->
+          <div style="position:relative;aspect-ratio:16/10;background:#0a1020;border-radius:8px;overflow:hidden">
+            <img src="News/April-26/1776439103864.jpg" alt="CTA 5.0 cohort meeting — In2Cell with the Cancer Tech Accelerator team" style="width:100%;height:100%;object-fit:cover;display:block"/>
+            <!-- Teal-glow box around Santosh's tile (bottom-left of 3x2 grid) -->
+            <div aria-hidden="true" style="position:absolute;top:50%;left:0;width:33.33%;height:50%;border:2px solid #2fd4c1;box-shadow:0 0 18px rgba(47,212,193,.75),inset 0 0 14px rgba(47,212,193,.22);box-sizing:border-box;border-radius:4px;pointer-events:none"></div>
+            <div style="position:absolute;top:calc(50% + 6px);left:6px;background:linear-gradient(135deg,var(--teal),var(--teal-bright));color:#04121b;font-size:8.5px;font-weight:800;padding:2px 5px;border-radius:3px;letter-spacing:.03em;box-shadow:0 1px 4px rgba(0,0,0,.4);max-width:calc(33.33% - 12px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">In2Cell</div>
+          </div>
+          <img src="News/April-26/1776350586243.jpg" alt="CTA 5.0 investor activity session at Triton Square" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border-radius:8px"/>
+          <img src="News/April-26/1776350586379.jpg" alt="CTA 5.0 founder Q&amp;A panel" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border-radius:8px"/>
+        </div>
+        <div class="meta" style="margin-top:14px"><span>13&ndash;17 April 2026 &middot; Cancer Tech Accelerator</span><span style="color:var(--fog)">CTA 5.0 cohort</span></div>
       </article>
-      <article class="pub reveal">
-        <div class="kind">Press</div>
-        <h3>Press coverage to follow.</h3>
-        <p>We&rsquo;ll post media coverage and partnership announcements here as they happen. Want to cover us? Email <a href="mailto:shashisantosh2007@gmail.com" style="color:var(--teal-bright)">shashisantosh2007@gmail.com</a>.</p>
-        <div class="meta"><span>To be updated</span><span style="color:var(--fog)">Awaiting first feature</span></div>
-      </article>
-      <article class="pub reveal">
-        <div class="kind">Update</div>
-        <h3>Pre-seed round opening.</h3>
-        <p>We&rsquo;ve closed &pound;140k in non-dilutive grant funding from BBSRC and the Guy Newton Translational Award (Sir William Dunn School of Pathology, Oxford). Now opening pre-seed.</p>
-        <div class="meta"><span>Milestone &middot; 2026</span><a href="#investor" style="color:var(--teal-bright)">For investors &rarr;</a></div>
-      </article>
+
     </div>
   </div>
 </section>
@@ -2340,8 +2341,8 @@ document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeBio(); });
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     let w, h, particles = [];
-    const COUNT = 60;
-    const MAX_DIST = 130;
+    const COUNT = 90;        // more nodes for a richer constellation
+    const MAX_DIST = 165;    // each node connects to a wider neighbourhood
 
     // Multi-colour palette — matches the site accent system
     // Probabilities sum to 1.0
@@ -2376,11 +2377,13 @@ document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeBio(); });
         return {
           x: Math.random()*w, y: Math.random()*h,
           vx: (Math.random()-.5)*.28, vy:(Math.random()-.5)*.28,
-          r:  (Math.random()*1.4 + 0.8) * devicePixelRatio,
-          base: Math.random()*0.35 + 0.65,
+          // Star-like dots — slightly larger than before but still subtle vs the radar:
+          // 0.45-1.20 px (DPR-scaled)
+          r:  (Math.random()*0.75 + 0.45) * devicePixelRatio,
+          base: Math.random()*0.35 + 0.5,
           col: col,
-          blinkAt: performance.now() + Math.random()*14000 + 5000,
-          blinkDur: 800 + Math.random()*600,
+          blinkAt: performance.now() + Math.random()*16000 + 7000,
+          blinkDur: 600 + Math.random()*500,
           blinking: false, blinkStart: 0
         };
       });
@@ -2399,13 +2402,13 @@ document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeBio(); });
           const d = Math.sqrt(dx*dx+dy*dy);
           const maxD = MAX_DIST*devicePixelRatio;
           if (d < maxD){
-            const alpha = (1 - d/maxD) * 0.38;
+            const alpha = (1 - d/maxD) * 0.25;  // soft constellation web — visible but not dominant
             // Blend the two endpoint colours
             const r = Math.round((p.col.r + q.col.r)/2);
             const g = Math.round((p.col.g + q.col.g)/2);
             const b = Math.round((p.col.b + q.col.b)/2);
             ctx.strokeStyle = `rgba(${r},${g},${b},${alpha})`;
-            ctx.lineWidth = devicePixelRatio*.9;
+            ctx.lineWidth = devicePixelRatio*.75;
             ctx.beginPath();
             ctx.moveTo(p.x,p.y);
             ctx.lineTo(q.x,q.y);
@@ -2962,5 +2965,91 @@ document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeBio(); });
 </script>
 
 <script src="nav-logo.js" defer></script>
+
+<!-- ===== Radar phosphor: blips light up only when the rotating arm passes over them.
+        Sweep arm rotation and blip brightness share a single JS clock so they're
+        in lockstep. Strong but brief flash (~12° peak window), short afterglow
+        (~30° tail), then the blip settles at a low but never-invisible baseline.
+        Inside the radar pill only — no other dot/particle on the page is touched. ===== -->
+<script>
+(function(){
+  const radar = document.querySelector('.radar-slogan');
+  if(!radar) return;
+  const sweep = radar.querySelector('.radar-slogan-sweep');
+  const blips = radar.querySelectorAll('.rs-blip');
+  if(!sweep || !blips.length) return;
+
+  // Respect reduced-motion preference: leave the original CSS animation as-is
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // Take over from CSS — JS will drive both rotation and illumination.
+  sweep.style.setProperty('animation', 'none', 'important');
+  sweep.style.setProperty('transform-origin', '300px 60px', 'important');
+  blips.forEach(b => {
+    b.style.setProperty('animation', 'none', 'important');
+    b.style.setProperty('transition', 'none', 'important');
+    b.style.willChange = 'opacity, transform';
+  });
+
+  const CYCLE_MS = 6000;   // 6 s per full rotation
+  const ARM_SPAN = 12;     // peak-bright window in degrees (~0.2 s)
+  const TAIL     = 30;     // afterglow decay constant in degrees (~0.5 s fade)
+  const BASE_OP  = 0.22;   // baseline opacity — visible but quiet
+  const BASE_SC  = 0.5;    // baseline scale
+
+  // Compute each blip's angular position (clockwise from 3 o'clock)
+  let blipAngles = [];
+  function computeAngles(){
+    const r = radar.getBoundingClientRect();
+    const cx = r.left + r.width / 2;
+    const cy = r.top + r.height / 2;
+    blipAngles = Array.from(blips).map(b => {
+      const br = b.getBoundingClientRect();
+      let a = Math.atan2((br.top + br.height/2) - cy, (br.left + br.width/2) - cx) * 180 / Math.PI;
+      if(a < 0) a += 360;
+      return a;
+    });
+  }
+  if(document.readyState === 'complete') computeAngles();
+  else window.addEventListener('load', computeAngles);
+  window.addEventListener('resize', computeAngles);
+  setTimeout(computeAngles, 60);
+  setTimeout(computeAngles, 400);
+  setTimeout(computeAngles, 1200);
+
+  let start = performance.now();
+  let raf = null;
+
+  function tick(now){
+    const elapsed = (now - start) % CYCLE_MS;
+    const sweepAngle = (elapsed / CYCLE_MS) * 360;
+
+    // Drive the SVG sweep arm
+    sweep.style.setProperty('transform', 'rotate(' + sweepAngle + 'deg)', 'important');
+
+    for(let i = 0; i < blips.length; i++){
+      const blipAngle = blipAngles[i] || 0;
+      const lag = (sweepAngle - blipAngle + 360) % 360;
+      let intensity;
+      if(lag <= ARM_SPAN){
+        intensity = 1;                               // arm is on top of blip — peak
+      } else {
+        intensity = Math.exp(-(lag - ARM_SPAN) / TAIL); // afterglow decay
+      }
+      const opacity = BASE_OP + (1 - BASE_OP) * intensity;
+      const scale   = BASE_SC + (1.4 - BASE_SC) * intensity;
+      blips[i].style.opacity   = opacity.toFixed(3);
+      blips[i].style.transform = 'scale(' + scale.toFixed(3) + ')';
+    }
+    raf = requestAnimationFrame(tick);
+  }
+
+  function startLoop(){ if(!raf){ start = performance.now(); raf = requestAnimationFrame(tick); } }
+  function stopLoop(){ if(raf){ cancelAnimationFrame(raf); raf = null; } }
+  document.addEventListener('visibilitychange', () => document.hidden ? stopLoop() : startLoop());
+
+  startLoop();
+})();
+</script>
 </body>
 </html>
