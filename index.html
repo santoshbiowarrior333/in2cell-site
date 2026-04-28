@@ -1506,6 +1506,84 @@ html{scroll-padding-top:86px}
 /* Bigger gap between logo block and radar slogan */
 .hero-logo{margin-bottom:34px !important}
 @media(max-width:700px){.hero-logo{margin-bottom:24px !important;max-width:400px}}
+
+/* ================= HERO FITS ONE VIEWPORT =================
+   The hero is locked to exactly one viewport-height below the 72px sticky nav.
+   Logo sits near the top; radar follows directly under it; the headline + lede
+   have an explicit gap between them so the lede isn't crowded against the h1.
+   All sizes scale with viewport height so the same composition holds on any
+   screen — desktop, laptop, tablet, phone. */
+.hero{
+  min-height: calc(100svh - 72px) !important;
+  max-height: calc(100svh - 72px) !important;
+  padding: 0 !important;
+  display:flex !important;
+  align-items:stretch !important;
+  overflow:hidden;
+}
+.hero-grid{
+  width:100%;
+  /* Small top padding pulls the logo close to the nav (the "shift up") */
+  padding: clamp(6px, 1.2vh, 14px) 0 clamp(10px, 1.8vh, 22px) 0 !important;
+  display:flex !important;
+  flex-direction:column;
+  align-items:center;
+  justify-content: flex-start !important;
+  gap: 0;
+  min-height:0 !important;
+}
+/* Logo: explicit height so the inline `height:100%` on <img> resolves;
+   margin-bottom controls the gap to the radar (radar moves up with logo). */
+.hero-logo{
+  max-width: min(560px, 88vw) !important;
+  height: clamp(110px, 20vh, 200px) !important;
+  margin: 0 0 clamp(16px, 2.6vh, 28px) 0 !important;
+  display:flex !important;
+  align-items:center;
+  justify-content:center;
+}
+.hero-logo img{
+  height: 100% !important;
+  width: auto !important;
+  max-width: 100%;
+}
+/* Radar pill: enough vertical padding for the teal SVG content to render properly */
+.radar-slogan{
+  margin: 0 auto clamp(20px, 3.2vh, 34px) auto !important;
+  padding: clamp(28px, 5vh, 58px) clamp(40px, 6vw, 110px) !important;
+  width: min(1000px, 92vw) !important;
+}
+.radar-slogan .rs-text{
+  font-size: clamp(16px, 2.8vh, 28px) !important;
+  letter-spacing: clamp(.18em, .28vw, .3em) !important;
+}
+/* Headline: bigger gap below it so the lede has breathing room */
+.hero h1{
+  font-size: clamp(26px, 5.4vh, 54px) !important;
+  margin: 0 0 clamp(20px, 3.2vh, 36px) 0 !important;
+  line-height: 1.04 !important;
+}
+.hero p.lede{
+  font-size: clamp(13px, 2.2vh, 17px) !important;
+  margin: 0 0 clamp(18px, 3vh, 30px) 0 !important;
+  max-width: 620px;
+  line-height: 1.5 !important;
+}
+.cta-row{ margin: 0 !important; }
+
+/* Short screens (laptops, landscape phones): tighten everything proportionally */
+@media (max-height: 760px){
+  .hero-grid{ padding: clamp(4px, 1vh, 10px) 0 clamp(8px, 1.5vh, 16px) 0 !important; }
+  .hero-logo{ height: clamp(80px, 15vh, 140px) !important; margin-bottom: clamp(12px, 2.2vh, 22px) !important; }
+  .radar-slogan{ padding: clamp(20px, 4vh, 40px) clamp(34px, 5vw, 80px) !important; margin-bottom: clamp(14px, 2.6vh, 26px) !important; }
+  .radar-slogan .rs-text{ font-size: clamp(13px, 2.4vh, 20px) !important; }
+  .hero h1{ font-size: clamp(20px, 4.4vh, 40px) !important; margin-bottom: clamp(14px, 2.4vh, 24px) !important; }
+  .hero p.lede{ font-size: clamp(12px, 1.9vh, 15px) !important; margin-bottom: clamp(14px, 2.4vh, 22px) !important; }
+}
+/* Very short screens (landscape phones, short laptops): drop the lede to keep things visible */
+@media (max-height: 560px){
+  .hero p.lede{ display:none !important; }
+}
 </style>
 </head>
 <body>
@@ -1588,7 +1666,7 @@ html{scroll-padding-top:86px}
       </div>
 
       <h1>Reading the breaks<br/>in <span class="accent">every strand</span>.</h1>
-      <p class="lede">In2Cell is a DNA break detection platform powered by <b style="color:#e5ecf8">nanopore sequencing</b> and AI. We map single- and double-strand breaks at base resolution — turning raw ionic signal into genome-wide damage landscapes in hours, not weeks.</p>
+      <p class="lede"><b style="color:#e5ecf8">AnaLog&trade;</b> is our DNA break detection platform — powered by <b style="color:#e5ecf8">nanopore sequencing</b> and AI. We map single- and double-strand breaks at base resolution, turning raw ionic signal into genome-wide damage landscapes in hours, not weeks.</p>
       <div class="cta-row">
         <a class="btn primary" href="contact.html" style="font-size:16px;padding:14px 32px">Get in touch &rarr;</a>
       </div>
@@ -1617,7 +1695,7 @@ html{scroll-padding-top:86px}
       </div>
       <div class="about-card reveal">
         <h3><span class="ico">⚛</span> Approach</h3>
-        <p>Long-read nanopore sequencing + custom bioinformatics + deep learning, productised as <strong>AnaLog</strong> &mdash; the first platform to map double-strand breaks at single-base resolution, genome-wide.</p>
+        <p>Long-read nanopore sequencing + custom bioinformatics + deep learning, productised as <strong>AnaLog&trade;</strong> &mdash; the first platform to map double-strand breaks at single-base resolution, genome-wide.</p>
       </div>
     </div>
   </div>
@@ -1701,7 +1779,7 @@ html{scroll-padding-top:86px}
 <section id="platform-teaser" style="padding:100px 0">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="tag">AnaLog &middot; Proprietary Platform</span>
+      <span class="tag">AnaLog&trade; &middot; Proprietary Platform</span>
       <h2>Signal to break call, end-to-end.</h2>
       <p>The AnaLog platform pairs nanopore sequencing with purpose-built AI to resolve DNA breaks at base resolution. See the full pipeline, the neural network, and the zoom from cell to base pair.</p>
     </div>
@@ -1810,7 +1888,7 @@ html{scroll-padding-top:86px}
         <p class="bio">Looking for an experienced commercial leader to drive partnerships, fundraising and clinical rollout.</p>
       </div>
 
-      <!-- 2. Santosh — CTO -->
+      <!-- 2. Santosh — Founder & CTO -->
       <div class="person reveal" tabindex="0" data-bio="founder">
         <span class="view-bio">View bio &rarr;</span>
         <div class="avatar filled" data-slot="founder" style="background-image:url('images/team/Photo_santosh-cropped2.jpg');background-size:cover;background-position:center;"></div>
