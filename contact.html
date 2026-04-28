@@ -1785,72 +1785,141 @@ document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeBio(); });
   // ===== CONTACT FORM — mailto handler =====
   const contactForm = document.querySelector('form.contact-card');
   if (contactForm){
-    contactForm.addEventListener('submit', function(e){
+    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/myklrgbq';
+    const TO_EMAIL = 'shashisantosh2007@gmail.com';
+    const CC_EMAIL = 'path1327@ox.ac.uk';
+
+    contactForm.addEventListener('submit', async function(e){
       e.preventDefault();
+
       const fd = new FormData(contactForm);
-      const name    = fd.get('name') || '';
-      const email   = fd.get('email') || '';
-      const org     = fd.get('organization') || '';
-      const reason  = fd.get('reason') || 'General inquiry';
-      const message = fd.get('message') || '';
-      const subject = '[In2Cell] ' + reason + ' - ' + name;
+      const fields = {
+        name:         fd.get('name')         || '',
+        email:        fd.get('email')        || '',
+        organization: fd.get('organization') || '',
+        reason:       fd.get('reason')       || 'General inquiry',
+        message:      fd.get('message')      || ''
+      };
+      const subject = '[In2Cell] ' + fields.reason + ' - ' + fields.name;
       const body =
-          'Name: ' + name + '\n' +
-          'Email: ' + email + '\n' +
-          'Organisation: ' + (org || '(not provided)') + '\n' +
-          'Reason: ' + reason + '\n' +
+          'Name: ' + fields.name + '\n' +
+          'Email: ' + fields.email + '\n' +
+          'Organisation: ' + (fields.organization || '(not provided)') + '\n' +
+          'Reason: ' + fields.reason + '\n' +
           '\n------ MESSAGE ------\n' +
-          message + '\n\n' +
+          fields.message + '\n\n' +
           '--\nSent via the In2Cell website contact form';
-      const to = 'shashisantosh2007@gmail.com';
-      const cc = 'path1327@ox.ac.uk';
-
-      // Build URLs for every channel a visitor might use
       const enc = encodeURIComponent;
-      const mailtoUrl  = 'mailto:' + to + '?cc=' + enc(cc) + '&subject=' + enc(subject) + '&body=' + enc(body);
-      const gmailUrl   = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + enc(to) + '&cc=' + enc(cc) + '&su=' + enc(subject) + '&body=' + enc(body);
-      const outlookUrl = 'https://outlook.live.com/mail/0/deeplink/compose?to=' + enc(to) + '&cc=' + enc(cc) + '&subject=' + enc(subject) + '&body=' + enc(body);
-      const yahooUrl   = 'https://compose.mail.yahoo.com/?to=' + enc(to) + '&cc=' + enc(cc) + '&subject=' + enc(subject) + '&body=' + enc(body);
+      const mailtoUrl = 'mailto:' + TO_EMAIL + '?cc=' + enc(CC_EMAIL) + '&subject=' + enc(subject) + '&body=' + enc(body);
 
-      const fullText =
-          'To: ' + to + '\n' +
-          'Cc: ' + cc + '\n' +
-          'Subject: ' + subject + '\n\n' +
-          body;
+      // Submit button + status feedback
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalLabel = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = 'Sending&hellip;';
 
-      // Remove any prior delivery panel
-      const old = document.getElementById('delivery-panel');
-      if (old) old.remove();
+      // Helper — show a result panel below the form
+      function showStatus(opts){
+        const old = document.getElementById('delivery-panel');
+        if (old) old.remove();
+        const panel = document.createElement('div');
+        panel.id = 'delivery-panel';
+        panel.setAttribute('role','region');
+        panel.style.cssText = 'margin-top:28px;padding:22px 24px;border-radius:14px;' + (opts.style || '');
+        panel.innerHTML = opts.html;
+        contactForm.appendChild(panel);
+        panel.scrollIntoView({behavior:'smooth', block:'center'});
+        return panel;
+      }
 
-      const panel = document.createElement('div');
-      panel.id = 'delivery-panel';
-      panel.setAttribute('role', 'region');
-      panel.setAttribute('aria-label', 'Choose how to send your message');
-      panel.style.cssText = 'margin-top:28px;padding:24px;background:linear-gradient(135deg,rgba(47,212,193,.06),rgba(125,194,66,.04));border:1px solid rgba(47,212,193,.35);border-radius:14px';
-      panel.innerHTML =
-        '<h4 style="color:#fff;font-size:17px;margin:0 0 6px;letter-spacing:.01em">Your message is ready &mdash; choose how to send</h4>' +
-        '<p style="color:#c4d0e8;font-size:13.5px;line-height:1.55;margin:0 0 18px">Pick whichever fits how you read email. The first three open a pre-filled compose window; the fourth copies everything to your clipboard so you can paste it anywhere.</p>' +
-        '<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px">' +
-          '<a href="' + mailtoUrl + '" class="btn primary" style="font-size:13.5px">&#9993;&nbsp; Default mail app</a>' +
-          '<a href="' + gmailUrl + '" target="_blank" rel="noopener" class="btn" style="font-size:13.5px">Open in Gmail &nearr;</a>' +
-          '<a href="' + outlookUrl + '" target="_blank" rel="noopener" class="btn" style="font-size:13.5px">Open in Outlook &nearr;</a>' +
-          '<a href="' + yahooUrl + '" target="_blank" rel="noopener" class="btn" style="font-size:13.5px">Open in Yahoo &nearr;</a>' +
-          '<button type="button" id="dp-copy" class="btn" style="font-size:13.5px;cursor:pointer">&#128203;&nbsp; Copy message</button>' +
-        '</div>' +
-        '<details style="margin-top:6px">' +
-          '<summary style="color:var(--teal-bright);font-size:13px;cursor:pointer;letter-spacing:.02em;font-weight:600">Or copy and paste it manually</summary>' +
-          '<textarea id="dp-textarea" readonly style="width:100%;margin-top:10px;background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:8px;padding:12px 14px;color:#e5ecf8;font-family:Consolas,Monaco,monospace;font-size:12.5px;line-height:1.55;min-height:160px;resize:vertical">' +
+      // Background submission to Formspree (always — gives you a guaranteed record)
+      async function submitToFormspree(){
+        try {
+          const res = await fetch(FORMSPREE_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              name:         fields.name,
+              email:        fields.email,
+              organization: fields.organization,
+              reason:       fields.reason,
+              message:      fields.message,
+              _subject:     subject,
+              _replyto:     fields.email
+            })
+          });
+          return res.ok;
+        } catch(_){ return false; }
+      }
+
+      // Try the user's default mail app first. Detect via window blur within 1.5 s.
+      let mailtoOpened = false;
+      const onBlur = () => { mailtoOpened = true; };
+      window.addEventListener('blur', onBlur, {once:true});
+
+      // Trigger mailto via anchor click (more reliable than window.location.href)
+      const a = document.createElement('a');
+      a.href = mailtoUrl;
+      a.style.display = 'none';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+
+      // Give the OS ~1.5 s to launch the mail handler
+      await new Promise(r => setTimeout(r, 1500));
+      window.removeEventListener('blur', onBlur);
+
+      if (mailtoOpened){
+        // Mail app opened — respect user's choice, don't double-send via Formspree.
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalLabel;
+        showStatus({
+          style: 'background:linear-gradient(135deg,rgba(47,212,193,.10),rgba(125,194,66,.06));border:1px solid rgba(47,212,193,.45)',
+          html:
+            '<h4 style="color:#fff;font-size:17px;margin:0 0 6px">&#10003; Your email app has opened</h4>' +
+            '<p style="color:#c4d0e8;font-size:13.5px;line-height:1.55;margin:0">Your message is pre-filled in your default mail client. Please review and click <b>Send</b> there to deliver it. We&rsquo;ll reply within a few business days.</p>'
+        });
+        return;
+      }
+
+      // Mail app didn't open — silently send via Formspree
+      const sent = await submitToFormspree();
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalLabel;
+
+      if (sent){
+        showStatus({
+          style: 'background:linear-gradient(135deg,rgba(47,212,193,.10),rgba(125,194,66,.06));border:1px solid rgba(47,212,193,.45)',
+          html:
+            '<h4 style="color:#fff;font-size:17px;margin:0 0 6px">&#10003; Message sent</h4>' +
+            '<p style="color:#c4d0e8;font-size:13.5px;line-height:1.55;margin:0 0 6px">Your message has been delivered to the In2Cell team. We&rsquo;ll reply within a few business days.</p>' +
+            '<p style="color:var(--fog);font-size:12px;line-height:1.5;margin:8px 0 0">Sent automatically because no default email client was detected. If you&rsquo;d prefer to also send from your own email, ' +
+              '<a href="' + mailtoUrl + '" style="color:var(--teal-bright)">click here to open the message manually</a>.</p>'
+        });
+        contactForm.reset();
+        return;
+      }
+
+      // Both routes failed — final manual fallback (copy-to-clipboard panel)
+      const fullText = 'To: ' + TO_EMAIL + '\nCc: ' + CC_EMAIL + '\nSubject: ' + subject + '\n\n' + body;
+      const gmailUrl   = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + enc(TO_EMAIL) + '&cc=' + enc(CC_EMAIL) + '&su=' + enc(subject) + '&body=' + enc(body);
+      const outlookUrl = 'https://outlook.live.com/mail/0/deeplink/compose?to=' + enc(TO_EMAIL) + '&cc=' + enc(CC_EMAIL) + '&subject=' + enc(subject) + '&body=' + enc(body);
+      const panel = showStatus({
+        style: 'background:linear-gradient(135deg,rgba(255,180,30,.08),rgba(255,127,144,.05));border:1px solid rgba(255,180,30,.35)',
+        html:
+          '<h4 style="color:#fff;font-size:17px;margin:0 0 6px">Couldn&rsquo;t send automatically</h4>' +
+          '<p style="color:#c4d0e8;font-size:13.5px;line-height:1.55;margin:0 0 14px">Both delivery routes failed (likely a network issue). Please use one of the options below, or email us directly at <b style="color:var(--teal-bright)">' + TO_EMAIL + '</b>.</p>' +
+          '<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px">' +
+            '<a href="' + gmailUrl + '" target="_blank" rel="noopener" class="btn" style="font-size:13.5px">Open in Gmail &nearr;</a>' +
+            '<a href="' + outlookUrl + '" target="_blank" rel="noopener" class="btn" style="font-size:13.5px">Open in Outlook &nearr;</a>' +
+            '<button type="button" id="dp-copy" class="btn" style="font-size:13.5px;cursor:pointer">&#128203;&nbsp; Copy message</button>' +
+          '</div>' +
+          '<textarea id="dp-textarea" readonly style="width:100%;background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:8px;padding:12px 14px;color:#e5ecf8;font-family:Consolas,Monaco,monospace;font-size:12.5px;line-height:1.55;min-height:140px;resize:vertical">' +
           fullText.replace(/</g,'&lt;').replace(/>/g,'&gt;') +
-          '</textarea>' +
-        '</details>';
-      contactForm.appendChild(panel);
-
-      // Copy-to-clipboard handler — uses modern API with execCommand fallback
+          '</textarea>'
+      });
       const copyBtn = panel.querySelector('#dp-copy');
       copyBtn.addEventListener('click', function(){
-        const textToCopy =
-          to + (cc ? ', ' + cc : '') + '\n' +
-          'Subject: ' + subject + '\n\n' + body;
         const showCopied = () => {
           const orig = copyBtn.innerHTML;
           copyBtn.innerHTML = '&#10003;&nbsp; Copied';
@@ -1863,23 +1932,17 @@ document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeBio(); });
           }, 2200);
         };
         if (navigator.clipboard && navigator.clipboard.writeText){
-          navigator.clipboard.writeText(textToCopy).then(showCopied, ()=>{
-            // fallback if permission denied
+          navigator.clipboard.writeText(fullText).then(showCopied, ()=>{
             const ta = panel.querySelector('#dp-textarea');
-            ta.value = textToCopy;
             ta.select();
             try{ document.execCommand('copy'); showCopied(); }catch(_){}
           });
         } else {
           const ta = panel.querySelector('#dp-textarea');
-          ta.value = textToCopy;
           ta.select();
           try{ document.execCommand('copy'); showCopied(); }catch(_){}
         }
       });
-
-      // Smooth scroll the panel into view
-      panel.scrollIntoView({behavior:'smooth', block:'center'});
     });
   }
 
