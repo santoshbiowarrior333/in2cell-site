@@ -1804,11 +1804,82 @@ document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeBio(); });
           '--\nSent via the In2Cell website contact form';
       const to = 'shashisantosh2007@gmail.com';
       const cc = 'path1327@ox.ac.uk';
-      const mailto = 'mailto:' + to +
-          '?cc=' + encodeURIComponent(cc) +
-          '&subject=' + encodeURIComponent(subject) +
-          '&body=' + encodeURIComponent(body);
-      window.location.href = mailto;
+
+      // Build URLs for every channel a visitor might use
+      const enc = encodeURIComponent;
+      const mailtoUrl  = 'mailto:' + to + '?cc=' + enc(cc) + '&subject=' + enc(subject) + '&body=' + enc(body);
+      const gmailUrl   = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + enc(to) + '&cc=' + enc(cc) + '&su=' + enc(subject) + '&body=' + enc(body);
+      const outlookUrl = 'https://outlook.live.com/mail/0/deeplink/compose?to=' + enc(to) + '&cc=' + enc(cc) + '&subject=' + enc(subject) + '&body=' + enc(body);
+      const yahooUrl   = 'https://compose.mail.yahoo.com/?to=' + enc(to) + '&cc=' + enc(cc) + '&subject=' + enc(subject) + '&body=' + enc(body);
+
+      const fullText =
+          'To: ' + to + '\n' +
+          'Cc: ' + cc + '\n' +
+          'Subject: ' + subject + '\n\n' +
+          body;
+
+      // Remove any prior delivery panel
+      const old = document.getElementById('delivery-panel');
+      if (old) old.remove();
+
+      const panel = document.createElement('div');
+      panel.id = 'delivery-panel';
+      panel.setAttribute('role', 'region');
+      panel.setAttribute('aria-label', 'Choose how to send your message');
+      panel.style.cssText = 'margin-top:28px;padding:24px;background:linear-gradient(135deg,rgba(47,212,193,.06),rgba(125,194,66,.04));border:1px solid rgba(47,212,193,.35);border-radius:14px';
+      panel.innerHTML =
+        '<h4 style="color:#fff;font-size:17px;margin:0 0 6px;letter-spacing:.01em">Your message is ready &mdash; choose how to send</h4>' +
+        '<p style="color:#c4d0e8;font-size:13.5px;line-height:1.55;margin:0 0 18px">Pick whichever fits how you read email. The first three open a pre-filled compose window; the fourth copies everything to your clipboard so you can paste it anywhere.</p>' +
+        '<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px">' +
+          '<a href="' + mailtoUrl + '" class="btn primary" style="font-size:13.5px">&#9993;&nbsp; Default mail app</a>' +
+          '<a href="' + gmailUrl + '" target="_blank" rel="noopener" class="btn" style="font-size:13.5px">Open in Gmail &nearr;</a>' +
+          '<a href="' + outlookUrl + '" target="_blank" rel="noopener" class="btn" style="font-size:13.5px">Open in Outlook &nearr;</a>' +
+          '<a href="' + yahooUrl + '" target="_blank" rel="noopener" class="btn" style="font-size:13.5px">Open in Yahoo &nearr;</a>' +
+          '<button type="button" id="dp-copy" class="btn" style="font-size:13.5px;cursor:pointer">&#128203;&nbsp; Copy message</button>' +
+        '</div>' +
+        '<details style="margin-top:6px">' +
+          '<summary style="color:var(--teal-bright);font-size:13px;cursor:pointer;letter-spacing:.02em;font-weight:600">Or copy and paste it manually</summary>' +
+          '<textarea id="dp-textarea" readonly style="width:100%;margin-top:10px;background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:8px;padding:12px 14px;color:#e5ecf8;font-family:Consolas,Monaco,monospace;font-size:12.5px;line-height:1.55;min-height:160px;resize:vertical">' +
+          fullText.replace(/</g,'&lt;').replace(/>/g,'&gt;') +
+          '</textarea>' +
+        '</details>';
+      contactForm.appendChild(panel);
+
+      // Copy-to-clipboard handler — uses modern API with execCommand fallback
+      const copyBtn = panel.querySelector('#dp-copy');
+      copyBtn.addEventListener('click', function(){
+        const textToCopy =
+          to + (cc ? ', ' + cc : '') + '\n' +
+          'Subject: ' + subject + '\n\n' + body;
+        const showCopied = () => {
+          const orig = copyBtn.innerHTML;
+          copyBtn.innerHTML = '&#10003;&nbsp; Copied';
+          copyBtn.style.background = 'var(--teal)';
+          copyBtn.style.color = '#04121b';
+          setTimeout(()=>{
+            copyBtn.innerHTML = orig;
+            copyBtn.style.background = '';
+            copyBtn.style.color = '';
+          }, 2200);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText){
+          navigator.clipboard.writeText(textToCopy).then(showCopied, ()=>{
+            // fallback if permission denied
+            const ta = panel.querySelector('#dp-textarea');
+            ta.value = textToCopy;
+            ta.select();
+            try{ document.execCommand('copy'); showCopied(); }catch(_){}
+          });
+        } else {
+          const ta = panel.querySelector('#dp-textarea');
+          ta.value = textToCopy;
+          ta.select();
+          try{ document.execCommand('copy'); showCopied(); }catch(_){}
+        }
+      });
+
+      // Smooth scroll the panel into view
+      panel.scrollIntoView({behavior:'smooth', block:'center'});
     });
   }
 
