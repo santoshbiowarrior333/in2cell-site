@@ -1515,26 +1515,30 @@ const bios = {
     linkedin:'#', scholar:'#', email:'mailto:research@in2cell.com' }
 };
 
+// Bio modal — only present on the homepage (#bio-backdrop). On other pages
+// (e.g. contact.html) this whole block is skipped so it doesn't throw.
 const backdrop = document.getElementById('bio-backdrop');
-function openBio(key){
-  const b = bios[key]; if(!b) return;
-  document.getElementById('bio-name').textContent = b.name;
-  document.getElementById('bio-body').innerHTML = b.body.split('\n').map(p=>'<p>'+p+'</p>').join('');
-  document.getElementById('bio-focus').textContent = b.focus;
-  document.getElementById('bio-prior').textContent = b.prior;
-  document.getElementById('bio-linkedin').href = b.linkedin;
-  document.getElementById('bio-scholar').href = b.scholar;
-  document.getElementById('bio-email').href = b.email;
-  backdrop.classList.add('open');
-  document.body.style.overflow='hidden';
+if (backdrop) {
+  function openBio(key){
+    const b = bios[key]; if(!b) return;
+    document.getElementById('bio-name').textContent = b.name;
+    document.getElementById('bio-body').innerHTML = b.body.split('\n').map(p=>'<p>'+p+'</p>').join('');
+    document.getElementById('bio-focus').textContent = b.focus;
+    document.getElementById('bio-prior').textContent = b.prior;
+    document.getElementById('bio-linkedin').href = b.linkedin;
+    document.getElementById('bio-scholar').href = b.scholar;
+    document.getElementById('bio-email').href = b.email;
+    backdrop.classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+  function closeBio(){ backdrop.classList.remove('open'); document.body.style.overflow=''; }
+  document.querySelectorAll('[data-bio]').forEach(el=>{
+    el.addEventListener('click', ()=>openBio(el.dataset.bio));
+    el.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openBio(el.dataset.bio); }});
+  });
+  backdrop.addEventListener('click', e=>{ if(e.target===backdrop) closeBio(); });
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeBio(); });
 }
-function closeBio(){ backdrop.classList.remove('open'); document.body.style.overflow=''; }
-document.querySelectorAll('[data-bio]').forEach(el=>{
-  el.addEventListener('click', ()=>openBio(el.dataset.bio));
-  el.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openBio(el.dataset.bio); }});
-});
-backdrop.addEventListener('click', e=>{ if(e.target===backdrop) closeBio(); });
-document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeBio(); });
 
   // ===== LAZY LOAD HEAVY ASSETS =====
   // Backgrounds: swap in the image URL only when the section is in view
