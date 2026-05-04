@@ -3,8 +3,11 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<!-- Coming-Soon redirect removed for local preview. To re-hide on the live site:
-     <meta http-equiv="refresh" content="0; url=/"/> -->
+<!-- Coming-Soon mode: redirect direct visits back to homepage with no flash.
+     To take this page live: delete the next 4 lines (script, meta-refresh, style). -->
+<script>location.replace('/');</script>
+<meta http-equiv="refresh" content="0; url=/"/>
+<style>html,body{visibility:hidden;background:#0a1020}</style>
 <title>Careers | In2Cell Biosciences</title>
 <meta name="description" content="Open roles at In2Cell Biosciences — CEO, CFO, CDO, QA Manager, Research Scientists. Build the DNA break detection platform with us."/>
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>

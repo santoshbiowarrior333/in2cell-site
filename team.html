@@ -3,9 +3,11 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<!-- Coming-Soon mode: redirect direct visits back to homepage.
-     To take this page live: delete the <meta http-equiv="refresh"> line below. -->
+<!-- Coming-Soon mode: redirect direct visits back to homepage with no flash.
+     To take this page live: delete the next 4 lines (script, meta-refresh, style). -->
+<script>location.replace('/');</script>
 <meta http-equiv="refresh" content="0; url=/"/>
+<style>html,body{visibility:hidden;background:#0a1020}</style>
 <title>Team | In2Cell Biosciences</title>
 <meta name="description" content="The people building In2Cell Biosciences. Founders, scientific advisors, and the open roles we're hiring for."/>
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
