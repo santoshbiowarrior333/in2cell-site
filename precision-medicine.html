@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<!-- COMING SOON MODE: redirect any direct visit back to landing page -->
-<meta http-equiv="refresh" content="0; url=/"/>
-<title>Precision Medicine — In2Cell Biosciences</title>
+<!-- Coming-Soon redirect removed for local preview. To re-hide on the live site:
+     <meta http-equiv="refresh" content="0; url=/"/> -->
+<title>Precision Medicine | In2Cell Biosciences</title>
 <meta name="description" content="DNA break detection across cancer, neurodegeneration, premature ageing, and gene therapy — 95 disease atlases mapped to base resolution."/>
-<link rel="icon" type="image/svg+xml" href="images/logos/in2cell.svg"/>
-<link rel="apple-touch-icon" href="images/logos/in2cell.svg"/>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="apple-touch-icon" href="favicon.svg"/>
 
 <!-- =================================================================
      In2Cell Biosciences — single-file site
@@ -1274,7 +1274,7 @@ html{scroll-padding-top:86px}
       <a href="precision-medicine.html" style="color:var(--teal-bright)">Precision med</a>
       <a href="applications.html">Applications</a>
       <a href="publications.html">Publications</a>
-      <a href="index.html#team">Team</a>
+      <a href="team.html">Team</a>
       <a href="index.html#news">News</a>
       <a href="careers.html">Careers</a>
       <a href="index.html#about">About</a>
@@ -1299,7 +1299,7 @@ html{scroll-padding-top:86px}
   <div class="wrap">
     <span class="eyebrow"><span class="dot"></span> Precision medicine</span>
     <h1 style="font-size:clamp(36px,5.2vw,64px);background:linear-gradient(180deg,#fff,#9fb4d8);-webkit-background-clip:text;background-clip:text;color:transparent;margin:20px 0 18px;line-height:1.05">Not every patient is the same.<br/>Neither is their cancer.</h1>
-    <p class="t-body" style="max-width:720px;margin:0 auto">Tumours of the same name behave very differently. Two patients with "breast cancer" can have opposing drug sensitivities, different surgical paths, and wildly different outcomes. AnaLog brings chromosomal-fragility data into that decision.</p>
+    <p class="t-body" style="max-width:720px;margin:0 auto">Tumours of the same name behave differently. Two patients with "breast cancer" can have opposite drug sensitivities, different surgical paths, and very different outcomes. AnaLog brings chromosomal-fragility data into that decision.</p>
   </div>
 </section>
 
@@ -1308,15 +1308,16 @@ html{scroll-padding-top:86px}
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="tag">Why it matters</span>
-      <h2>One-size-fits-all fails in oncology.</h2>
+      <h2>One drug doesn't fit every patient.</h2>
+      <p style="color:#c4d0e8;font-size:15px;line-height:1.6;max-width:620px;margin:14px auto 0">Disease is heterogeneous. Cancer, neurodegeneration, ageing, gene therapy: response varies even when the diagnosis is identical. Oncology shows the principle most starkly. The numbers below are from cancer, but the same logic holds across disease.</p>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;max-width:1100px;margin:0 auto" class="reveal-stagger">
       <div class="inv-metric reveal"><b>30-50%</b><span>of chemotherapy patients do not respond</span></div>
-      <div class="inv-metric reveal"><b>15-20%</b><span>of cancers are HRD &mdash; PARPi-sensitive</span></div>
-      <div class="inv-metric reveal"><b>14%</b><span>of solid tumors are MSI-H &mdash; IO-responsive</span></div>
-      <div class="inv-metric reveal"><b>~3%</b><span>of TP53 mutations &mdash; treatment changes per mutation</span></div>
+      <div class="inv-metric reveal"><b>15-20%</b><span>of cancers are HRD, PARPi-sensitive</span></div>
+      <div class="inv-metric reveal"><b>14%</b><span>of solid tumors are MSI-H, IO-responsive</span></div>
+      <div class="inv-metric reveal"><b>~3%</b><span>of TP53 mutations change treatment</span></div>
     </div>
-    <p style="text-align:center;color:#c4d0e8;font-size:15.5px;line-height:1.7;max-width:720px;margin:40px auto 0">Genomic instability is heterogeneous across tumors. The same drug that cures one patient can be useless in another with an identical histology diagnosis. Molecular context &mdash; which chromosomes, which breakpoints, which repair pathways &mdash; changes everything.</p>
+    <p style="text-align:center;color:#c4d0e8;font-size:15.5px;line-height:1.7;max-width:720px;margin:40px auto 0">Genomic instability is heterogeneous across tumours. The same drug that cures one patient can be useless in another with the same histology diagnosis. Molecular context changes everything: which chromosomes, which breakpoints, which repair pathways.</p>
   </div>
 </section>
 
@@ -1327,7 +1328,7 @@ html{scroll-padding-top:86px}
       <span class="tag">The hypothesis</span>
       <h2 class="h-section" style="background:linear-gradient(180deg,#fff,#9fb4d8);-webkit-background-clip:text;background-clip:text;color:transparent;margin:14px 0 18px">Chromosomes break where they were already fragile.</h2>
       <p class="t-body">Cancers have distinct patterns of chromosomal instability. BRCA1/2-deficient tumours break around 17q21 and 13q12. Pancreatic cancers accumulate damage around KRAS on 12p and CDKN2A on 9p. Small-cell lung carcinomas destabilise RB1 on 13q and TP53 on 17p. Ewing sarcomas are defined by the EWSR1-FLI1 t(11;22) fusion.</p>
-      <p class="t-body" style="margin-top:14px">When you map breaks at base resolution &mdash; not just at calling-panel hotspots &mdash; these patterns read as clean genomic fingerprints.</p>
+      <p class="t-body" style="margin-top:14px">When you map breaks at base resolution, not just at calling-panel hotspots, these patterns read as clean genomic fingerprints.</p>
     </div>
     <div>
       <div style="background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:30px">
@@ -2583,7 +2584,7 @@ html{scroll-padding-top:86px}
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="tag" style="color:var(--accent-violet)">Neurodegeneration</span>
-      <h2>When neurons can&rsquo;t repair what time damages.</h2>
+      <h2>When neurons can't keep up with a lifetime of DNA damage.</h2>
       <p>Post-mitotic neurons accumulate DNA damage across decades. Defects in DDR signalling, R-loop resolution, or oxidative repair drive distinct clinical syndromes. 15 examples.</p>
     </div>
   </div>
@@ -2956,7 +2957,7 @@ html{scroll-padding-top:86px}
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="tag" style="color:var(--accent-amber)">Premature ageing</span>
-      <h2>Progeroid syndromes &mdash; DNA repair, broken at the source.</h2>
+      <h2>Progeroid syndromes: DNA repair, broken at the source.</h2>
       <p>Helicase loss, NER defects, nuclear lamina disruption. When repair fails in every cell, the body ages decades early. 15 canonical progerias.</p>
     </div>
   </div>
@@ -3330,7 +3331,7 @@ html{scroll-padding-top:86px}
     <div class="sec-head reveal">
       <span class="tag" style="color:var(--leaf)">Immunodeficiency</span>
       <h2>When V(D)J breaks don&rsquo;t resolve, immunity doesn&rsquo;t form.</h2>
-      <p>Lymphocyte diversity depends on programmed double-strand breaks &mdash; broken deliberately, then rejoined. Failures in NHEJ, class-switch or ICL repair produce severe immune phenotypes. 15 cases.</p>
+      <p>Lymphocyte diversity depends on programmed double-strand breaks. Cells break the DNA deliberately and rejoin it. Failures in NHEJ, class-switch, or ICL repair produce severe immune phenotypes. 15 cases.</p>
     </div>
   </div>
   <div class="cdm-grid">
@@ -3703,12 +3704,12 @@ html{scroll-padding-top:86px}
     <div class="sec-head reveal">
       <span class="tag">Signal &rarr; diagnosis</span>
       <h2>AnaLog as a diagnostic marker.</h2>
-      <p>Our output is not a disease label. It is a quantitative fingerprint that places a tumour on a continuous axis of chromosomal fragility &mdash; where on that axis a patient sits informs which drugs, which dose, which monitoring cadence.</p>
+      <p>Our output is not a disease label. It is a quantitative fingerprint that places a tumour on a continuous axis of chromosomal fragility. Where on that axis a patient sits informs which drugs, which dose, which monitoring cadence.</p>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;max-width:1120px;margin:0 auto" class="reveal-stagger">
-      <div class="r-card reveal"><div class="num" style="color:var(--teal-bright)">PREDICT</div><h3>HRD probability</h3><p>From per-read break signatures, estimate homologous-repair deficiency in minutes &mdash; without waiting on reflex panels.</p></div>
+      <div class="r-card reveal"><div class="num" style="color:var(--teal-bright)">PREDICT</div><h3>HRD probability</h3><p>From per-read break signatures, estimate homologous-repair deficiency in minutes. No reflex panel wait.</p></div>
       <div class="r-card reveal"><div class="num" style="color:var(--accent-amber)">STRATIFY</div><h3>Drug sensitivity score</h3><p>A single score per drug class (PARPi, platinum, IO, targeted) from the fragility fingerprint.</p></div>
-      <div class="r-card reveal"><div class="num" style="color:var(--accent-violet)">MONITOR</div><h3>Repair kinetics</h3><p>Track break accumulation across time points &mdash; early signal for resistance, progression, or repair failure.</p></div>
+      <div class="r-card reveal"><div class="num" style="color:var(--accent-violet)">MONITOR</div><h3>Repair kinetics</h3><p>Track break accumulation across time points. Early signal for resistance, progression, or repair failure.</p></div>
       <div class="r-card reveal"><div class="num" style="color:var(--accent-rose)">STAGE</div><h3>Chromosomal fragility index</h3><p>A reproducible, quantitative marker that can stratify clinical trials and standardise cross-study comparisons.</p></div>
     </div>
   </div>
@@ -3738,7 +3739,7 @@ html{scroll-padding-top:86px}
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-about">
-        <p style="color:var(--fog);font-size:14px">In2Cell Biosciences &mdash; DNA break detection powered by nanopore sequencing and AI.</p>
+        <p style="color:var(--fog);font-size:14px">In2Cell Biosciences. DNA break detection powered by nanopore sequencing and AI.</p>
       </div>
       <div><h5>Company</h5><a href="#about">About</a><a href="#team">Team</a><a href="#news">News</a></div>
       <div><h5>Platform</h5><a href="#platform">Pipeline</a><a href="#research">Applications</a></div>
