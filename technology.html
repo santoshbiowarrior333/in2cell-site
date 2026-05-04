@@ -3,11 +3,13 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<!-- COMING SOON MODE: redirect any direct visit back to landing page -->
+<!-- Coming-Soon mode: redirect direct visits back to homepage.
+     To take this page live: delete the <meta http-equiv="refresh"> line below. -->
 <meta http-equiv="refresh" content="0; url=/"/>
-<title>Technology — In2Cell Biosciences</title>
+<title>Technology | In2Cell Biosciences</title>
 <meta name="description" content="The AnaLog platform — long-read nanopore sequencing + custom bioinformatics + AI for single-base-resolution DNA break detection."/>
-<link rel="icon" type="image/svg+xml" href="images/logos/in2cell.svg"/>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="apple-touch-icon" href="favicon.svg"/>
 <link rel="apple-touch-icon" href="images/logos/in2cell.svg"/>
 
 <!-- =================================================================
@@ -827,7 +829,7 @@ img[loading="lazy"]{min-height:1px}
       <a href="precision-medicine.html">Precision med</a>
       <a href="applications.html">Applications</a>
       <a href="publications.html">Publications</a>
-      <a href="index.html#team">Team</a>
+      <a href="team.html">Team</a>
       <a href="index.html#news">News</a>
       <a href="careers.html">Careers</a>
       <a href="index.html#about">About</a>
@@ -843,7 +845,7 @@ img[loading="lazy"]{min-height:1px}
   <div class="wrap">
     <span class="tag" style="font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--teal-bright);font-weight:700">Technology</span>
     <h1 style="font-size:clamp(40px,5.2vw,68px);background:linear-gradient(180deg,#fff,#9fb4d8);-webkit-background-clip:text;background-clip:text;color:transparent;margin:18px 0 20px;line-height:1.05">The AnaLog platform</h1>
-    <p style="color:#b9c6e0;font-size:18px;max-width:680px;margin:0 auto;line-height:1.6">From raw ionic signal to clinical-grade break map. Our proprietary stack marries nanopore sequencing with purpose-built AI, resolving single- and double-strand breaks at base resolution.</p>
+    <p style="color:#b9c6e0;font-size:18px;max-width:680px;margin:0 auto;line-height:1.6">From raw ionic signal to a clinical-grade break map. Nanopore sequencing meets purpose-built AI. Single- and double-strand breaks resolved at base resolution.</p>
   </div>
 </section>
 
@@ -858,7 +860,7 @@ img[loading="lazy"]{min-height:1px}
     <div class="reveal">
       <span class="tag" style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--teal-bright);font-weight:700">Live · motion</span>
       <h2 style="font-size:clamp(28px,3.5vw,42px);color:#fff;margin:14px 0 18px;line-height:1.1">The break happens in milliseconds.<br/>AnaLog catches it.</h2>
-      <p style="color:#b9c6e0;font-size:17px;line-height:1.7;max-width:440px">Every single- or double-strand break leaves a unique ionic signature as it passes through the pore. Our models learn those signatures and call them in real time &mdash; at base resolution, on native DNA, without amplification.</p>
+      <p style="color:#b9c6e0;font-size:17px;line-height:1.7;max-width:440px">Every break leaves a unique ionic signature as it passes through the pore. Our models learn the signatures and call breaks in real time. Base resolution. Native DNA. No amplification.</p>
     </div>
     <div class="reveal" style="position:relative;aspect-ratio:1/1;border-radius:20px;overflow:hidden;background:radial-gradient(ellipse at center,rgba(31,168,153,.08),#040814 70%);border:1px solid var(--line);display:flex;align-items:center;justify-content:center">
       <!-- Lottie animation — lottie-player accepts .json; dotlottie-wc accepts .lottie. Using lottie-player since we have JSON. -->
@@ -1000,7 +1002,7 @@ img[loading="lazy"]{min-height:1px}
       <div class="pipe-drawer" id="pipe-drawer-02">
         <div class="d-meta">Stage 02 &middot; Nanopore sequencing</div>
         <h4>Native-strand reads, no amplification</h4>
-        <p>DNA passes through a protein nanopore. Ionic current disturbances encode the sequence &mdash; and subtler signals reveal breaks, modifications, and damage.</p>
+        <p>DNA passes through a protein nanopore. Ionic current disturbances encode the sequence. Subtler signals reveal breaks, modifications, and damage.</p>
         <div class="d-grid">
           <div><h5>Hardware</h5><p>Oxford Nanopore MinION / PromethION</p></div>
           <div><h5>Throughput</h5><p>~1.2M reads per flow cell, streaming</p></div>
@@ -1036,7 +1038,7 @@ img[loading="lazy"]{min-height:1px}
       <div class="pipe-drawer" id="pipe-drawer-06">
         <div class="d-meta">Stage 06 &middot; Interactive report</div>
         <h4>Clinical-grade output</h4>
-        <p>Break landscapes, hotspot calls, motif contexts, and repair-outcome signatures &mdash; delivered as an interactive HTML / PDF that non-specialists can action.</p>
+        <p>Break landscapes, hotspot calls, motif contexts, and repair-outcome signatures. Delivered as an interactive HTML or PDF that non-specialists can action.</p>
         <div class="d-grid">
           <div><h5>Format</h5><p>HTML, PDF, VCF, BED</p></div>
           <div><h5>Turnaround</h5><p>~24 hours, sample-to-report</p></div>
@@ -2004,7 +2006,7 @@ html{scroll-padding-top:86px}
       <div class="r-card reveal">
         <div class="num">AI MODEL &middot; 03</div>
         <h3>ContextNet</h3>
-        <p>Graph model placing each break in its genomic neighborhood &mdash; motifs, chromatin, replication timing.</p>
+        <p>Graph model placing each break in its genomic neighbourhood: motifs, chromatin, replication timing.</p>
       </div>
     </div>
   </div>
@@ -2027,7 +2029,7 @@ html{scroll-padding-top:86px}
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-about">
-        <p style="color:var(--fog);font-size:14px">In2Cell Biosciences &mdash; DNA break detection powered by nanopore sequencing and AI.</p>
+        <p style="color:var(--fog);font-size:14px">In2Cell Biosciences. DNA break detection powered by nanopore sequencing and AI.</p>
       </div>
       <div><h5>Company</h5><a href="#about">About</a><a href="#team">Team</a><a href="#news">News</a></div>
       <div><h5>Platform</h5><a href="#platform">Pipeline</a><a href="#research">Applications</a></div>

@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<!-- Coming-Soon mode: redirect direct visits back to homepage.
+     To take this page live: delete the <meta http-equiv="refresh"> line below. -->
+<meta http-equiv="refresh" content="0; url=/"/>
+<title>Team | In2Cell Biosciences</title>
+<meta name="description" content="The people building In2Cell Biosciences. Founders, scientific advisors, and the open roles we're hiring for."/>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="apple-touch-icon" href="favicon.svg"/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ================= THEME ================= */
+:root{
+  --navy:#0f2746;--navy-2:#0a1a33;
+  --teal:#1fa899;--teal-bright:#2fd4c1;
+  --leaf:#7dc242;
+  --ink:#0a1020;--ink-2:#0d1528;
+  --fog:#8aa0bd;
+  --line:rgba(255,255,255,.08);
+  --glass:rgba(255,255,255,.04);
+  --glass-strong:rgba(255,255,255,.07);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:86px}
+body{
+  font-family:'Space Grotesk','Inter',system-ui,sans-serif;
+  background:var(--ink);color:#e5ecf8;
+  overflow-x:hidden;line-height:1.55;min-height:100vh;
+}
+h1,h2,h3,h4,h5{font-family:'Poppins',sans-serif;font-weight:700;letter-spacing:-.02em}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* Background tint */
+.bg-grid{
+  position:fixed;inset:0;z-index:-3;pointer-events:none;
+  background:
+    radial-gradient(1200px 600px at 20% -10%, rgba(31,168,153,.25), transparent 60%),
+    radial-gradient(900px 500px at 90% 10%, rgba(125,194,66,.12), transparent 60%),
+    linear-gradient(180deg,#060b18,#0a1020 60%,#060b18);
+}
+
+.wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+
+/* ================= NAV ================= */
+.nav{
+  position:sticky;top:0;z-index:50;
+  backdrop-filter:blur(14px);
+  background:rgba(6,11,24,.6);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:10px;height:42px}
+.logo img{max-height:42px;height:42px;width:auto;display:block}
+.nav-links{display:flex;gap:26px;font-size:13.5px;color:#c8d4ea;white-space:nowrap}
+.nav-links a{position:relative;opacity:.85;transition:.2s}
+.nav-links a:hover{opacity:1;color:var(--teal-bright)}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--teal-bright);transition:.25s}
+.nav-links a:hover::after{width:100%}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 20px;border-radius:999px;
+  font-weight:600;font-size:14px;
+  border:1px solid var(--teal);color:var(--teal-bright);
+  background:linear-gradient(135deg,rgba(31,168,153,.1),rgba(125,194,66,.05));
+  transition:.25s;cursor:pointer;
+}
+.btn:hover{background:var(--teal);color:#04121b;box-shadow:0 0 30px rgba(31,168,153,.5)}
+.btn.primary{background:linear-gradient(135deg,var(--teal),#16876f);color:#04121b;border-color:transparent}
+.btn.primary:hover{box-shadow:0 0 40px rgba(31,168,153,.55);transform:translateY(-1px)}
+@media(max-width:980px){.nav-links{display:none}}
+
+/* ================= HERO ================= */
+.hero-pg{padding:110px 0 50px;position:relative;text-align:center}
+.eyebrow{
+  display:inline-block;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--teal-bright);
+  font-weight:700;margin-bottom:14px;padding:6px 12px;border:1px solid rgba(47,212,193,.35);border-radius:999px;
+  background:rgba(47,212,193,.07);
+}
+.hero-pg h1{
+  font-size:clamp(40px,5.2vw,68px);line-height:1.05;
+  background:linear-gradient(180deg,#fff,#9fb4d8);-webkit-background-clip:text;background-clip:text;color:transparent;
+  margin:18px 0 20px;
+}
+.hero-pg p{color:#b9c6e0;font-size:18px;max-width:720px;margin:0 auto;line-height:1.6}
+.hero-pg p a{color:var(--teal-bright)}
+
+/* ================= SECTION HEADS ================= */
+.sec-head{text-align:center;margin-bottom:50px}
+.sec-head .tag{
+  display:inline-block;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--teal-bright);
+  font-weight:700;margin-bottom:14px;
+}
+.sec-head h2{font-size:clamp(26px,3.5vw,40px);color:#fff;line-height:1.15;margin-bottom:10px}
+.sec-head p{color:var(--fog);max-width:620px;margin:0 auto;font-size:15px}
+
+/* ================= TEAM CARDS ================= */
+.leaders{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:24px;max-width:1240px;margin:0 auto;
+}
+.person{
+  position:relative;background:var(--glass);
+  border:1px solid var(--line);border-radius:14px;
+  padding:28px 22px;text-align:left;
+  transition:transform .35s cubic-bezier(.16,1,.3,1), border-color .25s, background .25s, box-shadow .25s;
+  cursor:pointer;
+}
+.person:hover{
+  transform:translateY(-5px);
+  border-color:rgba(47,212,193,.35);
+  background:var(--glass-strong);
+  box-shadow:0 20px 60px -20px rgba(31,168,153,.3);
+}
+.avatar{
+  width:90px;height:90px;border-radius:50%;
+  background:linear-gradient(135deg,var(--teal),var(--leaf));
+  margin-bottom:18px;
+}
+.avatar.filled{
+  box-shadow:0 4px 18px rgba(0,0,0,.35),inset 0 0 0 2px rgba(255,255,255,.08);
+  background-size:cover;background-position:center;
+}
+.avatar.avatar-open{
+  background:rgba(47,212,193,.08);
+  border:1.5px dashed rgba(47,212,193,.45);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--teal-bright);
+}
+.person .role{
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--fog);font-weight:700;margin-bottom:8px;
+}
+.person h3{font-size:18px;color:#fff;margin-bottom:10px;line-height:1.25}
+.person .bio{font-size:13.5px;color:#c4d0e8;line-height:1.6}
+.person .view-bio{
+  position:absolute;top:18px;right:20px;
+  font-size:11px;color:var(--teal-bright);letter-spacing:.04em;font-weight:600;
+  opacity:0;transition:opacity .2s;
+}
+.person:hover .view-bio{opacity:1}
+.person.open-role .role-tag-open{
+  position:absolute;top:18px;right:20px;
+  font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;
+  background:linear-gradient(135deg,var(--leaf),var(--teal-bright));color:#04121b;
+  padding:3px 8px;border-radius:4px;
+}
+
+.scientists{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:24px;max-width:880px;margin:0 auto;
+}
+.scientists-head{
+  text-align:center;font-family:'Poppins';font-size:22px;color:#fff;
+  margin:70px 0 28px;letter-spacing:.02em;
+}
+
+/* ================= BIO MODAL ================= */
+.bio-backdrop{
+  position:fixed;inset:0;z-index:100;
+  background:rgba(3,6,14,.8);backdrop-filter:blur(8px);
+  display:none;align-items:center;justify-content:center;
+  padding:30px;opacity:0;transition:opacity .25s;
+}
+.bio-backdrop.open{display:flex;opacity:1}
+.bio-modal{
+  max-width:720px;width:100%;max-height:85vh;overflow:auto;
+  background:linear-gradient(180deg,var(--ink-2),var(--ink));
+  border:1px solid var(--line);border-radius:16px;padding:36px;
+  position:relative;transform:translateY(20px);
+  transition:transform .35s cubic-bezier(.16,1,.3,1);
+}
+.bio-backdrop.open .bio-modal{transform:none}
+.bio-close{
+  position:absolute;top:18px;right:18px;
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(255,255,255,.04);border:1px solid var(--line);
+  color:var(--fog);font-size:22px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:.2s;
+}
+.bio-close:hover{color:#fff;background:rgba(255,255,255,.1)}
+.bio-top{display:flex;gap:24px;align-items:flex-start;margin-bottom:22px}
+.bio-avatar{
+  width:120px;height:120px;border-radius:50%;flex:none;
+  background:linear-gradient(135deg,var(--teal),var(--leaf));
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;color:#04121b;font-weight:700;letter-spacing:.1em;
+  background-size:cover;background-position:center;
+}
+.bio-head .role{
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--teal-bright);font-weight:700;margin-bottom:6px;
+}
+.bio-head h3{font-size:24px;color:#fff;margin-bottom:6px;line-height:1.2}
+.bio-head .creds{color:var(--fog);font-size:13px}
+.bio-body{color:#c4d0e8;font-size:15px;line-height:1.7;margin-bottom:20px}
+.bio-body p{margin-bottom:14px}
+.bio-meta{
+  display:grid;grid-template-columns:1fr 1fr;gap:18px;
+  padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  margin-bottom:18px;
+}
+.bio-meta h5{
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--fog);
+  font-weight:700;margin-bottom:6px;
+}
+.bio-meta p{color:#e5ecf8;font-size:13.5px;line-height:1.5}
+.bio-links{display:flex;gap:14px;flex-wrap:wrap}
+.bio-links a{
+  font-size:13px;color:var(--teal-bright);
+  padding:8px 14px;border:1px solid rgba(47,212,193,.35);border-radius:999px;
+  transition:.2s;
+}
+.bio-links a:hover{background:rgba(47,212,193,.1);color:#fff}
+@media(max-width:600px){
+  .bio-modal{padding:24px;max-height:92vh}
+  .bio-top{flex-direction:column;align-items:flex-start}
+  .bio-avatar{width:90px;height:90px}
+  .bio-meta{grid-template-columns:1fr}
+}
+
+/* ================= REVEAL ================= */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .8s, transform .8s}
+.reveal.in{opacity:1;transform:none}
+
+/* ================= FOOTER ================= */
+footer{padding:60px 0 40px;border-top:1px solid var(--line);margin-top:80px}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:36px;margin-bottom:30px}
+.foot-grid h5{
+  color:#fff;font-size:13px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px;font-weight:700;
+}
+.foot-grid a{
+  display:block;color:var(--fog);font-size:14px;margin-bottom:8px;transition:color .2s;
+}
+.foot-grid a:hover{color:var(--teal-bright)}
+.foot-bottom{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-top:24px;border-top:1px solid var(--line);
+  font-size:12px;color:var(--fog);
+}
+@media(max-width:900px){
+  .foot-grid{grid-template-columns:1fr 1fr;gap:24px}
+}
+</style>
+</head>
+<body>
+
+<!-- background grid -->
+<div class="bg-grid" aria-hidden="true"></div>
+
+<!-- ================= NAV ================= -->
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a class="logo" href="index.html" aria-label="In2Cell Biosciences">
+      <img src="images/logos/in2cell.svg" alt="In2Cell Biosciences"/>
+    </a>
+    <div class="nav-links">
+      <a href="technology.html">Technology</a>
+      <a href="precision-medicine.html">Precision med</a>
+      <a href="applications.html">Applications</a>
+      <a href="publications.html">Publications</a>
+      <a href="team.html" style="color:var(--teal-bright)">Team</a>
+      <a href="index.html#news">News</a>
+      <a href="careers.html">Careers</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a class="btn primary" href="contact.html">Get in touch <span>&rarr;</span></a>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<section class="hero-pg" id="top">
+  <div class="wrap">
+    <span class="eyebrow">Team &middot; Leadership</span>
+    <h1>The people building In2Cell.</h1>
+    <p>Think you have what it takes to do exciting science? This is the place. We're actively recruiting CEO, CFO, CDO, QA Manager, Research Scientists, and Associates. <a href="contact.html">Get in touch</a>.</p>
+  </div>
+</section>
+
+<!-- ================= LEADERSHIP GRID ================= -->
+<section style="padding:30px 0 80px">
+  <div class="wrap">
+
+    <div class="leaders">
+
+      <!-- 1. CEO (open role) -->
+      <div class="person reveal open-role" tabindex="0" data-bio="ceo_open">
+        <span class="role-tag-open">Actively recruiting</span>
+        <div class="avatar avatar-open">
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/>
+          </svg>
+        </div>
+        <div class="role">Chief Executive Officer (CEO)</div>
+        <h3>Open role</h3>
+        <p class="bio">Looking for an experienced commercial leader to drive partnerships, fundraising and clinical rollout.</p>
+      </div>
+
+      <!-- 2. Santosh -->
+      <div class="person reveal" tabindex="0" data-bio="founder">
+        <span class="view-bio">View bio &rarr;</span>
+        <div class="avatar filled" style="background-image:url('images/team/Photo_santosh-cropped2.jpg')"></div>
+        <div class="role">Founder &middot; Chief Technology Officer (CTO)</div>
+        <h3>Dr. Santosh Kumar</h3>
+        <p class="bio">Building the AnaLog platform end-to-end, from nanopore signal to clinical report.</p>
+      </div>
+
+      <!-- 3. CFO (open role) -->
+      <div class="person reveal open-role" tabindex="0" data-bio="cfo_open">
+        <span class="role-tag-open">Actively recruiting</span>
+        <div class="avatar avatar-open">
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21h18 M5 21V11 M9 21V7 M13 21V13 M17 21V5 M21 21V9"/>
+          </svg>
+        </div>
+        <div class="role">Chief Financial Officer (CFO)</div>
+        <h3>Open role</h3>
+        <p class="bio">Owning financial planning, fundraising, and grant accounting as we move from seed to clinical pilots.</p>
+      </div>
+
+      <!-- 4. Fumiko -->
+      <div class="person reveal" tabindex="0" data-bio="cofounder">
+        <span class="view-bio">View bio &rarr;</span>
+        <div class="avatar filled" style="background-image:url('images/team/Fumiko_esashi.png')"></div>
+        <div class="role">Co-founder &middot; Scientific Advisor (SA)</div>
+        <h3>Prof. Fumiko Esashi</h3>
+        <p class="bio">DNA repair biology. Decades of mechanistic insight feeding AnaLog's break-calling models.</p>
+      </div>
+
+      <!-- 5. Mike -->
+      <div class="person reveal" tabindex="0" data-bio="advisor2">
+        <span class="view-bio">View bio &rarr;</span>
+        <div class="avatar filled" style="background-image:url('images/team/_d8e3693-2_square.jpg')"></div>
+        <div class="role">Scientific Advisor (SA)</div>
+        <h3>Dr. Mike Boemo</h3>
+        <p class="bio">DNA replication and nanopore signal analysis. Developer of DNAscent at the University of Cambridge.</p>
+      </div>
+
+      <!-- 6. Shivani -->
+      <div class="person reveal" tabindex="0" data-bio="cso">
+        <span class="view-bio">View bio &rarr;</span>
+        <div class="avatar filled" style="background-image:url('images/team/shivani.jpg')"></div>
+        <div class="role">Co-founder &amp; Scientific Advisor (SA)</div>
+        <h3>Dr. Shivani Patel</h3>
+        <p class="bio">Oncology. Bridging clinical practice with platform development to make break detection actionable for clinicians.</p>
+      </div>
+
+      <!-- 7. CDO (open role) -->
+      <div class="person reveal open-role" tabindex="0" data-bio="cdo_open">
+        <span class="role-tag-open">Actively recruiting</span>
+        <div class="avatar avatar-open">
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6 M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/>
+          </svg>
+        </div>
+        <div class="role">Chief Data Officer (CDO)</div>
+        <h3>Open role</h3>
+        <p class="bio">Leading the ML, model-ops and clinical-data infrastructure for the AnaLog platform.</p>
+      </div>
+
+      <!-- 8. QA Manager (open role) -->
+      <div class="person reveal open-role" tabindex="0" data-bio="qa_open">
+        <span class="role-tag-open">Actively recruiting</span>
+        <div class="avatar avatar-open">
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="6" y="4" width="12" height="18" rx="1.5"/>
+            <path d="M9 4V2h6v2"/><path d="M9 12l2 2 4-4"/>
+          </svg>
+        </div>
+        <div class="role">Quality Assurance Manager</div>
+        <h3>Open role</h3>
+        <p class="bio">Building the quality system: SOPs, validation, document control and audit-readiness for clinical-grade work.</p>
+      </div>
+
+    </div>
+
+    <h3 class="scientists-head">Research Scientists &amp; Associates</h3>
+
+    <div class="scientists">
+      <div class="person reveal open-role" tabindex="0" data-bio="rs_open">
+        <span class="role-tag-open">Actively recruiting</span>
+        <div class="avatar avatar-open">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 2h6 M10 2v4.5L5 18a3 3 0 003 4h8a3 3 0 003-4L14 6.5V2"/><path d="M7 14h10"/>
+          </svg>
+        </div>
+        <div class="role">Research Scientist</div>
+        <h3>Open role</h3>
+        <p class="bio">Wet-lab scientist to build and validate nanopore break-detection assays. PhD plus 3 to 5 years post-doc preferred.</p>
+      </div>
+      <div class="person reveal open-role" tabindex="0" data-bio="ra_open">
+        <span class="role-tag-open">Actively recruiting</span>
+        <div class="avatar avatar-open">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 2h6 M10 2v4.5L5 18a3 3 0 003 4h8a3 3 0 003-4L14 6.5V2"/><path d="M7 14h10"/>
+          </svg>
+        </div>
+        <div class="role">Research Associate</div>
+        <h3>Open role</h3>
+        <p class="bio">Bench scientist to run samples, build SOPs and support the assay team. MSc or BSc with lab experience.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= BIO MODAL ================= -->
+<div class="bio-backdrop" id="bio-backdrop" role="dialog" aria-modal="true" aria-labelledby="bio-name">
+  <div class="bio-modal">
+    <button class="bio-close" onclick="closeBio()" aria-label="Close">&times;</button>
+    <div class="bio-top">
+      <div class="bio-avatar" id="bio-avatar"></div>
+      <div class="bio-head">
+        <div class="role" id="bio-role"></div>
+        <h3 id="bio-name"></h3>
+        <div class="creds" id="bio-creds"></div>
+      </div>
+    </div>
+    <div class="bio-body" id="bio-body"></div>
+    <div class="bio-meta">
+      <div><h5>Focus</h5><p id="bio-focus"></p></div>
+      <div><h5>Prior &amp; Affiliations</h5><p id="bio-prior"></p></div>
+    </div>
+    <div class="bio-links">
+      <a id="bio-linkedin" href="#" target="_blank" rel="noopener">LinkedIn &uarr;</a>
+      <a id="bio-scholar" href="#" target="_blank" rel="noopener">Google Scholar &uarr;</a>
+      <a id="bio-email" href="#">Email &#9993;</a>
+    </div>
+  </div>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <p style="color:var(--fog);font-size:14px">In2Cell Biosciences. DNA break detection powered by nanopore sequencing and AI.</p>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <a href="index.html#about">About</a>
+        <a href="team.html">Team</a>
+        <a href="index.html#news">News</a>
+      </div>
+      <div>
+        <h5>Platform</h5>
+        <a href="technology.html">Technology</a>
+        <a href="applications.html">Applications</a>
+      </div>
+      <div>
+        <h5>Connect</h5>
+        <a href="mailto:shashisantosh2007@gmail.com">shashisantosh2007@gmail.com</a>
+        <a href="https://www.linkedin.com/in/santosh-kumar-phd-a6a239300/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; <span id="yr"></span> In2Cell Biosciences. All rights reserved.</span>
+      <span>Privacy &middot; Terms</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+// Reveal-on-scroll
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// ===== TEAM BIO MODAL =====
+const bios = {
+  founder:{name:'Dr. Santosh Kumar',role:'Founder & Chief Technology Officer (CTO)',creds:'PhD, University of Oxford',
+    body:"Santosh is the founder of In2Cell Biosciences and its Chief Technology Officer. He leads the AnaLog platform end-to-end. From nanopore signal acquisition through the basecaller and break-detection pipeline to clinical-grade break maps. He sets the technical roadmap and is responsible for translating wet-lab signal into diagnostic output.\n\nHis research background is in genome stability and nanopore sequencing. He integrates computational methods with experimental biology to turn DNA damage into an actionable clinical signal.",
+    focus:'Platform engineering, ML basecalling, assay design, product strategy',
+    prior:'University of Oxford',
+    avatar:"images/team/Photo_santosh-cropped2.jpg",
+    linkedin:'https://www.linkedin.com/in/santosh-kumar-phd-a6a239300/',scholar:'https://orcid.org/0000-0003-1744-337X',email:'mailto:shashisantosh2007@gmail.com'},
+  cso:{name:'Dr. Shivani Patel',role:'Co-founder & Scientific Advisor (SA)',creds:'MD/PhD, Oncology',
+    body:"Shivani brings clinical oncology expertise to In2Cell, ensuring the AnaLog platform addresses the questions clinicians actually ask at the bedside. She bridges sample selection, biomarker validation and clinical-trial design with the engineering team.\n\nAs a co-founder and scientific advisor, her focus is on translating laboratory break signatures into stratification and treatment-decision tools that fit real clinical workflows.",
+    focus:'Clinical oncology, biomarker validation, trial design, translational research',
+    prior:'Oncology Department',
+    avatar:"images/team/shivani.jpg",
+    linkedin:'#',scholar:'#',email:'mailto:shashisantosh2007@gmail.com?subject=Co-founder%20Shivani%20Patel'},
+  cofounder:{name:'Prof. Fumiko Esashi',role:'Co-founder & Scientific Advisor (SA)',creds:'PhD, Professor of Biochemistry, University of Oxford',
+    body:"Fumiko is a world expert in homologous recombination and DNA damage response. Her laboratory has defined mechanisms of BRCA-pathway function and replication-stress signalling over more than two decades.\n\nAs co-founder and scientific advisor, she shapes the biological grounding of the AnaLog platform. She ensures break-calling models reflect real mechanistic context and that assay choices align with the biology clinicians care about.",
+    focus:'Homologous recombination, BRCA pathway, replication stress, DDR biology',
+    prior:'Sir William Dunn School of Pathology, University of Oxford',
+    avatar:"images/team/Fumiko_esashi.png",
+    linkedin:'#',scholar:'#',email:'mailto:path1327@ox.ac.uk'},
+  advisor2:{name:'Dr. Mike Boemo',role:'Scientific Advisor (SA)',creds:'PhD, University Research Lecturer, University of Cambridge',
+    body:"Mike leads a research group at the University of Cambridge focused on the dynamics of DNA replication and the computational analysis of nanopore sequencing data. His group built DNAscent, a widely used tool for detecting base analogues on Oxford Nanopore reads to map replication forks at single-molecule resolution.\n\nAs a scientific advisor, Mike brings deep expertise in turning nanopore signal into biology, and in the kinds of genome-stability questions that AnaLog's break detection directly addresses.",
+    focus:'DNA replication, replication stress, nanopore signal analysis, genome stability',
+    prior:'Department of Pathology, University of Cambridge',
+    avatar:"images/team/_d8e3693-2_square.jpg",
+    linkedin:'#',scholar:'#',email:'mailto:advisors@in2cell.com'},
+  ceo_open:{name:'Open role: CEO',role:'Chief Executive Officer (CEO)',creds:'Actively recruiting',
+    body:"We are looking for an experienced commercial leader to partner with the scientific founders and drive In2Cell through its next stage of growth. The role includes partnerships, fundraising, regulatory strategy, and clinical rollout.\n\nTypical background: prior biotech exec experience, strong network in oncology or diagnostics, comfortable with early-stage fundraising.",
+    focus:'Strategy, fundraising, partnerships, commercial rollout',
+    prior:'Open. We welcome applications.',
+    linkedin:'#',scholar:'#',email:'mailto:shashisantosh2007@gmail.com?subject=CEO%20role%20interest'},
+  cdo_open:{name:'Open role: CDO',role:'Chief Data Officer (CDO)',creds:'Actively recruiting',
+    body:"We are looking for a Chief Data Officer to lead our machine-learning, model-ops and clinical-data infrastructure. You will own the data lifecycle from raw nanopore signal to deployed model output, and partner with the CSO on clinical-grade validation.\n\nTypical background: senior ML or data leadership experience, ideally in genomics, diagnostics or healthcare AI. Familiarity with clinical-grade ML deployment, model governance, and regulatory considerations.",
+    focus:'Machine learning, data infrastructure, model-ops, clinical-data validation',
+    prior:'Open. We welcome applications.',
+    linkedin:'#',scholar:'#',email:'mailto:shashisantosh2007@gmail.com?subject=CDO%20role%20interest'},
+  cfo_open:{name:'Open role: CFO',role:'Chief Financial Officer (CFO)',creds:'Actively recruiting',
+    body:"We are looking for a CFO to own financial planning, fundraising, and grant accounting as we move from seed to clinical pilots. You will partner with the CEO on investor relations and with the CSO on grant strategy across UKRI, EU and US funding bodies.\n\nTypical background: prior biotech or deep-tech CFO experience. Comfortable with grant accounting, seed-to-Series-A fundraising, and clinical-stage burn modelling.",
+    focus:'Financial planning, fundraising, grant accounting, investor relations',
+    prior:'Open. We welcome applications.',
+    linkedin:'#',scholar:'#',email:'mailto:shashisantosh2007@gmail.com?subject=CFO%20role%20interest'},
+  qa_open:{name:'Open role: QA Manager',role:'Quality Assurance Manager',creds:'Actively recruiting',
+    body:"We are looking for a Quality Assurance Manager to build and run the quality system as we approach clinical-grade and regulated diagnostic use cases. You will own SOPs, document control, validation protocols, supplier qualification and audit-readiness.\n\nTypical background: experience with ISO 13485 / ISO 17025 / GxP environments. Prior QA leadership in a diagnostics, biotech or pharma setting. Hands-on with QMS tools and regulatory submissions (CE-IVD / FDA).",
+    focus:'ISO 13485 / 17025, document control, validation, regulatory readiness',
+    prior:'Open. We welcome applications.',
+    linkedin:'#',scholar:'#',email:'mailto:shashisantosh2007@gmail.com?subject=QA%20Manager%20role%20interest'},
+  rs_open:{name:'Open role: Research Scientist',role:'Research Scientist',creds:'Actively recruiting',
+    body:"Wet-lab scientist to build and validate nanopore break-detection assays. You will be hands-on with sample prep, library optimisation and assay development, working closely with Santosh on the scientific direction.\n\nTypical background: PhD in molecular biology, biochemistry or genomics. 3 to 5 years post-doc or industry experience. Hands-on with nanopore or short-read sequencing.",
+    focus:'Assay development, nanopore sequencing, molecular biology',
+    prior:'Open. We welcome applications.',
+    linkedin:'#',scholar:'#',email:'mailto:shashisantosh2007@gmail.com?subject=Research%20Scientist%20role'},
+  ra_open:{name:'Open role: Research Associate',role:'Research Associate',creds:'Actively recruiting',
+    body:"Bench scientist to run samples through the AnaLog pipeline, build SOPs, and support the assay team at the bench. A great role for a scientist who wants to move from academia into biotech.\n\nTypical background: MSc or BSc in biology, biochemistry or genetics with 1 to 3 years of lab experience. Comfort with molecular biology techniques.",
+    focus:'Sample processing, SOP development, quality assurance',
+    prior:'Open. We welcome applications.',
+    linkedin:'#',scholar:'#',email:'mailto:shashisantosh2007@gmail.com?subject=Research%20Associate%20role'}
+};
+
+const backdrop = document.getElementById('bio-backdrop');
+function openBio(key){
+  const b = bios[key]; if(!b) return;
+  document.getElementById('bio-name').textContent = b.name;
+  document.getElementById('bio-role').textContent = b.role;
+  document.getElementById('bio-creds').textContent = b.creds;
+  document.getElementById('bio-body').innerHTML = b.body.split('\n').map(p=>'<p>'+p+'</p>').join('');
+  document.getElementById('bio-focus').textContent = b.focus;
+  document.getElementById('bio-prior').textContent = b.prior;
+  document.getElementById('bio-linkedin').href = b.linkedin;
+  document.getElementById('bio-scholar').href = b.scholar;
+  document.getElementById('bio-email').href = b.email;
+  const av = document.getElementById('bio-avatar');
+  if(b.avatar){
+    av.style.backgroundImage = "url('" + b.avatar + "')";
+    av.textContent = '';
+  } else {
+    av.style.backgroundImage = '';
+    av.textContent = 'OPEN';
+  }
+  backdrop.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeBio(){ backdrop.classList.remove('open'); document.body.style.overflow=''; }
+document.querySelectorAll('[data-bio]').forEach(el=>{
+  el.addEventListener('click', ()=>openBio(el.dataset.bio));
+  el.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openBio(el.dataset.bio); }});
+});
+backdrop.addEventListener('click', e=>{ if(e.target===backdrop) closeBio(); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeBio(); });
+</script>
+
+</body>
+</html>
