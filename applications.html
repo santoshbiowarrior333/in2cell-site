@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<!-- COMING SOON MODE: redirect any direct visit back to landing page -->
-<meta http-equiv="refresh" content="0; url=/"/>
-<title>Applications — In2Cell Biosciences</title>
-<meta name="description" content="Where the AnaLog platform goes to work — clinical, discovery, and translational applications of DNA break detection."/>
+<!-- Coming-Soon redirect removed — applications page is now live. To re-hide:
+     <meta http-equiv="refresh" content="0; url=/"/> -->
+<title>Applications | In2Cell Biosciences</title>
+<meta name="description" content="Where the AnaLog platform goes to work. Clinical, discovery, and translational applications of DNA break detection."/>
 <link rel="icon" type="image/svg+xml" href="images/logos/in2cell.svg"/>
 <link rel="apple-touch-icon" href="images/logos/in2cell.svg"/>
 
@@ -255,7 +255,16 @@ section{padding:110px 0;position:relative}
 }
 .r-card:hover{transform:translateY(-6px);background:var(--glass-strong)}
 .r-card:hover::before{opacity:1}
-.r-card .num{font-family:'Poppins';color:var(--teal-bright);font-size:12px;letter-spacing:.3em}
+.r-card .num{font-family:'Poppins';color:var(--teal-bright);font-size:11px;letter-spacing:.22em;font-weight:700;text-transform:uppercase}
+.r-card .r-icon{
+  width:42px;height:42px;display:block;margin-bottom:16px;
+  fill:none;stroke:currentColor;stroke-width:1.5;
+  stroke-linecap:round;stroke-linejoin:round;
+  filter:drop-shadow(0 0 14px currentColor);opacity:.95;
+}
+.r-card:hover .r-icon{opacity:1}
+/* Gamma prefix used in γH2AX — smaller and slightly raised for clean typography */
+.gamma{font-size:.72em;vertical-align:.08em;font-weight:inherit;opacity:.9}
 .r-card h3{color:#fff;font-size:22px;margin:14px 0 10px}
 .r-card p{color:#b9c6e0;font-size:14.5px}
 @media(max-width:900px){.research-grid{grid-template-columns:1fr}}
@@ -1093,42 +1102,391 @@ html{scroll-padding-top:86px}
 <section id="top" style="padding:110px 0 40px;position:relative;text-align:center">
   <div class="wrap">
     <span class="eyebrow"><span class="dot"></span> Applications</span>
-    <h1 style="font-size:clamp(40px,5.2vw,68px);background:linear-gradient(180deg,#fff,#9fb4d8);-webkit-background-clip:text;background-clip:text;color:transparent;margin:18px 0 20px;line-height:1.05">Where AnaLog goes to work.</h1>
-    <p style="color:#b9c6e0;font-size:18px;max-width:720px;margin:0 auto;line-height:1.6">DNA breaks sit at the heart of cancer, ageing, neurodegeneration, gene therapy, and genotoxicity screening. Our nanopore-native platform resolves them at base resolution &mdash; across tissues, compounds, and cell lines.</p>
+    <h1 style="font-size:clamp(40px,5.2vw,68px);background:linear-gradient(180deg,#fff,#9fb4d8);-webkit-background-clip:text;background-clip:text;color:transparent;margin:18px 0 20px;line-height:1.05">Where AnaLog&trade; goes to work.</h1>
+    <p style="color:#b9c6e0;font-size:18px;max-width:760px;margin:0 auto;line-height:1.6">DNA breaks drive cancer, ageing, neurodegeneration, gene-therapy safety, and drug toxicity. <strong style="color:#fff">AnaLog&trade;</strong> resolves them at <strong style="color:#fff">base resolution across the whole genome</strong>. Including the centromeres and satellite regions short-read methods cannot read.</p>
   </div>
 </section>
 
-<!-- Application Cards -->
-<section style="padding:60px 0">
+<!-- ================== WHY THIS MATTERS — METHOD COMPARISON ================== -->
+<section style="padding:80px 0 30px;background:rgba(255,255,255,.015);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
   <div class="wrap">
-    <div class="research-grid reveal-stagger">
+
+    <div class="sec-head reveal" style="margin-bottom:50px">
+      <span class="tag">Why this matters</span>
+      <h2>Why does it matter <em style="font-style:normal;background:linear-gradient(120deg,var(--teal-bright),var(--leaf));-webkit-background-clip:text;background-clip:text;color:transparent">how</em> DNA breaks are measured?</h2>
+      <p>Every drug-development decision, biomarker, and treatment choice that involves DNA damage rests on a measurement. The method shapes what you see. Three methods dominate the field. Each has a hard limit that decides which applications it can serve.</p>
+    </div>
+
+    <!-- Three method limitation cards -->
+    <div class="research-grid reveal-stagger" style="margin-bottom:48px">
+
+      <!-- γH2AX -->
       <div class="r-card reveal">
-        <div class="num" style="color:#ffa94d">01 &middot; CLINICAL</div>
-        <h3>Genotoxicity screening</h3>
-        <p style="color:#b9c6e0;font-size:14.5px">Sensitive, dose-responsive quantification of compound-induced DNA damage. Validate candidates earlier and reduce late-stage attrition. Compatible with primary cells and organoids.</p>
-        <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--line)">
-          <span style="font-size:12px;color:var(--fog);letter-spacing:.15em;text-transform:uppercase">Endpoints</span>
-          <p style="font-size:13px;color:#c4d0e8;margin-top:4px">Break rate per Mb &middot; lesion class &middot; strand bias &middot; time course</p>
+        <svg class="r-icon" style="color:#ff5e7a" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="9"/>
+          <circle cx="9" cy="9" r="1.5" fill="currentColor"/>
+          <circle cx="15" cy="11" r="1" fill="currentColor"/>
+          <circle cx="11" cy="15" r="1.2" fill="currentColor"/>
+          <circle cx="16" cy="15" r="0.8" fill="currentColor"/>
+          <circle cx="8" cy="14" r="0.9" fill="currentColor"/>
+        </svg>
+        <div class="num" style="color:#ff5e7a">Microscopy</div>
+        <h3><span class="gamma">γ</span>H2AX foci</h3>
+        <p style="color:#b9c6e0;font-size:14.5px;margin-bottom:14px">An indirect marker. Counts spots of phosphorylated H2AX as a proxy for nearby breaks. Today's standard pharmacodynamic readout in clinical trials.</p>
+        <div style="border-top:1px solid var(--line);padding-top:14px;margin-top:14px">
+          <span style="font-size:11px;color:#ff5e7a;letter-spacing:.18em;text-transform:uppercase;font-weight:700">Limitations</span>
+          <ul style="margin:8px 0 0;padding:0;list-style:none;color:#c4d0e8;font-size:13px;line-height:1.7">
+            <li>&bull; <b style="color:#fff">Saturates above ~100 foci/cell.</b> Useless at high radiotherapy doses.</li>
+            <li>&bull; <b style="color:#fff">No genomic location.</b> Can't tell on- from off-target.</li>
+            <li>&bull; <b style="color:#fff">Non-specific.</b> Also lights up replication stress, R-loops, apoptosis.</li>
+            <li>&bull; <b style="color:#fff">Subjective.</b> Antibody, exposure, image analysis all shift numbers.</li>
+          </ul>
         </div>
       </div>
+
+      <!-- Comet assay -->
       <div class="r-card reveal">
-        <div class="num" style="color:#2fd4c1">02 &middot; DISCOVERY</div>
-        <h3>DDR biology &amp; gene editing</h3>
-        <p style="color:#b9c6e0;font-size:14.5px">Characterise on- and off-target breaks from CRISPR, base editors, and prime editors at single-read resolution. Map repair kinetics, mutational signatures, and chromatin-level vulnerability.</p>
+        <svg class="r-icon" style="color:#ffa94d" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="6" cy="6" r="3" fill="currentColor"/>
+          <line x1="9" y1="9" x2="13" y2="13" stroke-width="2.5"/>
+          <line x1="14" y1="14" x2="17" y2="17" stroke-width="1.8" opacity="0.65"/>
+          <line x1="18" y1="18" x2="21" y2="21" stroke-width="1.2" opacity="0.4"/>
+        </svg>
+        <div class="num" style="color:#ffa94d">Comet assay</div>
+        <h3>Single-cell electrophoresis</h3>
+        <p style="color:#b9c6e0;font-size:14.5px;margin-bottom:14px">Damage measured by the length of a DNA "comet tail" in a gel under microscopy. Decades old. Still widely used in genotoxicity work.</p>
+        <div style="border-top:1px solid var(--line);padding-top:14px;margin-top:14px">
+          <span style="font-size:11px;color:#ffa94d;letter-spacing:.18em;text-transform:uppercase;font-weight:700">Limitations</span>
+          <ul style="margin:8px 0 0;padding:0;list-style:none;color:#c4d0e8;font-size:13px;line-height:1.7">
+            <li>&bull; <b style="color:#fff">Detection floor of ~50 breaks/cell.</b> Misses subtle damage.</li>
+            <li>&bull; <b style="color:#fff">No genomic location at all.</b></li>
+            <li>&bull; <b style="color:#fff">Conflates SSB, DSB, and alkali-labile sites.</b></li>
+            <li>&bull; <b style="color:#fff">Lab-to-lab variability.</b> Hard to reproduce.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Short-read sequencing -->
+      <div class="r-card reveal">
+        <svg class="r-icon" style="color:#c084fc" viewBox="0 0 24 24" aria-hidden="true">
+          <line x1="3" y1="7" x2="8" y2="7" stroke-width="2"/>
+          <line x1="11" y1="7" x2="15" y2="7" stroke-width="2"/>
+          <line x1="18" y1="7" x2="21" y2="7" stroke-width="2"/>
+          <line x1="4" y1="12" x2="9" y2="12" stroke-width="2"/>
+          <line x1="12" y1="12" x2="17" y2="12" stroke-width="2"/>
+          <line x1="20" y1="12" x2="21" y2="12" stroke-width="2"/>
+          <line x1="3" y1="17" x2="6" y2="17" stroke-width="2"/>
+          <line x1="9" y1="17" x2="14" y2="17" stroke-width="2"/>
+          <line x1="17" y1="17" x2="21" y2="17" stroke-width="2"/>
+        </svg>
+        <div class="num" style="color:#c084fc">Short-read sequencing</div>
+        <h3>BLISS, GUIDE-seq, END-seq</h3>
+        <p style="color:#b9c6e0;font-size:14.5px;margin-bottom:14px">Capture-based methods using 50 to 300 bp Illumina reads. Direct break detection at base resolution, but only where reads can be uniquely mapped.</p>
+        <div style="border-top:1px solid var(--line);padding-top:14px;margin-top:14px">
+          <span style="font-size:11px;color:#c084fc;letter-spacing:.18em;text-transform:uppercase;font-weight:700">Limitations</span>
+          <ul style="margin:8px 0 0;padding:0;list-style:none;color:#c4d0e8;font-size:13px;line-height:1.7">
+            <li>&bull; <b style="color:#fff">Can't read centromeres or satellites.</b></li>
+            <li>&bull; <b style="color:#fff">Can't read rDNA.</b> Invisible to short reads.</li>
+            <li>&bull; <b style="color:#fff">~10 to 15% of the genome unmappable.</b> Exactly where stress damage concentrates.</li>
+            <li>&bull; <b style="color:#fff">Misses off-targets in homologous gene families.</b></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Capability comparison table -->
+    <div class="reveal" style="background:var(--glass);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:36px">
+      <div style="padding:22px 26px;background:linear-gradient(90deg,rgba(47,212,193,.08),rgba(47,212,193,.02));border-bottom:1px solid var(--line)">
+        <h3 style="color:#fff;font-size:18px;margin:0;letter-spacing:.01em">Capability comparison</h3>
+        <p style="color:var(--fog);font-size:13px;margin:4px 0 0">What each method can, and can't, measure.</p>
+      </div>
+      <div style="overflow-x:auto">
+      <table style="width:100%;min-width:640px;border-collapse:collapse;font-size:13.5px">
+        <thead>
+          <tr style="border-bottom:1px solid var(--line)">
+            <th style="text-align:left;padding:14px 22px;color:#c4d0e8;font-weight:600;width:38%"></th>
+            <th style="text-align:center;padding:14px 10px;color:#ff5e7a;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700"><span class="gamma">γ</span>H2AX</th>
+            <th style="text-align:center;padding:14px 10px;color:#ffa94d;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700">Comet</th>
+            <th style="text-align:center;padding:14px 10px;color:#c084fc;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700">Short-read</th>
+            <th style="text-align:center;padding:14px 10px;color:var(--teal-bright);font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;background:rgba(47,212,193,.06)">AnaLog&trade;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.04)">
+            <td style="padding:13px 22px;color:#fff">Direct break detection</td>
+            <td style="text-align:center;padding:13px 10px;color:#ff5e7a">indirect</td>
+            <td style="text-align:center;padding:13px 10px;color:#ff5e7a">indirect</td>
+            <td style="text-align:center;padding:13px 10px;color:var(--leaf);font-weight:700">&#10003;</td>
+            <td style="text-align:center;padding:13px 10px;color:var(--teal-bright);font-weight:700;background:rgba(47,212,193,.04)">&#10003;</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.04)">
+            <td style="padding:13px 22px;color:#fff">Per-base genomic resolution</td>
+            <td style="text-align:center;padding:13px 10px;color:#ff5e7a">&#10007;</td>
+            <td style="text-align:center;padding:13px 10px;color:#ff5e7a">&#10007;</td>
+            <td style="text-align:center;padding:13px 10px;color:#ffa94d">partial</td>
+            <td style="text-align:center;padding:13px 10px;color:var(--teal-bright);font-weight:700;background:rgba(47,212,193,.04)">&#10003;</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.04)">
+            <td style="padding:13px 22px;color:#fff">Reads centromeres &amp; satellites</td>
+            <td style="text-align:center;padding:13px 10px;color:#ff5e7a">&#10007;</td>
+            <td style="text-align:center;padding:13px 10px;color:#ff5e7a">&#10007;</td>
+            <td style="text-align:center;padding:13px 10px;color:#ff5e7a">&#10007;</td>
+            <td style="text-align:center;padding:13px 10px;color:var(--teal-bright);font-weight:700;background:rgba(47,212,193,.04)">&#10003;</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.04)">
+            <td style="padding:13px 22px;color:#fff">Reads rDNA repeats</td>
+            <td style="text-align:center;padding:13px 10px;color:#ff5e7a">&#10007;</td>
+            <td style="text-align:center;padding:13px 10px;color:#ff5e7a">&#10007;</td>
+            <td style="text-align:center;padding:13px 10px;color:#ff5e7a">&#10007;</td>
+            <td style="text-align:center;padding:13px 10px;color:var(--teal-bright);font-weight:700;background:rgba(47,212,193,.04)">&#10003;</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.04)">
+            <td style="padding:13px 22px;color:#fff">Distinguishes SSB / DSB / complex lesions</td>
+            <td style="text-align:center;padding:13px 10px;color:#ff5e7a">&#10007;</td>
+            <td style="text-align:center;padding:13px 10px;color:#ffa94d">partial</td>
+            <td style="text-align:center;padding:13px 10px;color:var(--leaf);font-weight:700">&#10003;</td>
+            <td style="text-align:center;padding:13px 10px;color:var(--teal-bright);font-weight:700;background:rgba(47,212,193,.04)">&#10003;</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.04)">
+            <td style="padding:13px 22px;color:#fff">Quantitative at therapeutic Gy doses</td>
+            <td style="text-align:center;padding:13px 10px;color:#ff5e7a">saturates</td>
+            <td style="text-align:center;padding:13px 10px;color:var(--leaf)">&#10003;</td>
+            <td style="text-align:center;padding:13px 10px;color:var(--leaf)">&#10003;</td>
+            <td style="text-align:center;padding:13px 10px;color:var(--teal-bright);font-weight:700;background:rgba(47,212,193,.04)">&#10003;</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.04)">
+            <td style="padding:13px 22px;color:#fff">Genomic-context MoA fingerprint</td>
+            <td style="text-align:center;padding:13px 10px;color:#ff5e7a">&#10007;</td>
+            <td style="text-align:center;padding:13px 10px;color:#ff5e7a">&#10007;</td>
+            <td style="text-align:center;padding:13px 10px;color:#ffa94d">partial</td>
+            <td style="text-align:center;padding:13px 10px;color:var(--teal-bright);font-weight:700;background:rgba(47,212,193,.04)">&#10003;</td>
+          </tr>
+          <tr>
+            <td style="padding:13px 22px;color:#fff">Cytosolic DNA / micronucleus origin</td>
+            <td style="text-align:center;padding:13px 10px;color:#ff5e7a">&#10007;</td>
+            <td style="text-align:center;padding:13px 10px;color:#ff5e7a">&#10007;</td>
+            <td style="text-align:center;padding:13px 10px;color:#ffa94d">partial</td>
+            <td style="text-align:center;padding:13px 10px;color:var(--teal-bright);font-weight:700;background:rgba(47,212,193,.04)">&#10003;</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+
+    <!-- Three "why this matters for X" callouts -->
+    <div class="reveal" style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px">
+      <div style="padding:22px;background:rgba(60,150,255,.05);border:1px solid rgba(60,150,255,.30);border-radius:12px">
+        <h4 style="color:#3c96ff;font-size:11px;letter-spacing:.16em;text-transform:uppercase;margin:0 0 10px;font-weight:700">Why nuclear medicine cares</h4>
+        <p style="color:#c4d0e8;font-size:13px;line-height:1.6;margin:0">Therapeutic radiation hits <b style="color:#fff">centromeres and pericentric heterochromatin</b> hardest. <span class="gamma">γ</span>H2AX foci saturate at clinical doses. Short-read methods can't map the centromeric breakage that drives mitotic catastrophe. AnaLog&trade; resolves it.</p>
+      </div>
+      <div style="padding:22px;background:rgba(255,180,30,.04);border:1px solid rgba(255,180,30,.30);border-radius:12px">
+        <h4 style="color:#ffb41e;font-size:11px;letter-spacing:.16em;text-transform:uppercase;margin:0 0 10px;font-weight:700">Why cGAS-STING cares</h4>
+        <p style="color:#c4d0e8;font-size:13px;line-height:1.6;margin:0">Cytosolic DNA fragments trigger innate-immunity priming. Most of them come from <b style="color:#fff">centromeric DNA stuck in micronuclei</b>. Conventional methods can't trace origin. AnaLog&trade; identifies the genomic source.</p>
+      </div>
+      <div style="padding:22px;background:rgba(192,132,252,.04);border:1px solid rgba(192,132,252,.30);border-radius:12px">
+        <h4 style="color:#c084fc;font-size:11px;letter-spacing:.16em;text-transform:uppercase;margin:0 0 10px;font-weight:700">Why neurodegen cares</h4>
+        <p style="color:#c4d0e8;font-size:13px;line-height:1.6;margin:0"><b style="color:#fff">rDNA breakage</b> is increasingly linked to neurodegeneration. But rDNA is invisible to short-read sequencing. AnaLog&trade; reads through ribosomal repeats. New damage axis, now measurable.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ================== SECTION 1 — DRUG DISCOVERY ================== -->
+<section style="padding:80px 0 30px">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-bottom:48px">
+      <span class="tag">Drug discovery</span>
+      <h2>From target to candidate.</h2>
+      <p>AnaLog&trade; measures the on-target DNA damage signature of a compound at every step, from target validation through preclinical optimisation. Base resolution. Repetitive regions included.</p>
+    </div>
+    <div class="research-grid reveal-stagger">
+
+      <!-- 01: Genotoxicity screening -->
+      <div class="r-card reveal">
+        <svg class="r-icon" style="color:#ffa94d" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2 L20 5 V11 C20 16 16.5 20 12 22 C7.5 20 4 16 4 11 V5 Z"/>
+          <path d="M9 12 L11 14 L15 10"/>
+        </svg>
+        <div class="num" style="color:#ffa94d">Safety</div>
+        <h3>Genotoxicity screening</h3>
+        <p style="color:#b9c6e0;font-size:14.5px">Quantify compound-induced DNA damage with dose response. Catch tox liabilities early. Cuts late-stage attrition. Works in primary cells, iPSCs, and organoids.</p>
+        <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--line)">
+          <span style="font-size:12px;color:var(--fog);letter-spacing:.15em;text-transform:uppercase">Endpoints</span>
+          <p style="font-size:13px;color:#c4d0e8;margin-top:4px">Break rate per Mb &middot; lesion class &middot; strand bias &middot; dose response</p>
+        </div>
+      </div>
+
+      <!-- 02: DDR drug development & MoA -->
+      <div class="r-card reveal">
+        <svg class="r-icon" style="color:#c084fc" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="9"/>
+          <circle cx="12" cy="12" r="5"/>
+          <circle cx="12" cy="12" r="1.6" fill="currentColor"/>
+        </svg>
+        <div class="num" style="color:#c084fc">Drug discovery</div>
+        <h3>DDR drugs &amp; mode of action</h3>
+        <p style="color:#b9c6e0;font-size:14.5px">For PARP, ATR, ATM, WEE1, USP1, PARP7, and DNA-PK programmes. Show <em>where</em> in the genome target inhibition drives damage. Turns MoA claims into mappable evidence.</p>
+        <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--line)">
+          <span style="font-size:12px;color:var(--fog);letter-spacing:.15em;text-transform:uppercase">Outputs</span>
+          <p style="font-size:13px;color:#c4d0e8;margin-top:4px">Target engagement &middot; MoA fingerprint &middot; pathway preference</p>
+        </div>
+      </div>
+
+      <!-- 03: Gene-editing QC -->
+      <div class="r-card reveal">
+        <svg class="r-icon" style="color:#2fd4c1" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="6" cy="6" r="3"/>
+          <circle cx="6" cy="18" r="3"/>
+          <line x1="20" y1="4" x2="8.12" y2="15.88"/>
+          <line x1="14.47" y1="14.48" x2="20" y2="20"/>
+          <line x1="8.12" y1="8.12" x2="12" y2="12"/>
+        </svg>
+        <div class="num" style="color:#2fd4c1">Gene editing</div>
+        <h3>Editor quality control</h3>
+        <p style="color:#b9c6e0;font-size:14.5px">Map on- and off-target breaks from CRISPR, base editors, and prime editors at single-read resolution. Catches off-targets in repeats where GUIDE-seq and amplicon sequencing fail.</p>
         <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--line)">
           <span style="font-size:12px;color:var(--fog);letter-spacing:.15em;text-transform:uppercase">Outputs</span>
           <p style="font-size:13px;color:#c4d0e8;margin-top:4px">Off-target atlas &middot; repair outcome &middot; editor fidelity score</p>
         </div>
       </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================== SECTION 2 — CLINICAL TRANSLATION ================== -->
+<section style="padding:60px 0 30px">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-bottom:48px">
+      <span class="tag">Clinical translation</span>
+      <h2>From candidate to patient.</h2>
+      <p>Once a compound enters the clinic, AnaLog&trade; supports the readouts that drive trial decisions. Patient stratification. Dose escalation. Response prediction. Resistance tracking.</p>
+    </div>
+    <div class="research-grid reveal-stagger">
+
+      <!-- 04: Tumor genomic instability -->
       <div class="r-card reveal">
-        <div class="num" style="color:#ff4d6d">03 &middot; TRANSLATIONAL</div>
-        <h3>Tumor genomic instability profiling</h3>
-        <p style="color:#b9c6e0;font-size:14.5px">Quantify break-burden, repair-deficiency signatures and HRD status from tumor tissue (FFPE or fresh) at single-base resolution &mdash; complementing existing genomic and IHC workups.</p>
+        <svg class="r-icon" style="color:#ff4d6d" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5 4 Q5 8 12 12 Q19 16 19 20"/>
+          <path d="M19 4 Q19 8 12 12 Q5 16 5 20"/>
+          <line x1="7" y1="7" x2="17" y2="7"/>
+          <line x1="7" y1="17" x2="17" y2="17"/>
+        </svg>
+        <div class="num" style="color:#ff4d6d">Oncology</div>
+        <h3>Tumour instability profiling</h3>
+        <p style="color:#b9c6e0;font-size:14.5px">Quantify break burden, repair-deficiency signatures, and HRD status from FFPE or fresh tumour tissue at single-base resolution. Complements existing genomic and IHC workups.</p>
         <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--line)">
           <span style="font-size:12px;color:var(--fog);letter-spacing:.15em;text-transform:uppercase">Signals</span>
           <p style="font-size:13px;color:#c4d0e8;margin-top:4px">SSB/DSB burden &middot; HRD signature &middot; repair fingerprint</p>
         </div>
       </div>
+
+      <!-- 05: Pharmacodynamic biomarkers -->
+      <div class="r-card reveal">
+        <svg class="r-icon" style="color:#7dc242" viewBox="0 0 24 24" aria-hidden="true">
+          <polyline points="3 17 9 11 13 15 21 7"/>
+          <polyline points="14 7 21 7 21 14"/>
+        </svg>
+        <div class="num" style="color:#7dc242">Biomarkers</div>
+        <h3>Pharmacodynamic readouts</h3>
+        <p style="color:#b9c6e0;font-size:14.5px">Quantitative DSB induction in patient-matched material. A PD readout for Phase Ia/Ib dose escalation. Separates on-target damage from off-target toxicity in a way viability assays cannot.</p>
+        <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--line)">
+          <span style="font-size:12px;color:var(--fog);letter-spacing:.15em;text-transform:uppercase">Endpoints</span>
+          <p style="font-size:13px;color:#c4d0e8;margin-top:4px">Pre vs on-treatment delta &middot; dose response &middot; per-patient PD curve</p>
+        </div>
+      </div>
+
+      <!-- 06: Functional precision oncology (organoid icon) -->
+      <div class="r-card reveal">
+        <svg class="r-icon" style="color:#2fd4c1" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="9" cy="9" r="3"/>
+          <circle cx="16" cy="11" r="2.2"/>
+          <circle cx="11" cy="16" r="2.6"/>
+          <circle cx="6.5" cy="14" r="1.6"/>
+          <circle cx="17" cy="17" r="1.8"/>
+        </svg>
+        <div class="num" style="color:#2fd4c1">Precision medicine</div>
+        <h3>Functional drug selection</h3>
+        <p style="color:#b9c6e0;font-size:14.5px">Test several DDR drugs on a patient-derived organoid. Rank by induced break burden. Recommend therapy. Catches acquired resistance (like BRCA reversion) that genomic testing alone misses.</p>
+        <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--line)">
+          <span style="font-size:12px;color:var(--fog);letter-spacing:.15em;text-transform:uppercase">Outputs</span>
+          <p style="font-size:13px;color:#c4d0e8;margin-top:4px">Per-patient drug ranking &middot; resistance flags &middot; therapy recommendation</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================== SECTION 3 — SPECIALISED THERAPEUTIC AREAS ================== -->
+<section style="padding:60px 0 30px">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-bottom:48px">
+      <span class="tag">Specialised areas</span>
+      <h2>Where DSB readouts open new frontiers.</h2>
+      <p>Areas where direct DNA-break measurement has been underused because conventional methods couldn't deliver the resolution. AnaLog&trade; changes the calculus.</p>
+    </div>
+    <div class="research-grid reveal-stagger">
+
+      <!-- 07: Radiotherapy & radioligand therapy -->
+      <div class="r-card reveal">
+        <svg class="r-icon" style="color:#3c96ff" viewBox="0 0 24 24" aria-hidden="true">
+          <ellipse cx="12" cy="12" rx="10" ry="4"/>
+          <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/>
+          <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(-60 12 12)"/>
+          <circle cx="12" cy="12" r="1.6" fill="currentColor"/>
+        </svg>
+        <div class="num" style="color:#3c96ff">Radiotherapy</div>
+        <h3>Radioligand &amp; beam therapy</h3>
+        <p style="color:#b9c6e0;font-size:14.5px">For external-beam, brachytherapy, and the next-generation radioligand pipeline (PSMA-617, DOTATATE class). Map radiation-induced DSB landscapes at therapeutic doses. Characterise off-target damage. Support dosimetry.</p>
+        <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--line)">
+          <span style="font-size:12px;color:var(--fog);letter-spacing:.15em;text-transform:uppercase">Outputs</span>
+          <p style="font-size:13px;color:#c4d0e8;margin-top:4px">Per-region DSB density &middot; LET signature &middot; dose response</p>
+        </div>
+      </div>
+
+      <!-- 08: Cancer immunotherapy / cGAS-STING -->
+      <div class="r-card reveal">
+        <svg class="r-icon" style="color:#ffb41e" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="3.5" fill="currentColor" fill-opacity="0.18"/>
+          <line x1="12" y1="2" x2="12" y2="5"/>
+          <line x1="12" y1="19" x2="12" y2="22"/>
+          <line x1="2" y1="12" x2="5" y2="12"/>
+          <line x1="19" y1="12" x2="22" y2="12"/>
+          <line x1="4.93" y1="4.93" x2="7.05" y2="7.05"/>
+          <line x1="16.95" y1="16.95" x2="19.07" y2="19.07"/>
+          <line x1="4.93" y1="19.07" x2="7.05" y2="16.95"/>
+          <line x1="16.95" y1="7.05" x2="19.07" y2="4.93"/>
+        </svg>
+        <div class="num" style="color:#ffb41e">Immuno-oncology</div>
+        <h3>cGAS-STING &amp; combination IO</h3>
+        <p style="color:#b9c6e0;font-size:14.5px">For DDR plus checkpoint blockade combination programmes. Quantify the breaks that drive cytosolic DNA, micronucleus formation, and cGAS-STING activation. The molecular trigger for innate-immunity priming.</p>
+        <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--line)">
+          <span style="font-size:12px;color:var(--fog);letter-spacing:.15em;text-transform:uppercase">Outputs</span>
+          <p style="font-size:13px;color:#c4d0e8;margin-top:4px">Cytosolic-DNA origin &middot; STING surrogate &middot; combo synergy</p>
+        </div>
+      </div>
+
+      <!-- 09: Neurodegeneration -->
+      <div class="r-card reveal">
+        <svg class="r-icon" style="color:#c084fc" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M9 4 C7 4 5 5.5 5 8 C5 9 5.5 10 6 11 C5.5 12 5 13 5 15 C5 17 7 19 9 19"/>
+          <path d="M15 4 C17 4 19 5.5 19 8 C19 9 18.5 10 18 11 C18.5 12 19 13 19 15 C19 17 17 19 15 19"/>
+          <line x1="12" y1="4" x2="12" y2="19"/>
+          <line x1="6" y1="11" x2="18" y2="11"/>
+        </svg>
+        <div class="num" style="color:#c084fc">Neurodegen</div>
+        <h3>Neurons &amp; cellular ageing</h3>
+        <p style="color:#b9c6e0;font-size:14.5px">For Alzheimer's, ALS, Parkinson's, and longevity research. Detect break accumulation in postmitotic neurons. Resolve damage in repetitive neuronal regions where conventional methods are blind. New therapeutic axis.</p>
+        <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--line)">
+          <span style="font-size:12px;color:var(--fog);letter-spacing:.15em;text-transform:uppercase">Endpoints</span>
+          <p style="font-size:13px;color:#c4d0e8;margin-top:4px">Longitudinal break accumulation &middot; region-specific damage &middot; pathway gaps</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1151,10 +1509,14 @@ html{scroll-padding-top:86px}
           </tr>
         </thead>
         <tbody>
-          <tr style="border-bottom:1px solid var(--line)"><td style="padding:18px 22px;color:#fff">Cancer (HRD-deficient tumours)</td><td style="padding:18px 22px;color:#c4d0e8">FFPE / fresh tissue</td><td style="padding:18px 22px"><span style="padding:4px 12px;border-radius:999px;background:rgba(125,194,66,.15);color:var(--leaf);font-size:12px;font-weight:600">Active &mdash; pilot</span></td></tr>
-          <tr style="border-bottom:1px solid var(--line)"><td style="padding:18px 22px;color:#fff">Neurodegeneration (HD, ALS, AD)</td><td style="padding:18px 22px;color:#c4d0e8">Patient-derived neurons / brain tissue</td><td style="padding:18px 22px"><span style="padding:4px 12px;border-radius:999px;background:rgba(47,212,193,.15);color:var(--teal-bright);font-size:12px;font-weight:600">Active &mdash; research</span></td></tr>
+          <tr style="border-bottom:1px solid var(--line)"><td style="padding:18px 22px;color:#fff">Cancer (HRD-deficient tumours)</td><td style="padding:18px 22px;color:#c4d0e8">FFPE / fresh tissue</td><td style="padding:18px 22px"><span style="padding:4px 12px;border-radius:999px;background:rgba(125,194,66,.15);color:var(--leaf);font-size:12px;font-weight:600">Active pilot</span></td></tr>
+          <tr style="border-bottom:1px solid var(--line)"><td style="padding:18px 22px;color:#fff">Neurodegeneration (HD, ALS, AD)</td><td style="padding:18px 22px;color:#c4d0e8">Patient-derived neurons / brain tissue</td><td style="padding:18px 22px"><span style="padding:4px 12px;border-radius:999px;background:rgba(47,212,193,.15);color:var(--teal-bright);font-size:12px;font-weight:600">Active research</span></td></tr>
           <tr style="border-bottom:1px solid var(--line)"><td style="padding:18px 22px;color:#fff">Premature ageing &amp; progeroid syndromes</td><td style="padding:18px 22px;color:#c4d0e8">Patient fibroblasts / iPSCs</td><td style="padding:18px 22px"><span style="padding:4px 12px;border-radius:999px;background:rgba(255,169,77,.15);color:#ffa94d;font-size:12px;font-weight:600">In planning</span></td></tr>
-          <tr><td style="padding:18px 22px;color:#fff">Gene therapy / immunodeficiency (V(D)J)</td><td style="padding:18px 22px;color:#c4d0e8">Edited cells / clinical samples</td><td style="padding:18px 22px"><span style="padding:4px 12px;border-radius:999px;background:rgba(255,77,109,.15);color:#ff4d6d;font-size:12px;font-weight:600">In planning</span></td></tr>
+          <tr style="border-bottom:1px solid var(--line)"><td style="padding:18px 22px;color:#fff">Gene therapy / immunodeficiency (V(D)J)</td><td style="padding:18px 22px;color:#c4d0e8">Edited cells / clinical samples</td><td style="padding:18px 22px"><span style="padding:4px 12px;border-radius:999px;background:rgba(255,77,109,.15);color:#ff4d6d;font-size:12px;font-weight:600">In planning</span></td></tr>
+          <tr style="border-bottom:1px solid var(--line)"><td style="padding:18px 22px;color:#fff">DDR drug development &amp; MoA</td><td style="padding:18px 22px;color:var(--fog);font-style:italic">to be updated</td><td style="padding:18px 22px"><span style="padding:4px 12px;border-radius:999px;background:rgba(192,132,252,.15);color:#c084fc;font-size:12px;font-weight:600">Open for collaboration</span></td></tr>
+          <tr style="border-bottom:1px solid var(--line)"><td style="padding:18px 22px;color:#fff">Pharmacodynamic biomarkers (clinical)</td><td style="padding:18px 22px;color:var(--fog);font-style:italic">to be updated</td><td style="padding:18px 22px"><span style="padding:4px 12px;border-radius:999px;background:rgba(192,132,252,.15);color:#c084fc;font-size:12px;font-weight:600">Open for collaboration</span></td></tr>
+          <tr style="border-bottom:1px solid var(--line)"><td style="padding:18px 22px;color:#fff">Radiotherapy &amp; radioligand therapy</td><td style="padding:18px 22px;color:var(--fog);font-style:italic">to be updated</td><td style="padding:18px 22px"><span style="padding:4px 12px;border-radius:999px;background:rgba(192,132,252,.15);color:#c084fc;font-size:12px;font-weight:600">Open for collaboration</span></td></tr>
+          <tr><td style="padding:18px 22px;color:#fff">Cancer immunotherapy / cGAS-STING</td><td style="padding:18px 22px;color:var(--fog);font-style:italic">to be updated</td><td style="padding:18px 22px"><span style="padding:4px 12px;border-radius:999px;background:rgba(192,132,252,.15);color:#c084fc;font-size:12px;font-weight:600">Open for collaboration</span></td></tr>
         </tbody>
       </table>
     </div>
@@ -1185,7 +1547,7 @@ html{scroll-padding-top:86px}
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-about">
-        <p style="color:var(--fog);font-size:14px">In2Cell Biosciences &mdash; DNA break detection powered by nanopore sequencing and AI.</p>
+        <p style="color:var(--fog);font-size:14px">In2Cell Biosciences. DNA break detection powered by nanopore sequencing and AI.</p>
       </div>
       <div><h5>Company</h5><a href="#about">About</a><a href="#team">Team</a><a href="#news">News</a></div>
       <div><h5>Platform</h5><a href="#platform">Pipeline</a><a href="#research">Applications</a></div>
