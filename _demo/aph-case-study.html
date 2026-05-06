@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>POLEX™ — Case study: Aphidicolin (Example)</title>
+<style>
+  :root{
+    --teal:#1fa899; --teal-bright:#2fd4c1; --leaf:#7dc242;
+    --rose:#ff5e7a; --amber:#ffa94d; --violet:#c084fc; --ice:#3c96ff;
+    --ink:#0a1020; --ink-2:#0d1528; --fog:#8aa0bd;
+    --line:rgba(255,255,255,.08); --glass:rgba(255,255,255,.04);
+    --glass-strong:rgba(255,255,255,.07);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Inter','Helvetica Neue',sans-serif;
+    background:radial-gradient(1200px 600px at 20% -10%,rgba(31,168,153,.15),transparent 60%),linear-gradient(180deg,#060b18,#0a1020 60%,#060b18);
+    color:#e5ecf8;min-height:100vh;padding:36px 28px;line-height:1.55;
+  }
+  .wrap{max-width:1240px;margin:0 auto}
+  header{margin-bottom:32px}
+  .eyebrow{
+    display:inline-block;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--amber);
+    font-weight:700;margin-bottom:14px;padding:6px 12px;border:1px solid rgba(255,169,77,.35);border-radius:999px;
+    background:rgba(255,169,77,.08);
+  }
+  h1{font-family:'Poppins',sans-serif;font-size:clamp(28px,3.6vw,42px);font-weight:800;line-height:1.1;margin-bottom:14px;
+     background:linear-gradient(180deg,#fff,#9fb4d8);-webkit-background-clip:text;background-clip:text;color:transparent}
+  h1 em{font-style:normal;background:linear-gradient(120deg,var(--amber),var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{color:#c4d0e8;font-size:15.5px;max-width:840px}
+  .lede strong{color:#fff}
+
+  .card{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:24px}
+  .card h2{font-family:'Poppins';font-size:14px;letter-spacing:.06em;color:var(--fog);font-weight:700;margin-bottom:16px;text-transform:uppercase}
+  .card h2 .badge{
+    display:inline-block;font-size:9.5px;font-family:'JetBrains Mono',monospace;
+    color:var(--teal-bright);background:rgba(47,212,193,.10);
+    padding:2px 7px;border-radius:3px;margin-left:10px;letter-spacing:.06em;
+  }
+
+  /* Comparison panel: three matched readouts */
+  .compare{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
+  @media (max-width:880px){.compare{grid-template-columns:1fr}}
+  .method{padding:22px}
+  .method.analog{background:linear-gradient(135deg,rgba(47,212,193,.10),rgba(125,194,66,.04));border-color:rgba(47,212,193,.35)}
+  .method-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px}
+  .method-name{font-family:'Poppins';font-size:13px;color:#fff;font-weight:700;letter-spacing:.02em}
+  .method-tech{font-size:10.5px;color:var(--fog);font-family:'JetBrains Mono',monospace;letter-spacing:.04em;margin-top:3px}
+  .method-pill{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.06em;padding:2px 7px;border-radius:3px;color:#04121b}
+  .method-pill.conv{background:#8aa0bd}
+  .method-pill.detect{background:var(--teal-bright)}
+
+  .bars{display:flex;align-items:flex-end;gap:14px;height:170px;margin:18px 0 10px;padding-top:24px;position:relative}
+  .bar-col{flex:1;display:flex;flex-direction:column;align-items:center;height:100%}
+  .bar{width:100%;border-radius:4px 4px 0 0;position:relative;transition:height .6s ease}
+  .bar-val{position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:11.5px;font-family:'JetBrains Mono',monospace;color:#fff;font-weight:700;white-space:nowrap}
+  .bar-lbl{font-size:10.5px;color:var(--fog);margin-top:6px;letter-spacing:.04em}
+  .ctrl-bar{background:linear-gradient(180deg,rgba(138,160,189,.5),rgba(138,160,189,.25))}
+  .aph-bar-conv{background:linear-gradient(180deg,#8aa0bd,#5a6f8c)}
+  .aph-bar-detect{background:linear-gradient(180deg,var(--teal-bright),var(--teal))}
+
+  .verdict{
+    margin-top:14px;padding:10px 14px;border-radius:8px;font-size:12.5px;line-height:1.5;
+    background:rgba(0,0,0,.2);border:1px solid var(--line);
+  }
+  .verdict.miss{color:#c4d0e8;border-color:rgba(255,127,144,.25);background:rgba(255,127,144,.04)}
+  .verdict.miss::before{content:"⚠️ ";font-size:14px}
+  .verdict.catch{color:#fff;border-color:rgba(125,194,66,.4);background:rgba(125,194,66,.06)}
+  .verdict.catch::before{content:"✓ ";color:var(--leaf);font-weight:bold}
+  .verdict b{color:#fff}
+
+  .fold{margin-top:6px;font-size:11px;color:var(--fog);font-family:'JetBrains Mono',monospace;letter-spacing:.04em}
+  .fold b{color:#fff;font-size:13px}
+
+  /* Genomic distribution panel */
+  .genome-card{margin-top:28px}
+  .ideogram{position:relative;padding:24px 20px 8px;background:rgba(0,0,0,.18);border-radius:8px;margin-top:8px}
+  .chr-row{position:relative;height:62px;margin-bottom:18px}
+  .chr-label{position:absolute;left:0;top:24px;font-size:11px;color:var(--fog);font-family:'JetBrains Mono',monospace;font-weight:700;width:80px;letter-spacing:.04em}
+  .chr-track{position:absolute;left:90px;right:0;top:18px;height:24px}
+  .chr-bar{position:absolute;left:0;right:0;top:9px;height:6px;background:linear-gradient(90deg,#3a4a64,#506583,#3a4a64);border-radius:3px}
+  .chr-cent{position:absolute;top:6px;width:14px;height:12px;background:#1f2a40;border-radius:3px;transform:translateX(-50%);border:1px solid #3a4a64}
+  .peak{position:absolute;bottom:14px;width:6px;border-radius:1px;transform:translateX(-50%)}
+  .peak.dmso{background:linear-gradient(180deg,rgba(138,160,189,.7),rgba(138,160,189,.3))}
+  .peak.aph{background:linear-gradient(180deg,#2fd4c1,#1fa899);box-shadow:0 0 6px rgba(47,212,193,.5)}
+  .peak-label{
+    position:absolute;top:-22px;left:50%;transform:translateX(-50%);
+    font-size:9.5px;color:var(--amber);font-family:'JetBrains Mono',monospace;
+    letter-spacing:.02em;white-space:nowrap;font-weight:700;
+  }
+  .row-tag{
+    position:absolute;left:0;top:-4px;font-size:10px;color:var(--fog);
+    font-family:'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;font-weight:700;
+  }
+  .row-tag.dmso-tag{color:var(--fog)}
+  .row-tag.aph-tag{color:var(--teal-bright)}
+
+  .ideo-foot{
+    display:flex;gap:24px;flex-wrap:wrap;font-size:11.5px;color:var(--fog);
+    margin-top:6px;padding-top:14px;border-top:1px solid rgba(255,255,255,.05);
+  }
+  .ideo-foot b{color:#fff;font-weight:700}
+  .ideo-foot .swatch{display:inline-block;width:12px;height:6px;border-radius:2px;margin-right:6px;vertical-align:middle}
+
+  /* Implications row */
+  .impl{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
+  @media (max-width:880px){.impl{grid-template-columns:1fr}}
+  .impl-card{padding:22px}
+  .impl-card h3{font-family:'Poppins';color:#fff;font-size:14px;font-weight:700;margin-bottom:10px;line-height:1.3}
+  .impl-card .impl-num{
+    display:inline-block;width:32px;height:32px;border-radius:50%;
+    background:linear-gradient(135deg,var(--teal),var(--teal-bright));
+    color:#04121b;font-weight:800;font-size:14px;line-height:32px;text-align:center;
+    margin-bottom:14px;font-family:'JetBrains Mono',monospace;
+  }
+  .impl-card p{font-size:12.5px;color:#c4d0e8;line-height:1.6}
+  .impl-card p b{color:#fff}
+
+  footer{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--fog);line-height:1.7}
+  footer b{color:#fff}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="eyebrow">POLEX™ · Case study · Hidden DNA damage</span>
+    <h1>Aphidicolin: when <em>"not a DNA-damaging agent"</em> is wrong.</h1>
+    <p class="lede">Aphidicolin (APH) is the standard tool drug for inducing replication stress in DDR research. Classified as a <strong>polymerase-α inhibitor</strong> &mdash; not a DNA-damaging agent. Most assays show only a modest signal, and most labs use it without considering it genotoxic.</p>
+    <p class="lede" style="margin-top:8px"><strong>POLEX™ tells a different story.</strong> Three matched readouts on the same APH-treated U2OS cells (1 µM, 24 h) show how the conventional toolkit systematically underestimates the actual DNA damage burden &mdash; and what POLEX™ catches.</p>
+  </header>
+
+  <div class="compare">
+    <!-- Method 1: Cell viability -->
+    <div class="card method">
+      <div class="method-head">
+        <div>
+          <div class="method-name">Cell viability</div>
+          <div class="method-tech">CellTiter-Glo · 24 h</div>
+        </div>
+        <span class="method-pill conv">Conventional</span>
+      </div>
+      <div class="bars">
+        <div class="bar-col">
+          <div class="bar ctrl-bar" style="height:75%"><span class="bar-val">100</span></div>
+          <div class="bar-lbl">DMSO</div>
+        </div>
+        <div class="bar-col">
+          <div class="bar aph-bar-conv" style="height:50%"><span class="bar-val">68</span></div>
+          <div class="bar-lbl">APH</div>
+        </div>
+      </div>
+      <div class="fold">Fold change: <b>0.7×</b> (i.e. ~30% growth slowdown)</div>
+      <div class="verdict miss">Reading: <b>"APH slows proliferation"</b>. Cytotoxicity? Maybe. Cause? Unknown. Tells you something happened, not what.</div>
+    </div>
+
+    <!-- Method 2: gamma-H2AX foci -->
+    <div class="card method">
+      <div class="method-head">
+        <div>
+          <div class="method-name">γH2AX foci</div>
+          <div class="method-tech">Immunofluorescence · per cell</div>
+        </div>
+        <span class="method-pill conv">Conventional</span>
+      </div>
+      <div class="bars">
+        <div class="bar-col">
+          <div class="bar ctrl-bar" style="height:18%"><span class="bar-val">4 ± 2</span></div>
+          <div class="bar-lbl">DMSO</div>
+        </div>
+        <div class="bar-col">
+          <div class="bar aph-bar-conv" style="height:38%"><span class="bar-val">9 ± 3</span></div>
+          <div class="bar-lbl">APH</div>
+        </div>
+      </div>
+      <div class="fold">Fold change: <b>2.3×</b> over baseline</div>
+      <div class="verdict miss">Reading: <b>"Modest γH2AX increase &mdash; could be background"</b>. Within typical noise. Often dismissed in the literature as not warranting reclassification.</div>
+    </div>
+
+    <!-- Method 3: POLEX -->
+    <div class="card method analog">
+      <div class="method-head">
+        <div>
+          <div class="method-name">POLEX™ DSB burden</div>
+          <div class="method-tech">Nanopore + AI · per Mb</div>
+        </div>
+        <span class="method-pill detect">Direct detection</span>
+      </div>
+      <div class="bars">
+        <div class="bar-col">
+          <div class="bar ctrl-bar" style="height:6%"><span class="bar-val">11 ± 3</span></div>
+          <div class="bar-lbl">DMSO</div>
+        </div>
+        <div class="bar-col">
+          <div class="bar aph-bar-detect" style="height:88%"><span class="bar-val">168 ± 22</span></div>
+          <div class="bar-lbl">APH</div>
+        </div>
+      </div>
+      <div class="fold">Fold change: <b style="color:var(--teal-bright)">15.3×</b> over baseline</div>
+      <div class="verdict catch">Reading: <b>"Massive on-target DSB induction at fragile sites"</b>. Replication-fork collapse is real and it produces real, mappable, base-resolution DNA breaks.</div>
+    </div>
+  </div>
+
+  <!-- Where the breaks land -->
+  <div class="card genome-card">
+    <h2>Where the breaks actually land <span class="badge">CHR 3 · single representative chromosome</span></h2>
+    <p style="color:#c4d0e8;font-size:13px;margin-bottom:14px">The breaks aren't random. They cluster at <strong style="color:var(--amber)">common fragile sites (CFS)</strong> &mdash; chromosomal regions known to be unusually difficult to replicate. POLEX™ resolves the breaks at the exact loci that classical fragile-site cytogenetics has been describing for 40 years, but at base resolution and from a single sample.</p>
+
+    <div class="ideogram">
+      <!-- DMSO row -->
+      <div class="chr-row">
+        <span class="row-tag dmso-tag">DMSO control</span>
+        <span class="chr-label" style="top:32px">chr 3 · DMSO</span>
+        <div class="chr-track">
+          <div class="chr-bar"></div>
+          <div class="chr-cent" style="left:36%"></div>
+          <!-- Sparse, low peaks -->
+          <div class="peak dmso" style="left:18%;height:10px"></div>
+          <div class="peak dmso" style="left:42%;height:8px"></div>
+          <div class="peak dmso" style="left:65%;height:11px"></div>
+          <div class="peak dmso" style="left:83%;height:9px"></div>
+        </div>
+      </div>
+      <!-- APH row -->
+      <div class="chr-row">
+        <span class="row-tag aph-tag">APH treated · 1 µM · 24 h</span>
+        <span class="chr-label" style="top:32px">chr 3 · APH</span>
+        <div class="chr-track">
+          <div class="chr-bar"></div>
+          <div class="chr-cent" style="left:36%"></div>
+          <!-- FRA3B at 3p14.2 (left arm, near telomere) -->
+          <div class="peak aph" style="left:18%;height:48px"><span class="peak-label">FRA3B</span></div>
+          <!-- Centromeric breaks (cen3) -->
+          <div class="peak aph" style="left:34%;height:30px"><span class="peak-label">cen3</span></div>
+          <div class="peak aph" style="left:38%;height:26px"></div>
+          <!-- Fragile site cluster mid-arm -->
+          <div class="peak aph" style="left:52%;height:22px"></div>
+          <div class="peak aph" style="left:55%;height:18px"></div>
+          <!-- FRA3D at 3q25 -->
+          <div class="peak aph" style="left:75%;height:36px"><span class="peak-label">FRA3D</span></div>
+          <!-- Telomeric peak -->
+          <div class="peak aph" style="left:92%;height:24px"></div>
+        </div>
+      </div>
+
+      <div class="ideo-foot">
+        <span><span class="swatch" style="background:rgba(138,160,189,.6)"></span><b>Background DSBs</b> (untreated baseline)</span>
+        <span><span class="swatch" style="background:var(--teal-bright);box-shadow:0 0 6px rgba(47,212,193,.5)"></span><b>APH-induced DSBs</b> &mdash; concentrated at fragile sites and centromere</span>
+        <span style="color:var(--fog);font-style:italic">Peak height ∝ break frequency</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Implications -->
+  <div class="impl">
+    <div class="card impl-card">
+      <div class="impl-num">1</div>
+      <h3>Replication stress = DNA damage.</h3>
+      <p>Compounds classified as "replication stress inducers" (APH, hydroxyurea, gemcitabine, ATR inhibitors at high dose) need to be reassessed for <b>genotoxic liability</b>. The breaks have always been there &mdash; conventional assays just couldn't see them at fragile sites.</p>
+    </div>
+    <div class="card impl-card">
+      <div class="impl-num">2</div>
+      <h3>Tox screening blind spot.</h3>
+      <p>Drug developers running <b>γH2AX or Comet assays</b> as their genotoxicity readout will systematically miss replication-stress-induced damage. POLEX™ closes the blind spot by detecting break accumulation at the exact loci where it concentrates &mdash; fragile sites, centromeres, satellite arrays.</p>
+    </div>
+    <div class="card impl-card">
+      <div class="impl-num">3</div>
+      <h3>New therapeutic axis.</h3>
+      <p>If replication-stress inducers cause <b>real, mappable DNA damage</b> at fragile sites, then cancers with elevated baseline replication stress (<b>Myc-amplified, cyclin E-amplified, CCNE1</b>) become candidates for fragile-site-targeted therapy &mdash; an axis that's been essentially invisible to existing measurement tools.</p>
+    </div>
+  </div>
+
+  <footer>
+    <b>About this view.</b> Aphidicolin (APH) has been used in DDR research for over 40 years as the standard "replication-stress" tool, with the implicit assumption that fork stalling does not equal DNA breakage. Modern evidence increasingly shows otherwise — stalled replication forks collapse into one-ended DSBs, and those breaks accumulate at common fragile sites, centromeres, and other replication-difficult regions. POLEX™ measures these breaks directly and at base resolution, revealing a damage burden that conventional γH2AX immunofluorescence and Comet assays systematically underestimate because their detection limits sit above the relevant signal at fragile loci.
+  </footer>
+</div>
+</body>
+</html>

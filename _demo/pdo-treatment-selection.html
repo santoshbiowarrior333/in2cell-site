@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>POLEX™ — Patient-Derived Organoid Drug Selection (Example)</title>
+<style>
+  :root{
+    --teal:#1fa899; --teal-bright:#2fd4c1; --leaf:#7dc242;
+    --rose:#ff5e7a; --amber:#ffa94d; --violet:#c084fc; --ice:#3c96ff;
+    --ink:#0a1020; --ink-2:#0d1528; --fog:#8aa0bd;
+    --line:rgba(255,255,255,.08); --glass:rgba(255,255,255,.04);
+    --glass-strong:rgba(255,255,255,.07);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Inter','Helvetica Neue',sans-serif;
+    background:radial-gradient(1200px 600px at 20% -10%,rgba(31,168,153,.15),transparent 60%),linear-gradient(180deg,#060b18,#0a1020 60%,#060b18);
+    color:#e5ecf8;min-height:100vh;padding:36px 28px;line-height:1.55;
+  }
+  .wrap{max-width:1240px;margin:0 auto}
+  header{margin-bottom:24px}
+  .eyebrow{
+    display:inline-block;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--teal-bright);
+    font-weight:700;margin-bottom:14px;padding:6px 12px;border:1px solid rgba(47,212,193,.35);border-radius:999px;
+    background:rgba(47,212,193,.07);
+  }
+  h1{font-family:'Poppins',sans-serif;font-size:clamp(26px,3.4vw,38px);font-weight:800;line-height:1.1;margin-bottom:10px;
+     background:linear-gradient(180deg,#fff,#9fb4d8);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{color:#c4d0e8;font-size:15px;max-width:840px}
+  .lede strong{color:#fff}
+
+  /* Patient toggle */
+  .patient-toggle{display:flex;gap:8px;margin:24px 0 18px;flex-wrap:wrap}
+  .patient-btn{
+    background:transparent;border:1px solid var(--line);color:#c4d0e8;
+    padding:10px 16px;border-radius:10px;font-family:inherit;font-size:13px;cursor:pointer;
+    font-weight:600;letter-spacing:.02em;transition:.15s;
+  }
+  .patient-btn:hover{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.18)}
+  .patient-btn.active{background:rgba(47,212,193,.12);border-color:var(--teal-bright);color:#fff}
+  .patient-btn .pid{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--teal-bright);margin-right:8px}
+
+  /* Layout */
+  .layout{display:grid;grid-template-columns:340px 1fr;gap:24px;align-items:start}
+  @media (max-width:980px){.layout{grid-template-columns:1fr}}
+
+  .card{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:22px}
+  .card h2{font-family:'Poppins';font-size:13px;letter-spacing:.06em;color:var(--fog);font-weight:700;margin-bottom:14px;text-transform:uppercase}
+
+  /* Patient card */
+  .patient-card .pname{font-family:'Poppins';color:#fff;font-size:18px;font-weight:700;margin-bottom:2px}
+  .patient-card .ptype{color:#c4d0e8;font-size:13.5px;margin-bottom:14px}
+  .patient-card dl{display:grid;grid-template-columns:1fr 1.4fr;gap:8px 14px;font-size:12.5px;line-height:1.45}
+  .patient-card dt{color:var(--fog);font-size:11px;letter-spacing:.04em;text-transform:uppercase;font-weight:700;padding-top:1px}
+  .patient-card dd{color:#e5ecf8}
+  .patient-card dd b{color:#fff}
+  .patient-card .pid-tag{
+    display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;
+    color:var(--teal-bright);letter-spacing:.04em;
+    background:rgba(47,212,193,.08);padding:3px 8px;border-radius:4px;margin-bottom:10px;
+  }
+
+  .geno-pill{
+    display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.04em;
+    padding:2px 7px;border-radius:3px;color:#04121b;
+  }
+  .geno-pill.brca{background:#ff5e7a}
+  .geno-pill.atm{background:#c084fc}
+  .geno-pill.wt{background:#8aa0bd}
+  .geno-pill.reversion{background:#ffa94d}
+
+  /* Recommendation card (within left col) */
+  .rec-card{margin-top:16px;background:linear-gradient(135deg,rgba(125,194,66,.12),rgba(47,212,193,.06));border-color:rgba(125,194,66,.35)}
+  .rec-card.amber{background:linear-gradient(135deg,rgba(255,169,77,.12),rgba(255,127,144,.04));border-color:rgba(255,169,77,.35)}
+  .rec-card .rec-label{font-size:11px;color:var(--fog);letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin-bottom:6px}
+  .rec-card .rec-name{font-family:'Poppins';color:#fff;font-size:22px;font-weight:800;margin-bottom:6px;line-height:1.15}
+  .rec-card .rec-class{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.06em;
+                       padding:3px 8px;border-radius:4px;color:#04121b;margin-bottom:10px}
+  .rec-card .rec-rationale{color:#e5ecf8;font-size:13px;line-height:1.55}
+  .rec-card .rec-rationale b{color:#fff}
+
+  /* Plot card */
+  .plot-card{position:relative}
+  .plot-card h2{margin-bottom:6px}
+  .plot-card .plot-sub{color:var(--fog);font-size:12.5px;margin-bottom:18px}
+  .plot-card .plot-sub b{color:#c4d0e8}
+  svg.plot{width:100%;height:auto;display:block}
+  .tooltip{
+    position:absolute;background:rgba(10,16,32,.97);border:1px solid rgba(47,212,193,.45);
+    color:#e5ecf8;font-size:12px;padding:10px 12px;border-radius:8px;pointer-events:none;
+    opacity:0;transition:opacity .12s;z-index:5;max-width:240px;line-height:1.5;
+    box-shadow:0 6px 18px rgba(0,0,0,.45);
+  }
+  .tooltip.show{opacity:1}
+  .tooltip .t-name{color:#fff;font-weight:700;font-size:13px;margin-bottom:4px}
+  .tooltip .t-stats{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;font-family:'JetBrains Mono',Consolas,monospace;font-size:11px;margin-top:4px}
+  .tooltip .t-stats span:nth-child(odd){color:var(--fog)}
+  .tooltip .t-mech{color:var(--fog);font-size:11px;margin-top:6px;font-style:italic}
+
+  /* How to read panel */
+  .how-card{margin-top:18px;background:transparent;border:1px dashed rgba(255,255,255,.08)}
+  .how-card h2{margin-bottom:10px}
+  .how-card p{font-size:12.5px;color:#c4d0e8;line-height:1.6;margin-bottom:8px}
+  .how-card p:last-child{margin-bottom:0}
+  .how-card b{color:#fff}
+
+  footer{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--fog);line-height:1.7}
+  footer b{color:#fff}
+  footer code{background:rgba(255,255,255,.05);padding:1px 6px;border-radius:3px;font-family:'JetBrains Mono';font-size:11px}
+  footer a{color:var(--teal-bright);text-decoration:none}
+  footer a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="eyebrow">POLEX™ · Functional Precision Oncology · Example</span>
+    <h1>Picking the right DDR drug for the right patient.</h1>
+    <p class="lede">A patient-derived organoid (<strong>PDO</strong>) is established from a fresh tumour biopsy and split into seven arms — five candidate DDR drugs at clinically achievable concentrations, plus a no-treatment baseline and a vehicle control. After 48 h, POLEX™ measures genome-wide <strong>double-strand break burden</strong> in each arm. The drug producing the strongest on-target DNA damage at the lowest predicted toxicity becomes the recommended first-line therapy for that specific patient.</p>
+  </header>
+
+  <!-- Patient toggle -->
+  <div class="patient-toggle" id="patientToggle"></div>
+
+  <div class="layout">
+    <!-- LEFT: Patient profile + recommendation -->
+    <div>
+      <div class="card patient-card" id="patientCard"></div>
+      <div class="card rec-card" id="recCard"></div>
+    </div>
+
+    <!-- RIGHT: Drug response plot -->
+    <div>
+      <div class="card plot-card">
+        <h2>DSB burden per treatment arm</h2>
+        <p class="plot-sub">Each bar = mean DSB burden across <b>3 organoid replicates</b> ± SD. Higher = more on-target DNA damage induced by that drug in this patient&rsquo;s tumour.</p>
+        <svg class="plot" id="dsbPlot" viewBox="0 0 720 460" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="DSB burden per drug arm"></svg>
+        <div class="tooltip" id="tip" aria-hidden="true"></div>
+      </div>
+
+      <div class="card how-card">
+        <h2>How to read this</h2>
+        <p><b>The control arms (Untreated, DMSO)</b> establish the baseline DSB burden for this organoid. Anything above this line is drug-induced damage.</p>
+        <p><b>The recommended drug</b> (highlighted bar) is the one producing the largest DSB increase over baseline. For a DDR-targeted therapy, a strong DSB induction means the patient&rsquo;s tumour has the molecular vulnerability the drug exploits — a positive functional biomarker independent of genotype.</p>
+        <p><b>Weak responses</b> across all arms suggest no monotherapy will be effective; the case should be considered for combination therapy or a clinical trial.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <b>About this view.</b> Conventional cytotoxicity assays (CellTiter-Glo, MTS) report whether organoid cells died, but not <em>why</em> &mdash; they conflate on-target DNA damage with generic toxicity. POLEX™ measures DSB burden directly at base resolution across the whole genome (including centromeres and satellite arrays where short-read methods are blind), separating drug efficacy from off-target toxicity and giving the oncologist a mechanism-anchored treatment recommendation.
+  </footer>
+</div>
+
+<script>
+(function(){
+  // ===== Three illustrative patients =====
+  // Each patient defines: profile + DSB response per drug arm (mean, SD).
+  // Drug lineup is consistent across patients for direct comparison.
+  const drugs = [
+    {key:'untreated', name:'Untreated',         klass:'Ctrl', mech:'No drug — endogenous baseline DSBs only'},
+    {key:'dmso',      name:'DMSO (vehicle)',    klass:'Ctrl', mech:'Vehicle control — solvent without active compound'},
+    {key:'olaparib',  name:'Olaparib',          klass:'PARP', mech:'PARP1/2 inhibitor (1 µM, 48 h). Synthetic lethal in HR-deficient tumours.'},
+    {key:'talazo',    name:'Talazoparib',       klass:'PARP', mech:'PARP1/2 trapper (50 nM, 48 h). Highest-potency PARP inhibitor approved.'},
+    {key:'veliparib', name:'Veliparib',         klass:'PARP', mech:'PARP1/2 inhibitor (5 µM, 48 h). Mild trapping; combination-friendly.'},
+    {key:'cera',      name:'Ceralasertib',      klass:'ATR',  mech:'ATR kinase inhibitor (500 nM, 48 h). Synthetic lethal in ATM-deficient tumours.'},
+    {key:'berzo',     name:'Berzosertib',       klass:'ATR',  mech:'ATR kinase inhibitor (200 nM, 48 h). First-in-class.'}
+  ];
+
+  const klassColor = { Ctrl:'#8aa0bd', PARP:'#2fd4c1', ATR:'#7dc242' };
+
+  const patients = [
+    {
+      pid:'PT-2026-047',
+      name:'Patient A',
+      type:'High-grade serous ovarian cancer (HGSOC)',
+      site:'Peritoneal metastasis',
+      stage:'Stage III, recurrent',
+      geno:[{type:'brca', text:'BRCA1 c.5266dupC'}],
+      hr:'Homologous recombination deficient',
+      sample:'PDO P4, 14 d post-establishment, n=3 wells/arm',
+      // DSB burden per arm: [mean, SD]. Units: DSBs per Mb (illustrative).
+      response:{
+        untreated:[7,2], dmso:[9,3],
+        olaparib:[148,18], talazo:[178,22], veliparib:[92,14],
+        cera:[58,10], berzo:[64,12]
+      },
+      rec:{
+        drug:'talazo', class:'amber'   // amber background style not used here — we use 'lead' for the green styling
+      },
+      rationale:'Strongest DSB induction (<b>178 DSBs/Mb</b>, ~20× baseline) at clinically achievable plasma concentration. Consistent with established <b>BRCA1-mutant HR-deficient</b> phenotype — synthetic lethal with PARP trapping. Olaparib also produces strong response; talazoparib chosen for highest potency.'
+    },
+    {
+      pid:'PT-2026-082',
+      name:'Patient B',
+      type:'Pancreatic ductal adenocarcinoma (PDAC)',
+      site:'Primary tumour, head of pancreas',
+      stage:'Stage III, treatment-naive',
+      geno:[{type:'atm', text:'ATM truncating (somatic)'}],
+      hr:'HR-proficient, ATR-pathway dependent',
+      sample:'PDO P3, 11 d post-establishment, n=3 wells/arm',
+      response:{
+        untreated:[10,3], dmso:[11,4],
+        olaparib:[34,8], talazo:[42,10], veliparib:[26,7],
+        cera:[172,20], berzo:[148,18]
+      },
+      rec:{ drug:'cera' },
+      rationale:'Strongest DSB induction (<b>172 DSBs/Mb</b>, ~17× baseline) with ATR inhibition. Consistent with established <b>ATM-deficient</b> phenotype — ATR loss is synthetic lethal in cells lacking ATM signalling. PARP inhibitors produce only modest response, ruling out HR-deficiency-driven sensitivity.'
+    },
+    {
+      pid:'PT-2026-119',
+      name:'Patient C',
+      type:'Triple-negative breast cancer (TNBC)',
+      site:'Primary tumour, left breast',
+      stage:'Stage II, treatment-naive',
+      geno:[{type:'wt', text:'BRCA1/2 wild-type, ATM wild-type'}],
+      hr:'HR-proficient (functional)',
+      sample:'PDO P5, 16 d post-establishment, n=3 wells/arm',
+      response:{
+        untreated:[8,3], dmso:[10,3],
+        olaparib:[18,5], talazo:[24,6], veliparib:[15,4],
+        cera:[28,7], berzo:[31,8]
+      },
+      rec:{ drug:null, amber:true },
+      rationale:'<b>No monotherapy reaches the clinical-response threshold</b> (DSB induction &gt; 5× baseline). All single-agent arms produce only modest DNA damage. Recommend escalating to <b>combination therapy</b> (e.g. PARPi + platinum, or PARPi + ATRi) or referral to <b>clinical trial</b> for a non-DDR mechanism.'
+    },
+    {
+      pid:'PT-2026-156',
+      name:'Patient D',
+      type:'HGSOC — recurrent, post-PARPi',
+      site:'Peritoneal recurrence',
+      stage:'Stage IV; 12 mo Olaparib response, then progressed',
+      geno:[
+        {type:'brca', text:'BRCA1 c.5266dupC'},
+        {type:'reversion', text:'+ secondary reversion (HR restored)'}
+      ],
+      hr:'Functionally HR-proficient (acquired)',
+      sample:'PDO P3, 12 d post-establishment, n=3 wells/arm',
+      // PARP inhibitors fail (HR has been restored); ATR inhibitors still work
+      response:{
+        untreated:[9,3], dmso:[10,3],
+        olaparib:[28,7], talazo:[35,9], veliparib:[20,5],
+        cera:[152,18], berzo:[138,16]
+      },
+      rec:{ drug:'cera' },
+      rationale:'Despite the original BRCA1 mutation, a <b>secondary reversion mutation has restored HR competence</b> &mdash; PARP inhibitors no longer produce strong DSB induction (Olaparib only ~3× baseline; well below the clinical-response threshold). However, the tumour retains <b>replication-stress vulnerability</b>, and ATR inhibition produces strong DSB induction (~15× baseline). Recommend switching to <b>Ceralasertib</b> as second-line therapy. <br/><br/><b>Genotype-only testing would have suggested PARPi continuation</b> (BRCA1 mutation still present on sequencing). Functional POLEX™ measurement reveals the acquired resistance and identifies the next-best target in real time.'
+    }
+  ];
+
+  // ===== Plot setup =====
+  const svg = document.getElementById('dsbPlot');
+  const tip = document.getElementById('tip');
+  const SVG_NS = 'http://www.w3.org/2000/svg';
+  function el(tag, attrs){
+    const e = document.createElementNS(SVG_NS, tag);
+    if(attrs) for(const k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
+  }
+
+  const W = 720, H = 460;
+  const PAD = {l:55, r:30, t:30, b:80};
+  const PW = W - PAD.l - PAD.r;
+  const PH = H - PAD.t - PAD.b;
+  const Y_MAX = 220;
+  const xC = i => PAD.l + (i + 0.5) * (PW / drugs.length);
+  const yC = v => PAD.t + PH * (1 - v / Y_MAX);
+  const BAR_W = (PW / drugs.length) * 0.6;
+
+  let activePatientIdx = 0;
+
+  function renderPlot(){
+    // Clear
+    while(svg.firstChild) svg.removeChild(svg.firstChild);
+    const p = patients[activePatientIdx];
+
+    // Y-axis grid + labels
+    [0,50,100,150,200].forEach(v=>{
+      const y = yC(v);
+      svg.appendChild(el('line', {x1:PAD.l, x2:PAD.l+PW, y1:y, y2:y,
+        stroke: v===0 ? 'rgba(255,255,255,.18)' : 'rgba(255,255,255,.05)',
+        'stroke-dasharray': v===0 ? '' : '2 4'}));
+      const lb = el('text', {x:PAD.l-10, y:y+4, 'text-anchor':'end',
+        fill:'rgba(255,255,255,.45)', 'font-size':'10', 'font-family':'JetBrains Mono, monospace'});
+      lb.textContent = v;
+      svg.appendChild(lb);
+    });
+
+    // Y-axis title
+    const yt = el('text', {x:14, y:PAD.t+PH/2, 'text-anchor':'middle',
+      fill:'#c4d0e8', 'font-size':'12', 'font-family':'Inter, sans-serif',
+      'font-weight':'600', transform:'rotate(-90, 14, '+(PAD.t+PH/2)+')'});
+    yt.textContent = 'DSB burden (per Mb)';
+    svg.appendChild(yt);
+
+    // Baseline reference line: average of untreated + DMSO
+    const baseline = (p.response.untreated[0] + p.response.dmso[0]) / 2;
+    const baselineY = yC(baseline);
+    svg.appendChild(el('line', {x1:PAD.l, x2:PAD.l+PW, y1:baselineY, y2:baselineY,
+      stroke:'rgba(138,160,189,.5)', 'stroke-dasharray':'4 4', 'stroke-width':1}));
+    const blLabel = el('text', {x:PAD.l+PW-6, y:baselineY-5, 'text-anchor':'end',
+      fill:'rgba(138,160,189,.85)', 'font-size':'10',
+      'font-family':'JetBrains Mono, monospace', 'font-style':'italic'});
+    blLabel.textContent = 'baseline ~' + baseline.toFixed(0);
+    svg.appendChild(blLabel);
+
+    // Bars
+    drugs.forEach((d, i) => {
+      const r = p.response[d.key];
+      const mean = r[0], sd = r[1];
+      const x = xC(i) - BAR_W/2;
+      const y = yC(mean);
+      const h = (PAD.t + PH) - y;
+      const c = klassColor[d.klass];
+      const isRec = p.rec.drug === d.key;
+
+      // Glow halo for the recommended bar
+      if(isRec){
+        svg.appendChild(el('rect', {
+          x: x - 3, y: y - 3, width: BAR_W + 6, height: h + 3,
+          fill: 'rgba(125,194,66,.20)', rx: 3
+        }));
+      }
+
+      // Bar
+      const bar = el('rect', {
+        x: x, y: y, width: BAR_W, height: h, rx: 3,
+        fill: isRec ? '#7dc242' : c,
+        opacity: isRec ? '1' : (d.klass === 'Ctrl' ? '0.6' : '0.85'),
+        stroke: isRec ? '#fff' : 'none',
+        'stroke-width': isRec ? '1.5' : '0',
+        style: 'cursor:pointer;transition:opacity .15s'
+      });
+      bar.dataset.idx = i;
+      bar.addEventListener('mouseenter', e => showTip(d, mean, sd, bar));
+      bar.addEventListener('mouseleave', () => tip.classList.remove('show'));
+      svg.appendChild(bar);
+
+      // Error bar (mean ± SD)
+      const ebTop = yC(mean + sd);
+      const ebBot = yC(mean - sd);
+      svg.appendChild(el('line', {x1:xC(i), x2:xC(i), y1:ebTop, y2:ebBot,
+        stroke:'rgba(255,255,255,.7)', 'stroke-width':1.2, 'pointer-events':'none'}));
+      svg.appendChild(el('line', {x1:xC(i)-5, x2:xC(i)+5, y1:ebTop, y2:ebTop,
+        stroke:'rgba(255,255,255,.7)', 'stroke-width':1.2, 'pointer-events':'none'}));
+      svg.appendChild(el('line', {x1:xC(i)-5, x2:xC(i)+5, y1:ebBot, y2:ebBot,
+        stroke:'rgba(255,255,255,.7)', 'stroke-width':1.2, 'pointer-events':'none'}));
+
+      // Value label above bar
+      const vl = el('text', {x:xC(i), y:Math.max(yC(mean+sd) - 6, PAD.t + 12),
+        'text-anchor':'middle', fill: isRec ? '#fff' : 'rgba(255,255,255,.75)',
+        'font-size':'11', 'font-family':'JetBrains Mono, monospace',
+        'font-weight': isRec ? '700' : '500'});
+      vl.textContent = mean.toFixed(0);
+      svg.appendChild(vl);
+
+      // Drug name below x-axis
+      const xl = el('text', {x:xC(i), y:PAD.t+PH+18,
+        'text-anchor':'middle', fill: isRec ? '#fff' : '#c4d0e8',
+        'font-size':'11', 'font-family':'Inter, sans-serif',
+        'font-weight': isRec ? '700' : '500'});
+      xl.textContent = d.name;
+      svg.appendChild(xl);
+
+      // Class chip below name
+      const ch = el('text', {x:xC(i), y:PAD.t+PH+33,
+        'text-anchor':'middle', fill: c, 'font-size':'9',
+        'font-family':'JetBrains Mono, monospace',
+        'letter-spacing':'.06em'});
+      ch.textContent = d.klass.toUpperCase();
+      svg.appendChild(ch);
+
+      // RECOMMENDED tag below recommended bar
+      if(isRec){
+        const tag = el('text', {x:xC(i), y:PAD.t+PH+50,
+          'text-anchor':'middle', fill:'#7dc242', 'font-size':'9',
+          'font-family':'JetBrains Mono, monospace',
+          'letter-spacing':'.12em', 'font-weight':'700'});
+        tag.textContent = '★ RECOMMENDED';
+        svg.appendChild(tag);
+      }
+    });
+  }
+
+  function showTip(d, mean, sd, bar){
+    const fold = (mean / ((patients[activePatientIdx].response.untreated[0] + patients[activePatientIdx].response.dmso[0]) / 2)).toFixed(1);
+    tip.innerHTML =
+      '<div class="t-name">' + d.name + '</div>' +
+      '<div class="t-stats">' +
+        '<span>DSBs/Mb</span><span><b style="color:#fff">' + mean.toFixed(0) + ' &plusmn; ' + sd.toFixed(0) + '</b></span>' +
+        '<span>vs baseline</span><span style="color:#fff;font-weight:700">' + fold + '×</span>' +
+        '<span>Class</span><span>' + d.klass + '</span>' +
+      '</div>' +
+      '<div class="t-mech">' + d.mech + '</div>';
+    const r = svg.getBoundingClientRect();
+    const wrapR = svg.parentElement.getBoundingClientRect();
+    const cx = parseFloat(bar.getAttribute('x')) + parseFloat(bar.getAttribute('width'))/2;
+    const cy = parseFloat(bar.getAttribute('y'));
+    const x = cx/W * r.width + (r.left - wrapR.left);
+    const y = cy/H * r.height + (r.top - wrapR.top);
+    tip.style.left = x + 'px';
+    tip.style.top = (y - 12) + 'px';
+    tip.style.transform = 'translate(-50%, -100%)';
+    tip.classList.add('show');
+  }
+
+  function renderPatient(){
+    const p = patients[activePatientIdx];
+
+    // Patient profile card
+    const genoHtml = p.geno.map(g => '<span class="geno-pill ' + g.type + '">' + g.text + '</span>').join(' ');
+    document.getElementById('patientCard').innerHTML =
+      '<h2>Patient profile</h2>' +
+      '<span class="pid-tag">' + p.pid + '</span>' +
+      '<div class="pname">' + p.name + '</div>' +
+      '<div class="ptype">' + p.type + '</div>' +
+      '<dl>' +
+        '<dt>Site</dt><dd>' + p.site + '</dd>' +
+        '<dt>Stage</dt><dd>' + p.stage + '</dd>' +
+        '<dt>Genotype</dt><dd>' + genoHtml + '</dd>' +
+        '<dt>HR status</dt><dd><b>' + p.hr + '</b></dd>' +
+        '<dt>Sample</dt><dd>' + p.sample + '</dd>' +
+      '</dl>';
+
+    // Recommendation card
+    const recCard = document.getElementById('recCard');
+    if(p.rec.drug){
+      const drugObj = drugs.find(d => d.key === p.rec.drug);
+      recCard.classList.remove('amber');
+      recCard.innerHTML =
+        '<div class="rec-label">Recommended therapy</div>' +
+        '<div class="rec-name">' + drugObj.name + '</div>' +
+        '<span class="rec-class" style="background:' + klassColor[drugObj.klass] + '">' + drugObj.klass + ' inhibitor</span>' +
+        '<p class="rec-rationale">' + p.rationale + '</p>';
+    } else {
+      recCard.classList.add('amber');
+      recCard.innerHTML =
+        '<div class="rec-label" style="color:#ffa94d">No clear monotherapy lead</div>' +
+        '<div class="rec-name">Combination or trial</div>' +
+        '<p class="rec-rationale">' + p.rationale + '</p>';
+    }
+
+    // Plot
+    renderPlot();
+  }
+
+  // Patient toggle buttons
+  const toggle = document.getElementById('patientToggle');
+  patients.forEach((p, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'patient-btn' + (i === 0 ? ' active' : '');
+    btn.innerHTML = '<span class="pid">' + p.pid + '</span>' + p.name + ' &middot; ' + p.type.split('(')[0].trim();
+    btn.addEventListener('click', () => {
+      activePatientIdx = i;
+      Array.from(toggle.children).forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderPatient();
+    });
+    toggle.appendChild(btn);
+  });
+
+  renderPatient();
+})();
+</script>
+</body>
+</html>

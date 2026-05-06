@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>POLEX™ — Drug Prioritization (Example)</title>
+<style>
+  :root{
+    --teal:#1fa899; --teal-bright:#2fd4c1; --leaf:#7dc242;
+    --rose:#ff5e7a; --amber:#ffa94d; --violet:#c084fc; --ice:#3c96ff;
+    --ink:#0a1020; --ink-2:#0d1528; --fog:#8aa0bd;
+    --line:rgba(255,255,255,.08); --glass:rgba(255,255,255,.04);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Inter','Helvetica Neue',sans-serif;
+    background:radial-gradient(1200px 600px at 20% -10%,rgba(31,168,153,.15),transparent 60%),linear-gradient(180deg,#060b18,#0a1020 60%,#060b18);
+    color:#e5ecf8;min-height:100vh;padding:40px 32px;line-height:1.55;
+  }
+  .wrap{max-width:1200px;margin:0 auto}
+  header{margin-bottom:28px}
+  .eyebrow{
+    display:inline-block;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--teal-bright);
+    font-weight:700;margin-bottom:14px;padding:6px 12px;border:1px solid rgba(47,212,193,.35);border-radius:999px;
+    background:rgba(47,212,193,.07);
+  }
+  h1{font-family:'Poppins',sans-serif;font-size:clamp(26px,3.4vw,40px);font-weight:800;line-height:1.1;margin-bottom:10px;
+     background:linear-gradient(180deg,#fff,#9fb4d8);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{color:#c4d0e8;font-size:15px;max-width:780px;margin-bottom:6px}
+  .lede strong{color:#fff}
+
+  .layout{display:grid;grid-template-columns:1.5fr 1fr;gap:28px;margin-top:24px}
+  @media (max-width:980px){.layout{grid-template-columns:1fr}}
+
+  .card{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:22px}
+  .card h2{font-family:'Poppins';font-size:15px;letter-spacing:.04em;color:#fff;font-weight:700;margin-bottom:14px;text-transform:uppercase}
+
+  .plot-wrap{position:relative}
+  svg.plot{width:100%;height:auto;display:block;background:rgba(0,0,0,.18);border-radius:10px}
+  .tooltip{
+    position:absolute;background:rgba(10,16,32,.96);border:1px solid rgba(47,212,193,.45);
+    color:#e5ecf8;font-size:12px;padding:10px 12px;border-radius:8px;pointer-events:none;
+    opacity:0;transition:opacity .12s;z-index:5;max-width:240px;line-height:1.5;
+    box-shadow:0 6px 18px rgba(0,0,0,.45);
+  }
+  .tooltip.show{opacity:1}
+  .tooltip .t-name{color:#fff;font-weight:700;font-size:13px;margin-bottom:4px}
+  .tooltip .t-class{display:inline-block;font-size:10px;letter-spacing:.06em;text-transform:uppercase;
+                    padding:2px 6px;border-radius:3px;font-weight:700;margin-bottom:6px}
+  .tooltip .t-mech{color:var(--fog);font-size:11px;margin-top:6px;font-style:italic}
+  .tooltip .t-stats{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;font-family:'JetBrains Mono',Consolas,monospace;font-size:11px}
+  .tooltip .t-stats span:nth-child(odd){color:var(--fog)}
+
+  .legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px;font-size:12px;color:var(--fog)}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .legend i{width:10px;height:10px;border-radius:50%;display:inline-block}
+
+  table.rank{width:100%;border-collapse:collapse;font-size:13px}
+  table.rank th{text-align:left;font-weight:700;color:var(--fog);font-size:10.5px;letter-spacing:.08em;
+                text-transform:uppercase;padding:10px 8px;border-bottom:1px solid var(--line)}
+  table.rank td{padding:10px 8px;border-bottom:1px solid rgba(255,255,255,.04)}
+  table.rank tr.lead td{background:rgba(47,212,193,.04)}
+  table.rank tr:hover td{background:rgba(255,255,255,.025)}
+  table.rank .rank-num{color:var(--fog);font-family:'JetBrains Mono';font-size:11px;width:28px}
+  table.rank .rank-name{color:#fff;font-weight:600}
+  table.rank .rank-pill{display:inline-block;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;
+                         padding:2px 6px;border-radius:3px;font-weight:700;margin-left:6px;color:#04121b}
+  table.rank .rank-ti{font-family:'JetBrains Mono';font-size:13px;color:var(--teal-bright);text-align:right;font-weight:700}
+  table.rank tr.lead .rank-ti{color:var(--leaf)}
+  table.rank tr.avoid .rank-ti{color:var(--rose)}
+
+  .quadrant-key{display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-size:12px;color:#c4d0e8;line-height:1.4;margin-top:12px}
+  .quadrant-key span:nth-child(odd){color:var(--fog);font-family:'JetBrains Mono';font-size:11px}
+  .qpill{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+
+  footer{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--fog);line-height:1.6}
+  footer code{background:rgba(255,255,255,.05);padding:1px 6px;border-radius:3px;font-family:'JetBrains Mono';font-size:11px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="eyebrow">POLEX™ · Drug Prioritization · Example</span>
+    <h1>Picking the lead candidate from a screen.</h1>
+    <p class="lede">A representative POLEX™ output for <strong>16 DNA-damaging compounds</strong> tested in matched <strong>cancer</strong> and <strong>normal</strong> cell lines. Each compound is plotted by the DSB burden it induces in tumour cells (efficacy, x-axis) versus normal cells (toxicity, y-axis). Compounds well below the diagonal are selectively damaging the tumour — the lead candidates for further development.</p>
+    <p class="lede" style="font-size:13px;color:var(--fog);margin-top:6px">Hover any point for compound details. Drug values are illustrative.</p>
+  </header>
+
+  <div class="layout">
+    <!-- LEFT: Scatter plot -->
+    <div class="card plot-wrap">
+      <h2>DSB burden &mdash; cancer vs normal cells</h2>
+      <svg class="plot" id="dpPlot" viewBox="0 0 640 520" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Drug prioritization scatter plot"></svg>
+      <div class="tooltip" id="dpTip" aria-hidden="true"></div>
+
+      <div class="legend" id="dpLegend"></div>
+
+      <div class="quadrant-key">
+        <span><span class="qpill" style="background:rgba(125,194,66,.22)"></span></span>
+        <span><strong style="color:var(--leaf)">Lead zone</strong> — high cancer killing, low normal toxicity. Prioritize for development.</span>
+        <span><span class="qpill" style="background:rgba(255,169,77,.22)"></span></span>
+        <span><strong style="color:var(--amber)">Useful with care</strong> — high efficacy but also damaging normal cells. Narrow therapeutic window.</span>
+        <span><span class="qpill" style="background:rgba(255,94,122,.22)"></span></span>
+        <span><strong style="color:var(--rose)">Deprioritize</strong> — toxic to normal cells without strong tumour selectivity.</span>
+        <span><span class="qpill" style="background:rgba(138,160,189,.18)"></span></span>
+        <span><strong style="color:var(--fog)">Inactive</strong> — low DSB induction overall. Likely no on-target activity.</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: Ranked list -->
+    <div class="card">
+      <h2>Ranked by therapeutic index</h2>
+      <table class="rank">
+        <thead>
+          <tr><th>#</th><th>Compound</th><th style="text-align:right">TI</th></tr>
+        </thead>
+        <tbody id="dpRank"></tbody>
+      </table>
+      <p style="font-size:11px;color:var(--fog);line-height:1.5;margin-top:14px">
+        TI = (cancer DSB burden) / (normal DSB burden). Higher TI means more selective tumour killing.
+        TI &ge; 2.0 marked as <strong style="color:var(--leaf)">lead</strong>; TI &lt; 1.0 marked as <strong style="color:var(--rose)">avoid</strong>.
+      </p>
+    </div>
+  </div>
+
+  <footer>
+    <strong style="color:#fff">About this view.</strong> POLEX™ measures DSB burden directly at base resolution across the whole genome &mdash; including centromeres and satellite arrays where short-read methods are blind. The same measurement, taken in matched cancer and normal cell lines, immediately produces a therapeutic-index ranking that conventional cytotoxicity assays (e.g. MTS, CellTiter-Glo) can't deliver because they don't distinguish on-target DNA damage from generic toxicity.
+    <br/><br/>
+    <em>Demo file. Not linked from the public site. Move to <code>_demo/</code> kept locally; add to <code>.gitignore</code> if you'd rather not commit it.</em>
+  </footer>
+</div>
+
+<script>
+(function(){
+  // ===== Data: 16 example compounds (illustrative values) =====
+  const drugs = [
+    // PARP inhibitors — typically selective in HR-deficient tumours
+    {name:'Olaparib',         klass:'PARP',  cancer:78, normal:22, mech:'PARP1/2 inhibitor; selective in BRCA-mutant tumours'},
+    {name:'Talazoparib',      klass:'PARP',  cancer:85, normal:28, mech:'PARP1/2 trapper; high potency'},
+    {name:'Niraparib',        klass:'PARP',  cancer:72, normal:31, mech:'PARP1/2 inhibitor; CNS-penetrant'},
+    {name:'Veliparib',        klass:'PARP',  cancer:55, normal:18, mech:'PARP1/2 inhibitor; mild trapping'},
+    // ATR inhibitors — replication-stress targeted
+    {name:'Ceralasertib',     klass:'ATR',   cancer:74, normal:38, mech:'ATR kinase inhibitor; replication-stress targeted'},
+    {name:'Berzosertib',      klass:'ATR',   cancer:68, normal:42, mech:'ATR kinase inhibitor; first-in-class'},
+    {name:'Elimusertib',      klass:'ATR',   cancer:62, normal:35, mech:'ATR kinase inhibitor; oral'},
+    // Alkylating agents — high efficacy but broadly cytotoxic
+    {name:'Cisplatin',        klass:'Alkyl', cancer:88, normal:75, mech:'DNA crosslinker; broad cytotoxic; nephrotoxic'},
+    {name:'Cyclophosphamide', klass:'Alkyl', cancer:82, normal:68, mech:'DNA alkylator; classical cytotoxic'},
+    {name:'Temozolomide',     klass:'Alkyl', cancer:71, normal:48, mech:'DNA methylator; CNS-penetrant'},
+    // Topoisomerase inhibitors — direct DSB induction, off-target liability
+    {name:'Etoposide',        klass:'Topo',  cancer:79, normal:58, mech:'TOP2 poison; direct DSB induction'},
+    {name:'Doxorubicin',      klass:'Topo',  cancer:81, normal:65, mech:'TOP2 poison; cardiotoxic'},
+    // Nucleoside analogs — replication-fork interference
+    {name:'Gemcitabine',      klass:'Nuc',   cancer:65, normal:45, mech:'Cytidine analog; replication-fork stalling'},
+    {name:'Hydroxyurea',      klass:'Nuc',   cancer:42, normal:25, mech:'RNR inhibitor; mild replication stress'},
+    // Research tool & control
+    {name:'Aphidicolin',      klass:'Tool',  cancer:58, normal:51, mech:'Pol-α inhibitor; research tool / replication stress'},
+    {name:'DMSO control',     klass:'Ctrl',  cancer:8,  normal:7,  mech:'Vehicle control; baseline noise floor'}
+  ];
+
+  const klassMeta = {
+    PARP : {label:'PARP inhibitor',     color:'#2fd4c1'},
+    ATR  : {label:'ATR inhibitor',      color:'#7dc242'},
+    Alkyl: {label:'Alkylating agent',   color:'#ff5e7a'},
+    Topo : {label:'Topoisomerase inh.', color:'#ffa94d'},
+    Nuc  : {label:'Nucleoside analog',  color:'#c084fc'},
+    Tool : {label:'Research tool',      color:'#3c96ff'},
+    Ctrl : {label:'Control',            color:'#8aa0bd'}
+  };
+
+  // ===== Plot geometry (viewBox units) =====
+  const W=640, H=520, PAD={l:60, r:30, t:30, b:60};
+  const PW = W - PAD.l - PAD.r;
+  const PH = H - PAD.t - PAD.b;
+  const X_MAX=100, Y_MAX=100;
+  const xC = v => PAD.l + (v/X_MAX)*PW;
+  const yC = v => PAD.t + PH*(1 - v/Y_MAX);
+
+  const svg = document.getElementById('dpPlot');
+  const tip = document.getElementById('dpTip');
+  const SVG_NS = 'http://www.w3.org/2000/svg';
+  function el(tag, attrs){
+    const e = document.createElementNS(SVG_NS, tag);
+    if(attrs) for(const k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
+  }
+
+  // ===== Quadrant tints (split by lines x=50, y=50) =====
+  // Bottom-right = lead zone (high cancer, low normal) — leaf tint
+  svg.appendChild(el('rect', {x:xC(50), y:yC(50), width:PW/2, height:PH/2, fill:'rgba(125,194,66,.10)'}));
+  // Top-right = useful with care (high cancer, high normal) — amber tint
+  svg.appendChild(el('rect', {x:xC(50), y:yC(100), width:PW/2, height:PH/2, fill:'rgba(255,169,77,.08)'}));
+  // Top-left = deprioritize (low cancer, high normal) — rose tint
+  svg.appendChild(el('rect', {x:xC(0), y:yC(100), width:PW/2, height:PH/2, fill:'rgba(255,94,122,.10)'}));
+  // Bottom-left = inactive (low both) — fog tint
+  svg.appendChild(el('rect', {x:xC(0), y:yC(50), width:PW/2, height:PH/2, fill:'rgba(138,160,189,.06)'}));
+
+  // ===== Grid lines =====
+  for(let v=0; v<=100; v+=20){
+    svg.appendChild(el('line', {x1:xC(v), x2:xC(v), y1:PAD.t, y2:PAD.t+PH, stroke:'rgba(255,255,255,.04)', 'stroke-dasharray':'2 4'}));
+    svg.appendChild(el('line', {x1:PAD.l, x2:PAD.l+PW, y1:yC(v), y2:yC(v), stroke:'rgba(255,255,255,.04)', 'stroke-dasharray':'2 4'}));
+  }
+
+  // ===== Therapeutic-index diagonal (y = x) =====
+  svg.appendChild(el('line', {x1:xC(0), y1:yC(0), x2:xC(100), y2:yC(100), stroke:'rgba(255,255,255,.22)', 'stroke-dasharray':'4 4', 'stroke-width':1}));
+  // TI = 2 line (y = x/2) — bonus reference
+  svg.appendChild(el('line', {x1:xC(0), y1:yC(0), x2:xC(100), y2:yC(50), stroke:'rgba(125,194,66,.30)', 'stroke-dasharray':'2 6', 'stroke-width':1}));
+  // Diagonal label
+  const lbl1 = el('text', {x:xC(96), y:yC(98), 'text-anchor':'end', fill:'rgba(255,255,255,.5)', 'font-size':'10', 'font-family':'JetBrains Mono, monospace'});
+  lbl1.textContent = 'TI = 1';
+  svg.appendChild(lbl1);
+  const lbl2 = el('text', {x:xC(96), y:yC(50)+12, 'text-anchor':'end', fill:'rgba(125,194,66,.7)', 'font-size':'10', 'font-family':'JetBrains Mono, monospace'});
+  lbl2.textContent = 'TI = 2 (lead threshold)';
+  svg.appendChild(lbl2);
+
+  // ===== Axis ticks + labels =====
+  for(let v=0; v<=100; v+=20){
+    // X
+    const xL = el('text', {x:xC(v), y:PAD.t+PH+18, 'text-anchor':'middle', fill:'rgba(255,255,255,.45)', 'font-size':'10', 'font-family':'JetBrains Mono, monospace'});
+    xL.textContent = v;
+    svg.appendChild(xL);
+    // Y
+    const yL = el('text', {x:PAD.l-10, y:yC(v)+4, 'text-anchor':'end', fill:'rgba(255,255,255,.45)', 'font-size':'10', 'font-family':'JetBrains Mono, monospace'});
+    yL.textContent = v;
+    svg.appendChild(yL);
+  }
+  // Axis titles
+  const xT = el('text', {x:PAD.l+PW/2, y:H-12, 'text-anchor':'middle', fill:'#c4d0e8', 'font-size':'12', 'font-family':'Inter, sans-serif', 'font-weight':'600'});
+  xT.textContent = 'Cancer cell DSB burden (per Mb)  →  efficacy';
+  svg.appendChild(xT);
+  const yT = el('text', {x:14, y:PAD.t+PH/2, 'text-anchor':'middle', fill:'#c4d0e8', 'font-size':'12', 'font-family':'Inter, sans-serif', 'font-weight':'600', transform:'rotate(-90, 14, '+(PAD.t+PH/2)+')'});
+  yT.textContent = 'Normal cell DSB burden (per Mb)  →  toxicity';
+  svg.appendChild(yT);
+
+  // ===== Plot points =====
+  drugs.forEach((d,i)=>{
+    const c = klassMeta[d.klass].color;
+    const ti = d.normal > 0 ? d.cancer/d.normal : 99;
+    const isLead = ti >= 2 && d.cancer >= 50;
+    const r = 7;
+
+    // Glow halo for lead candidates
+    if(isLead){
+      svg.appendChild(el('circle', {cx:xC(d.cancer), cy:yC(d.normal), r:r+5, fill:c, opacity:'0.20'}));
+    }
+    const dot = el('circle', {
+      cx: xC(d.cancer), cy: yC(d.normal), r: r,
+      fill: c, stroke:'#04121b', 'stroke-width':'1.5',
+      style:'cursor:pointer'
+    });
+    dot.dataset.idx = i;
+    dot.addEventListener('mouseenter', e => showTip(d, dot));
+    dot.addEventListener('mouseleave', () => tip.classList.remove('show'));
+    svg.appendChild(dot);
+  });
+
+  function showTip(d, dot){
+    const klassMetaD = klassMeta[d.klass];
+    const ti = d.normal > 0 ? (d.cancer/d.normal).toFixed(2) : 'inf';
+    const tag = d.cancer < 30 && d.normal < 30 ? 'Inactive' :
+                ti >= 2 && d.cancer >= 50 ? 'Lead' :
+                ti < 1 ? 'Avoid' :
+                d.cancer >= 50 && d.normal >= 50 ? 'Use with care' : 'Borderline';
+    tip.innerHTML =
+      '<div class="t-name">'+d.name+'</div>' +
+      '<span class="t-class" style="background:'+klassMetaD.color+'33;color:'+klassMetaD.color+';">'+klassMetaD.label+'</span>' +
+      '<div class="t-stats">' +
+        '<span>Cancer DSB</span><span>'+d.cancer+'</span>' +
+        '<span>Normal DSB</span><span>'+d.normal+'</span>' +
+        '<span>TI ratio</span><span style="color:#fff;font-weight:700">'+ti+'</span>' +
+        '<span>Verdict</span><span style="color:'+(tag==='Lead'?'#7dc242':tag==='Avoid'?'#ff5e7a':tag==='Use with care'?'#ffa94d':'#c4d0e8')+';font-weight:700">'+tag+'</span>' +
+      '</div>' +
+      '<div class="t-mech">'+d.mech+'</div>';
+    const r = svg.getBoundingClientRect();
+    const wrapR = svg.parentElement.getBoundingClientRect();
+    const x = parseFloat(dot.getAttribute('cx'))/W * r.width;
+    const y = parseFloat(dot.getAttribute('cy'))/H * r.height;
+    tip.style.left = (x + (r.left - wrapR.left)) + 'px';
+    tip.style.top  = (y + (r.top - wrapR.top) - 14) + 'px';
+    tip.style.transform = 'translate(-50%, -100%)';
+    tip.classList.add('show');
+  }
+
+  // ===== Legend =====
+  const legend = document.getElementById('dpLegend');
+  Object.keys(klassMeta).forEach(k=>{
+    const m = klassMeta[k];
+    const span = document.createElement('span');
+    span.innerHTML = '<i style="background:'+m.color+';box-shadow:0 0 8px '+m.color+'66"></i>'+m.label;
+    legend.appendChild(span);
+  });
+
+  // ===== Ranked table =====
+  const ranked = drugs
+    .map(d => ({...d, ti: d.normal>0 ? d.cancer/d.normal : 99}))
+    .sort((a,b) => b.ti - a.ti);
+
+  const tbody = document.getElementById('dpRank');
+  ranked.forEach((d,i)=>{
+    const isLead = d.ti >= 2 && d.cancer >= 50;
+    const isAvoid = d.ti < 1;
+    const tr = document.createElement('tr');
+    if(isLead) tr.classList.add('lead');
+    if(isAvoid) tr.classList.add('avoid');
+    const m = klassMeta[d.klass];
+    tr.innerHTML =
+      '<td class="rank-num">'+(i+1)+'</td>' +
+      '<td><span class="rank-name">'+d.name+'</span><span class="rank-pill" style="background:'+m.color+'">'+d.klass+'</span></td>' +
+      '<td class="rank-ti">'+d.ti.toFixed(2)+'</td>';
+    tbody.appendChild(tr);
+  });
+})();
+</script>
+</body>
+</html>

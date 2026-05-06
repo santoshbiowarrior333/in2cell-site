@@ -4,9 +4,9 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Contact — In2Cell Biosciences</title>
-<meta name="description" content="Get in touch with In2Cell Biosciences. Lab at the Sir William Dunn School of Pathology, University of Oxford."/>
-<link rel="icon" type="image/svg+xml" href="images/logos/in2cell.svg"/>
-<link rel="apple-touch-icon" href="images/logos/in2cell.svg"/>
+<meta name="description" content="Get in touch with In2Cell Biosciences. Office at 27 Little Hay Road, Oxford."/>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="apple-touch-icon" href="favicon.svg"/>
 
 <!-- =================================================================
      In2Cell Biosciences — single-file site
@@ -378,8 +378,10 @@ section{padding:110px 0;position:relative}
 .field input,.field textarea{
   background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:10px;
   padding:12px 14px;color:#fff;font-family:inherit;font-size:14.5px;
+  width:100%;box-sizing:border-box;
   transition:.25s;
 }
+.field textarea{resize:vertical;min-height:120px;font-family:inherit}
 .field input:focus,.field textarea:focus{outline:0;border-color:var(--teal);box-shadow:0 0 0 3px rgba(31,168,153,.15)}
 .contact-meta{display:flex;flex-direction:column;gap:22px}
 .contact-meta .row{display:flex;gap:14px;align-items:flex-start}
@@ -832,7 +834,7 @@ img[loading="lazy"]{min-height:1px}
 /* DNA zoom container: tighten to 16:10, constrain width, center, softer border */
 .dna-zoom{max-width:1100px;margin:48px auto 0;aspect-ratio:16/10;max-height:640px}
 
-/* AnaLog pipeline wrap: constrain and center */
+/* POLEX pipeline wrap: constrain and center */
 .nn-wrap{max-width:1200px;margin:60px auto 0}
 
 /* Data viz card: center and improve proportions */
@@ -1262,14 +1264,27 @@ html{scroll-padding-top:86px}
       <a href="precision-medicine.html">Precision med</a>
       <a href="applications.html">Applications</a>
       <a href="publications.html">Publications</a>
-      <a href="index.html#team">Team</a>
+      <a href="team.html">Team</a>
       <a href="index.html#news">News</a>
       <a href="careers.html">Careers</a>
       <a href="index.html#about">About</a>
       <a href="contact.html" style="color:var(--teal-bright)">Contact</a>
     </div>
 
+    <button class="mobile-menu-btn" aria-label="Open menu" aria-expanded="false"><span></span></button>
     <a class="btn primary" href="contact.html">Get in touch <span>→</span></a>
+
+    <div class="mobile-menu">
+      <a href="technology.html">Technology</a>
+      <a href="precision-medicine.html">Precision med</a>
+      <a href="applications.html">Applications</a>
+      <a href="publications.html">Publications</a>
+      <a href="team.html">Team</a>
+      <a href="index.html#news">News</a>
+      <a href="careers.html">Careers</a>
+      <a href="index.html#about">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
   </div>
 </nav>
 
@@ -1287,9 +1302,9 @@ html{scroll-padding-top:86px}
   <div class="wrap" style="display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:start;max-width:1180px">
 
     <!-- Contact form -->
-    <form class="contact-card reveal" style="padding:40px">
+    <form class="contact-card reveal" style="padding:clamp(20px,5vw,40px)">
       <h3 style="font-size:22px;color:#fff;margin-bottom:10px">Send a message</h3>
-      <p style="color:var(--fog);font-size:14.5px;margin-bottom:24px;line-height:1.55">Everything gets to our inbox within seconds. We reply within a few business days &mdash; usually faster.</p>
+      <p style="color:var(--fog);font-size:14.5px;margin-bottom:24px;line-height:1.55">Everything gets to our inbox within seconds. We reply within a few business days, usually faster.</p>
 
       <div class="field">
         <label>Your name</label>
@@ -1317,7 +1332,7 @@ html{scroll-padding-top:86px}
       </div>
       <div class="field">
         <label>Message</label>
-        <textarea name="message" rows="6" placeholder="Tell us what you have in mind &mdash; what samples, what timeline, what question" required></textarea>
+        <textarea name="message" rows="6" placeholder="Tell us what you have in mind. What samples, what timeline, what question" required></textarea>
       </div>
       <button class="btn primary" type="submit" style="font-size:15px;padding:14px 30px">Send message &rarr;</button>
       <p style="color:var(--fog);font-size:12px;margin-top:16px;line-height:1.6">Clicking &ldquo;Send&rdquo; opens your email client with the message pre-filled. Both <b style="color:var(--teal-bright)">shashisantosh2007@gmail.com</b> and <b style="color:var(--teal-bright)">path1327@ox.ac.uk</b> will be on the recipient list.</p>
@@ -1345,24 +1360,12 @@ html{scroll-padding-top:86px}
           <div style="display:flex;gap:14px;align-items:flex-start">
             <div style="width:44px;height:44px;border-radius:12px;flex:none;background:linear-gradient(135deg,#c084fc,#7a3fc8);display:grid;place-items:center;color:#04121b;font-weight:800;font-size:18px">&#9678;</div>
             <div style="flex:1">
-              <h4 style="color:#fff;font-size:14px;margin-bottom:4px;letter-spacing:.02em;font-weight:700">Registered office</h4>
+              <h4 style="color:#fff;font-size:14px;margin-bottom:4px;letter-spacing:.02em;font-weight:700">Office</h4>
               <address style="color:#c4d0e8;font-size:14px;font-style:normal;line-height:1.5">
                 In2Cell Biosciences<br/>
                 27 Little Hay Road<br/>
                 Oxford, OX4 3EG<br/>
                 United Kingdom
-              </address>
-            </div>
-          </div>
-          <div style="display:flex;gap:14px;align-items:flex-start">
-            <div style="width:44px;height:44px;border-radius:12px;flex:none;background:linear-gradient(135deg,#1fa899,#2fd4c1);display:grid;place-items:center;color:#04121b;font-weight:800;font-size:18px">&#9879;</div>
-            <div style="flex:1">
-              <h4 style="color:#fff;font-size:14px;margin-bottom:4px;letter-spacing:.02em;font-weight:700">Laboratory</h4>
-              <address style="color:#c4d0e8;font-size:14px;font-style:normal;line-height:1.5">
-                Sir William Dunn School of Pathology<br/>
-                University of Oxford<br/>
-                South Parks Road<br/>
-                Oxford, OX1 3RE, United Kingdom
               </address>
             </div>
           </div>
@@ -1384,16 +1387,16 @@ html{scroll-padding-top:86px}
       <!-- Mini map (Google Maps embed, no API key needed for basic embedding) -->
       <div style="background:var(--glass);border:1px solid var(--line);border-radius:14px;overflow:hidden">
         <div style="padding:18px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center">
-          <h3 style="font-size:14px;color:#fff;letter-spacing:.02em;margin:0">Find the lab in Oxford</h3>
-          <a href="https://www.google.com/maps/search/?api=1&amp;query=Sir+William+Dunn+School+of+Pathology%2C+South+Parks+Road%2C+Oxford+OX1+3RE" target="_blank" rel="noopener" style="color:var(--teal-bright);font-size:12px;letter-spacing:.05em">Open in maps &rarr;</a>
+          <h3 style="font-size:14px;color:#fff;letter-spacing:.02em;margin:0">Find us in Oxford</h3>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=27+Little+Hay+Road%2C+Oxford+OX4+3EG" target="_blank" rel="noopener" style="color:var(--teal-bright);font-size:12px;letter-spacing:.05em">Open in maps &rarr;</a>
         </div>
         <iframe
-          src="https://maps.google.com/maps?q=Sir+William+Dunn+School+of+Pathology%2C+South+Parks+Road%2C+Oxford+OX1+3RE&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
+          src="https://maps.google.com/maps?q=27+Little+Hay+Road%2C+Oxford+OX4+3EG&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
           style="width:100%;height:260px;border:0;filter:grayscale(.2) invert(.9) hue-rotate(170deg)"
-          aria-label="Map to Sir William Dunn School of Pathology, University of Oxford"
+          aria-label="Map to 27 Little Hay Road, Oxford"
           loading="lazy"></iframe>
         <div style="padding:12px 22px;border-top:1px solid var(--line);font-size:12px;color:var(--fog);line-height:1.5">
-          The lab is hosted at the Sir William Dunn School of Pathology, University of Oxford. Registered office is at 27 Little Hay Road, OX4 3EG.
+          27 Little Hay Road, Oxford, OX4 3EG, United Kingdom.
         </div>
       </div>
 
@@ -1411,7 +1414,7 @@ html{scroll-padding-top:86px}
 <section class="newsletter">
   <div class="news-inner reveal">
     <h2>Stay ahead of DNA damage research</h2>
-    <p>Monthly updates on the AnaLog platform, publications, and open roles. No spam.</p>
+    <p>Monthly updates on the POLEX platform, publications, and open roles. No spam.</p>
     <form class="news-form">
       <input type="email" name="email" placeholder="you@company.com" required/>
       <button type="submit" class="btn primary">Subscribe &rarr;</button>
@@ -1424,7 +1427,7 @@ html{scroll-padding-top:86px}
       <div class="foot-about">
         <p style="color:var(--fog);font-size:14px">In2Cell Biosciences &mdash; DNA break detection powered by nanopore sequencing and AI.</p>
       </div>
-      <div><h5>Company</h5><a href="index.html#about">About</a><a href="index.html#team">Team</a><a href="index.html#news">News</a></div>
+      <div><h5>Company</h5><a href="index.html#about">About</a><a href="team.html">Team</a><a href="index.html#news">News</a></div>
       <div><h5>Platform</h5><a href="index.html#platform-teaser">Pipeline</a><a href="index.html#research">Applications</a></div>
       <div><h5>Connect</h5><a href="mailto:shashisantosh2007@gmail.com">shashisantosh2007@gmail.com</a><a href="#">LinkedIn</a></div>
     </div>
@@ -1787,15 +1790,15 @@ if (backdrop) {
   document.querySelectorAll('.stagger-on-scroll').forEach(el=>staggerObs.observe(el));
 
   // ===== CONTACT FORM — mailto handler =====
+  // Original simple mailto handler — opens the user's default email client
+  // pre-filled with the form data. Works for anyone with a default mail
+  // client configured; silently does nothing for users without one (e.g.
+  // Gmail-only browser users — they should email shashisantosh2007@gmail.com
+  // directly, which is shown right next to the form).
   const contactForm = document.querySelector('form.contact-card');
   if (contactForm){
-    const TO_EMAIL = 'shashisantosh2007@gmail.com';
-    const CC_EMAIL = 'path1327@ox.ac.uk';
-
     contactForm.addEventListener('submit', function(e){
       e.preventDefault();
-
-      // Build the email content from the form fields
       const fd = new FormData(contactForm);
       const name    = fd.get('name')         || '';
       const email   = fd.get('email')        || '';
@@ -1811,66 +1814,13 @@ if (backdrop) {
           '\n------ MESSAGE ------\n' +
           message + '\n\n' +
           '--\nSent via the In2Cell website contact form';
-
-      const enc = encodeURIComponent;
-      const mailtoUrl  = 'mailto:' + TO_EMAIL + '?cc=' + enc(CC_EMAIL) + '&subject=' + enc(subject) + '&body=' + enc(body);
-      const gmailUrl   = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + enc(TO_EMAIL) + '&cc=' + enc(CC_EMAIL) + '&su=' + enc(subject) + '&body=' + enc(body);
-      const outlookUrl = 'https://outlook.live.com/mail/0/deeplink/compose?to=' + enc(TO_EMAIL) + '&cc=' + enc(CC_EMAIL) + '&subject=' + enc(subject) + '&body=' + enc(body);
-      const fullText   = 'To: ' + TO_EMAIL + '\nCc: ' + CC_EMAIL + '\nSubject: ' + subject + '\n\n' + body;
-
-      // Render a delivery-options panel below the form. The visitor picks
-      // whichever channel matches their email setup.
-      const old = document.getElementById('delivery-panel');
-      if (old) old.remove();
-      const panel = document.createElement('div');
-      panel.id = 'delivery-panel';
-      panel.setAttribute('role','region');
-      panel.setAttribute('aria-label','Choose how to send your message');
-      panel.style.cssText = 'margin-top:28px;padding:22px 24px;border-radius:14px;background:linear-gradient(135deg,rgba(47,212,193,.06),rgba(125,194,66,.04));border:1px solid rgba(47,212,193,.35)';
-      panel.innerHTML =
-        '<h4 style="color:#fff;font-size:17px;margin:0 0 6px">Your message is ready &mdash; choose how to send</h4>' +
-        '<p style="color:#c4d0e8;font-size:13.5px;line-height:1.55;margin:0 0 16px">Pick whichever fits how you read email. The buttons open a pre-filled compose window in that tool. The Copy button puts the formatted message on your clipboard so you can paste it anywhere.</p>' +
-        '<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px">' +
-          '<a href="' + mailtoUrl + '" class="btn primary" style="font-size:13.5px">&#9993;&nbsp; Default mail app</a>' +
-          '<a href="' + gmailUrl + '" target="_blank" rel="noopener" class="btn" style="font-size:13.5px">Open in Gmail &nearr;</a>' +
-          '<a href="' + outlookUrl + '" target="_blank" rel="noopener" class="btn" style="font-size:13.5px">Open in Outlook &nearr;</a>' +
-          '<button type="button" id="dp-copy" class="btn" style="font-size:13.5px;cursor:pointer">&#128203;&nbsp; Copy message</button>' +
-        '</div>' +
-        '<details style="margin-top:6px">' +
-          '<summary style="color:var(--teal-bright);font-size:13px;cursor:pointer;letter-spacing:.02em;font-weight:600">Or copy and paste it manually</summary>' +
-          '<textarea id="dp-textarea" readonly style="width:100%;margin-top:10px;background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:8px;padding:12px 14px;color:#e5ecf8;font-family:Consolas,Monaco,monospace;font-size:12.5px;line-height:1.55;min-height:160px;resize:vertical">' +
-          fullText.replace(/</g,'&lt;').replace(/>/g,'&gt;') +
-          '</textarea>' +
-        '</details>';
-      contactForm.appendChild(panel);
-      panel.scrollIntoView({behavior:'smooth', block:'center'});
-
-      // Copy-to-clipboard handler
-      const copyBtn = panel.querySelector('#dp-copy');
-      copyBtn.addEventListener('click', function(){
-        const showCopied = () => {
-          const orig = copyBtn.innerHTML;
-          copyBtn.innerHTML = '&#10003;&nbsp; Copied';
-          copyBtn.style.background = 'var(--teal)';
-          copyBtn.style.color = '#04121b';
-          setTimeout(()=>{
-            copyBtn.innerHTML = orig;
-            copyBtn.style.background = '';
-            copyBtn.style.color = '';
-          }, 2200);
-        };
-        if (navigator.clipboard && navigator.clipboard.writeText){
-          navigator.clipboard.writeText(fullText).then(showCopied, ()=>{
-            const ta = panel.querySelector('#dp-textarea');
-            ta.select();
-            try{ document.execCommand('copy'); showCopied(); }catch(_){}
-          });
-        } else {
-          const ta = panel.querySelector('#dp-textarea');
-          ta.select();
-          try{ document.execCommand('copy'); showCopied(); }catch(_){}
-        }
-      });
+      const to = 'shashisantosh2007@gmail.com';
+      const cc = 'path1327@ox.ac.uk';
+      const mailto = 'mailto:' + to +
+          '?cc=' + encodeURIComponent(cc) +
+          '&subject=' + encodeURIComponent(subject) +
+          '&body=' + encodeURIComponent(body);
+      window.location.href = mailto;
     });
   }
 
