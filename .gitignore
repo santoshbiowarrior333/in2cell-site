@@ -1,0 +1,73 @@
+# -----------------------------------------------------------------------------
+# .gitignore — files git should NOT track / push to GitHub
+# -----------------------------------------------------------------------------
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Temp / scratch
+*.tmp
+.tmp*
+*.bak
+*.log
+
+# Working notes — keep these off the live repo
+DEPLOY.md
+LOTTIE_GUIDE.md
+images/README.txt
+
+# Local archive of working files — never push
+_archive/
+
+# Pitch decks — local working files, not for GitHub Pages
+decks/
+
+# Sensitive: team headshots, collaborator + funder logos
+# Kept locally on disk, NOT pushed to GitHub
+images/team/
+images/partners/
+images/logos/bbsrc.png
+images/logos/crh.svg
+images/logos/hq.png
+images/logos/mrc.png
+images/logos/oxford.svg
+images/logos/umbizo.gif
+# (images/logos/in2cell.svg is the brand mark — kept public)
+
+# Root-level logo duplicates (older copies)
+BBSRC.png
+CRH.svg
+Hq.png
+UKRI.png
+UMBIZO.gif
+university_oxford.svg
+
+# Private pages — kept on disk, NOT pushed to GitHub
+team.html
+_demo/
+
+# If you ever add tooling (npm, yarn, build scripts)
+node_modules/
+dist/
+build/
+.env
+.env.local
+.env.*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Archives / backups
+*.zip
+*.tar
+*.tar.gz
+*.7z

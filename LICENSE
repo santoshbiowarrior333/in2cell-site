@@ -1,0 +1,38 @@
+Copyright (c) 2026 In2Cell Biosciences. All rights reserved.
+
+===============================================================================
+PROPRIETARY LICENSE
+===============================================================================
+
+This repository contains the website source code and associated assets
+(HTML, CSS, JavaScript, images, animations, copy, and design) of In2Cell
+Biosciences ("the Company").
+
+All content in this repository is the proprietary and confidential work of
+In2Cell Biosciences and is protected by copyright, trademark, and other
+intellectual property laws.
+
+Unless explicit prior written permission is granted by In2Cell Biosciences,
+you MAY NOT:
+
+  - copy, reproduce, or redistribute any part of this repository;
+  - modify, adapt, or create derivative works;
+  - use any part of this code, design, or branding in commercial or
+    non-commercial projects;
+  - reverse engineer, re-brand, or rehost any portion of the site;
+  - use the "In2Cell", "In2Cell Biosciences", or "AnaLog" names, logos, or
+    related marks in any material.
+
+The In2Cell name, the In2Cell wordmark, the In2Cell logo, "AnaLog",
+"NeuroBase", "BreakSeer", "ContextNet", and any associated trademarks and
+trade dress are the property of In2Cell Biosciences.
+
+Third-party open-source libraries loaded by this site at runtime (Google
+Fonts, LottieFiles players) remain under their respective upstream licenses
+and are not covered by this notice.
+
+Viewing this repository does not grant any rights in the material. For
+licensing inquiries, partnership discussions, or permission requests,
+contact:  legal@in2cell.com
+
+===============================================================================
