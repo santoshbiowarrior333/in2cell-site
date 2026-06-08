@@ -884,38 +884,38 @@ img[loading="lazy"]{min-height:1px}
       <p>Remote-first with quarterly in-person onsites.</p>
     </div>
     <div style="max-width:820px;margin:0 auto;display:grid;gap:16px">
-      <a href="mailto:shashisantosh2007@gmail.com?subject=CEO%20application" class="role-card">
+      <a href="mailto:sk017611@gmail.com?subject=CEO%20application" class="role-card">
         <div class="role-top"><span class="role-title">Chief Executive Officer (CEO)</span><span class="role-tag">Leadership</span></div>
         <p class="role-desc">Drive partnerships, fundraising, regulatory strategy, and clinical rollout. Background: prior biotech exec, strong oncology / diagnostics network.</p>
         <div class="role-meta"><span>UK / Remote</span><span>&middot;</span><span>Full-time</span><span class="role-apply">Apply &rarr;</span></div>
       </a>
-      <a href="mailto:shashisantosh2007@gmail.com?subject=CFO%20application" class="role-card">
+      <a href="mailto:sk017611@gmail.com?subject=CFO%20application" class="role-card">
         <div class="role-top"><span class="role-title">Chief Financial Officer (CFO)</span><span class="role-tag">Leadership</span></div>
         <p class="role-desc">Own financial planning, fundraising, and grant accounting. Comfortable with R&amp;D tax credits, UKRI / EU grants, and pre-seed-to-Series-A modelling.</p>
         <div class="role-meta"><span>UK / Remote</span><span>&middot;</span><span>Full-time</span><span class="role-apply">Apply &rarr;</span></div>
       </a>
-      <a href="mailto:shashisantosh2007@gmail.com?subject=CDO%20application" class="role-card">
+      <a href="mailto:sk017611@gmail.com?subject=CDO%20application" class="role-card">
         <div class="role-top"><span class="role-title">Chief Data Officer (CDO)</span><span class="role-tag">Leadership</span></div>
         <p class="role-desc">Lead ML, model-ops and clinical-data infrastructure. Senior ML / data leadership in genomics, diagnostics or healthcare AI.</p>
         <div class="role-meta"><span>UK / Remote</span><span>&middot;</span><span>Full-time</span><span class="role-apply">Apply &rarr;</span></div>
       </a>
-      <a href="mailto:shashisantosh2007@gmail.com?subject=QA%20Manager%20application" class="role-card">
+      <a href="mailto:sk017611@gmail.com?subject=QA%20Manager%20application" class="role-card">
         <div class="role-top"><span class="role-title">Quality Assurance Manager</span><span class="role-tag">Operations</span></div>
         <p class="role-desc">Build the quality system: SOPs, validation, document control, audit-readiness. ISO 13485 / 17025 / GxP background, prior QA leadership in diagnostics, biotech or pharma.</p>
         <div class="role-meta"><span>UK</span><span>&middot;</span><span>Full-time</span><span class="role-apply">Apply &rarr;</span></div>
       </a>
-      <a href="mailto:shashisantosh2007@gmail.com?subject=Research%20Scientist%20application" class="role-card">
+      <a href="mailto:sk017611@gmail.com?subject=Research%20Scientist%20application" class="role-card">
         <div class="role-top"><span class="role-title">Research Scientist (Wet lab)</span><span class="role-tag">Science</span></div>
         <p class="role-desc">Build and validate nanopore break-detection assays. PhD in molecular biology / biochemistry / genomics, hands-on with nanopore or short-read sequencing.</p>
         <div class="role-meta"><span>UK</span><span>&middot;</span><span>Full-time</span><span class="role-apply">Apply &rarr;</span></div>
       </a>
-      <a href="mailto:shashisantosh2007@gmail.com?subject=Research%20Associate%20application" class="role-card">
+      <a href="mailto:sk017611@gmail.com?subject=Research%20Associate%20application" class="role-card">
         <div class="role-top"><span class="role-title">Research Associate</span><span class="role-tag">Science</span></div>
         <p class="role-desc">Bench scientist for sample processing, SOP development, and platform support. MSc/BSc in biology / biochemistry / genetics with 1&ndash;3 years lab experience.</p>
         <div class="role-meta"><span>UK</span><span>&middot;</span><span>Full-time</span><span class="role-apply">Apply &rarr;</span></div>
       </a>
     </div>
-    <p style="text-align:center;color:var(--fog);font-size:14px;margin-top:40px">Don't see your role? Email <a href="mailto:shashisantosh2007@gmail.com" style="color:var(--teal-bright)">shashisantosh2007@gmail.com</a>. We're always open to exceptional generalists.</p>
+    <p style="text-align:center;color:var(--fog);font-size:14px;margin-top:40px">Don't see your role? Email <a href="mailto:sk017611@gmail.com" style="color:var(--teal-bright)">sk017611@gmail.com</a>. We're always open to exceptional generalists.</p>
   </div>
 </section>
 
@@ -1233,7 +1233,7 @@ html{scroll-padding-top:86px}
       </div>
       <div><h5>Company</h5><a href="#about">About</a><a href="#team">Team</a><a href="#news">News</a></div>
       <div><h5>Platform</h5><a href="#platform">Pipeline</a><a href="#research">Applications</a></div>
-      <div><h5>Connect</h5><a href="mailto:shashisantosh2007@gmail.com">shashisantosh2007@gmail.com</a><a href="#">LinkedIn</a></div>
+      <div><h5>Connect</h5><a href="mailto:sk017611@gmail.com">sk017611@gmail.com</a><a href="#">LinkedIn</a></div>
     </div>
     <div class="foot-bottom">
       <span>&copy; <span id="yr"></span> In2Cell Biosciences. All rights reserved.</span>
@@ -1500,41 +1500,4 @@ document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeBio(); });
 
   // ===== MAGNETIC BUTTONS =====
   document.querySelectorAll('.btn.primary, .btn[data-magnetic]').forEach(btn=>{
-    btn.addEventListener('mousemove', e=>{
-      const r = btn.getBoundingClientRect();
-      const mx = e.clientX - r.left - r.width/2;
-      const my = e.clientY - r.top - r.height/2;
-      btn.style.transform = `translate(${mx*0.18}px, ${my*0.28}px)`;
-    });
-    btn.addEventListener('mouseleave', ()=>{ btn.style.transform=''; });
-  });
-
-  // ===== 3D TILT CARDS =====
-  const tiltSelector = '.app-card, .cdm-card';
-  document.querySelectorAll(tiltSelector).forEach(card=>{
-    card.addEventListener('mousemove', e=>{
-      const r = card.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width;
-      const y = (e.clientY - r.top) / r.height;
-      const rx = (y - 0.5) * -6;
-      const ry = (x - 0.5) *  6;
-      card.style.transform = `translateY(-4px) perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`;
-    });
-    card.addEventListener('mouseleave', ()=>{ card.style.transform=''; });
-  });
-
-  // ===== STAGGER-ON-SCROLL =====
-  // Auto-apply to grids that contain multiple cards
-  document.querySelectorAll('.research-grid, .leaders, .pubs, .app-areas-grid, .inv-metrics').forEach(grid=>{
-    grid.classList.add('stagger-on-scroll');
-  });
-  const staggerObs = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if (e.isIntersecting){ e.target.classList.add('in'); staggerObs.unobserve(e.target); }
-    });
-  },{threshold:.15});
-  document.querySelectorAll('.stagger-on-scroll').forEach(el=>staggerObs.observe(el));
-</script>
-<script src="nav-logo.js" defer></script>
-</body>
-</html>
+    btn.addEventListener('mousemov
