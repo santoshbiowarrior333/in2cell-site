@@ -53,6 +53,7 @@ university_oxford.svg
 
 # Private pages — kept on disk, NOT pushed to GitHub
 team.html
+publications.html
 _demo/
 
 # If you ever add tooling (npm, yarn, build scripts)
