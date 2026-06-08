@@ -9,7 +9,7 @@
 <meta http-equiv="refresh" content="0; url=/"/>
 <style>html,body{visibility:hidden;background:#0a1020}</style>
 <title>Technology | In2Cell Biosciences</title>
-<meta name="description" content="POLEX — In2Cell's DNA break detection platform. Proposed photon-oxidation chemistry + long-read nanopore sequencing + AI for single-base-resolution detection of single- and double-strand breaks."/>
+<meta name="description" content="POLEX — In2Cell's genetic instability signature detection platform. Proposed photon-oxidation chemistry + long-read nanopore sequencing + AI for single-base-resolution detection of single- and double-strand breaks."/>
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="apple-touch-icon" href="favicon.svg"/>
 <link rel="apple-touch-icon" href="images/logos/in2cell.svg"/>
@@ -848,7 +848,7 @@ img[loading="lazy"]{min-height:1px}
     <span class="tag" style="font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--teal-bright);font-weight:700">Technology</span>
     <h1 style="font-size:clamp(40px,5.2vw,68px);background:linear-gradient(180deg,#fff,#9fb4d8);-webkit-background-clip:text;background-clip:text;color:transparent;margin:18px 0 20px;line-height:1.05">The POLEX&trade; platform</h1>
     <p style="color:var(--teal-bright);font-size:14px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;margin:0 0 18px">Proposed chemistry &middot; Photon Oxidation</p>
-    <p style="color:#b9c6e0;font-size:18px;max-width:680px;margin:0 auto;line-height:1.6">From raw ionic signal to a clinical-grade break map. We propose to use our novel photon-oxidation chemistry to mark every DNA break; nanopore sequencing and purpose-built AI resolve them at base resolution &mdash; single- and double-strand.</p>
+    <p style="color:#b9c6e0;font-size:18px;max-width:680px;margin:0 auto;line-height:1.6">From raw ionic signal to a clinical-grade instability map. We propose to use our novel photon-oxidation chemistry to mark every DNA break; nanopore sequencing and purpose-built AI resolve them at base resolution &mdash; single- and double-strand.</p>
   </div>
 </section>
 
@@ -863,12 +863,12 @@ img[loading="lazy"]{min-height:1px}
     <div class="reveal">
       <span class="tag" style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--teal-bright);font-weight:700">Live · motion</span>
       <h2 style="font-size:clamp(28px,3.5vw,42px);color:#fff;margin:14px 0 18px;line-height:1.1">The break happens in milliseconds.<br/>POLEX catches it.</h2>
-      <p style="color:#b9c6e0;font-size:17px;line-height:1.7;max-width:440px">Every break leaves a unique ionic signature as it passes through the pore. Our models learn the signatures and call breaks in real time. Base resolution. Native DNA. No amplification.</p>
+      <p style="color:#b9c6e0;font-size:17px;line-height:1.7;max-width:440px">Every instability event leaves a unique ionic signature as it passes through the pore. Our models learn the signatures and call instability in real time. Base resolution. Native DNA. No amplification.</p>
     </div>
     <div class="reveal" style="position:relative;aspect-ratio:1/1;border-radius:20px;overflow:hidden;background:radial-gradient(ellipse at center,rgba(31,168,153,.08),#040814 70%);border:1px solid var(--line);display:flex;align-items:center;justify-content:center">
       <!-- Lottie animation — lottie-player accepts .json; dotlottie-wc accepts .lottie. Using lottie-player since we have JSON. -->
       <lottie-player src="images/ai-flow.json" background="transparent" speed="0.8" style="width:100%;height:100%" loop autoplay></lottie-player>
-      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%" aria-label="DNA helix with blinking break points">
+      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%" aria-label="DNA helix with blinking instability events">
         <defs>
           <linearGradient id="sApp" x1="50%" y1="0%" x2="50%" y2="100%"><stop offset="0%" stop-color="#c1ec6d"/><stop offset="100%" stop-color="#3d8a2a"/></linearGradient>
           <linearGradient id="sBpp" x1="50%" y1="0%" x2="50%" y2="100%"><stop offset="0%" stop-color="#5dcfff"/><stop offset="100%" stop-color="#1a4080"/></linearGradient>
@@ -934,7 +934,7 @@ img[loading="lazy"]{min-height:1px}
   <div class="wrap" style="position:relative;z-index:1">
     <div class="sec-head reveal">
       <span class="tag">Platform · Pipeline</span>
-      <h2>From pore to <span style="background:linear-gradient(120deg,var(--teal-bright),var(--leaf));-webkit-background-clip:text;background-clip:text;color:transparent">break map</span>.</h2>
+      <h2>From pore to <span style="background:linear-gradient(120deg,var(--teal-bright),var(--leaf));-webkit-background-clip:text;background-clip:text;color:transparent">instability map</span>.</h2>
       <p>Our end-to-end pipeline takes raw nanopore signal and — through a stack of deep-learning models — produces base-resolution maps of DNA damage.</p>
     </div>
 
@@ -951,7 +951,7 @@ img[loading="lazy"]{min-height:1px}
           <div class="ix">STAGE 01</div>
           <div class="ico-xl">⌬</div>
           <h4>Sample Prep</h4>
-          <p>High-MW DNA extraction, optional enzymatic labeling of break ends.</p>
+          <p>High-MW DNA extraction, optional enzymatic labeling of instability ends.</p>
         </div>
 
         <div class="stage pipe-stage" style="--a:60deg">
@@ -972,7 +972,7 @@ img[loading="lazy"]{min-height:1px}
         <div class="stage pipe-stage" style="--a:180deg">
           <div class="ix">STAGE 04</div>
           <div class="ico-xl">⌁</div>
-          <h4>Break Calling</h4>
+          <h4>Instability Calling</h4>
           <p>Proprietary CNN + signal-level classifier detects SSBs and DSBs at base resolution.</p>
           <span class="ai-tag">AI · In2Cell Core</span>
         </div>
@@ -988,7 +988,7 @@ img[loading="lazy"]{min-height:1px}
           <div class="ix">STAGE 06</div>
           <div class="ico-xl">◎</div>
           <h4>Interactive Report</h4>
-          <p>Break landscapes, motif context, hotspot calls — exported as HTML / PDF.</p>
+          <p>Instability landscapes, motif context, hotspot calls — exported as HTML / PDF.</p>
         </div>
       </div>
 
@@ -1005,7 +1005,7 @@ img[loading="lazy"]{min-height:1px}
       <div class="pipe-drawer" id="pipe-drawer-02">
         <div class="d-meta">Stage 02 &middot; Nanopore sequencing</div>
         <h4>Native-strand reads, no amplification</h4>
-        <p>DNA passes through a protein nanopore. Ionic current disturbances encode the sequence. Subtler signals reveal breaks, modifications, and damage.</p>
+        <p>DNA passes through a protein nanopore. Ionic current disturbances encode the sequence. Subtler signals reveal instability, modifications, and damage.</p>
         <div class="d-grid">
           <div><h5>Hardware</h5><p>Oxford Nanopore MinION / PromethION</p></div>
           <div><h5>Throughput</h5><p>~1.2M reads per flow cell, streaming</p></div>
@@ -1022,7 +1022,7 @@ img[loading="lazy"]{min-height:1px}
       </div>
       <div class="pipe-drawer" id="pipe-drawer-04">
         <div class="d-meta">Stage 04 &middot; POLEX Core</div>
-        <h4>Proprietary break simulation</h4>
+        <h4>Proprietary instability simulation</h4>
         <p>The signal-level CNN reads raw squiggle in parallel with basecalls, classifying every position as SSB, DSB, complex lesion, or intact. Per-read confidence scores feed downstream.</p>
         <div class="d-grid">
           <div><h5>Sensitivity</h5><p>&gt; 92% recall on DSB calls</p></div>
@@ -1032,7 +1032,7 @@ img[loading="lazy"]{min-height:1px}
       <div class="pipe-drawer" id="pipe-drawer-05">
         <div class="d-meta">Stage 05 &middot; Genome mapping</div>
         <h4>Context-aware alignment</h4>
-        <p>Break calls are aligned to reference, annotated with genomic context (gene, exon, repeat, chromatin state, replication timing) via our ContextNet graph model.</p>
+        <p>Instability calls are aligned to reference, annotated with genomic context (gene, exon, repeat, chromatin state, replication timing) via our ContextNet graph model.</p>
         <div class="d-grid">
           <div><h5>References</h5><p>GRCh38, T2T-CHM13, mouse mm39</p></div>
           <div><h5>Speed</h5><p>~8 min per 30x genome</p></div>
@@ -1041,7 +1041,7 @@ img[loading="lazy"]{min-height:1px}
       <div class="pipe-drawer" id="pipe-drawer-06">
         <div class="d-meta">Stage 06 &middot; Interactive report</div>
         <h4>Clinical-grade output</h4>
-        <p>Break landscapes, hotspot calls, motif contexts, and repair-outcome signatures. Delivered as an interactive HTML or PDF that non-specialists can action.</p>
+        <p>Instability landscapes, hotspot calls, motif contexts, and repair-outcome signatures. Delivered as an interactive HTML or PDF that non-specialists can action.</p>
         <div class="d-grid">
           <div><h5>Format</h5><p>HTML, PDF, VCF, BED</p></div>
           <div><h5>Turnaround</h5><p>~24 hours, sample-to-report</p></div>
@@ -1057,11 +1057,11 @@ img[loading="lazy"]{min-height:1px}
       </div>
     </div>
 
-    <!-- ====== DNA ZOOM ANIMATION (macro → micro, twinkling break points) ====== -->
+    <!-- ====== DNA ZOOM ANIMATION (macro → micro, twinkling instability events) ====== -->
     <div class="dna-zoom reveal" style="margin-top:48px" aria-label="DNA zoom animation">
       <span class="zoom-label">LIVE · VISUALIZATION</span>
       <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img">
-        <title>Continuous zoom from cell to single base pair with detected breaks twinkling</title>
+        <title>Continuous zoom from cell to single base pair with detected instability events twinkling</title>
 
         <!-- Stage 1: Cell with 3D gel nucleus (transparent blue, DNA inside) -->
         <g class="stage-g s1">
@@ -1359,7 +1359,7 @@ img[loading="lazy"]{min-height:1px}
           </g>
 
           <!-- Caption below -->
-          <text x="800" y="830" text-anchor="middle" fill="#e5ecf8" font-family="Space Grotesk,sans-serif" font-size="20" letter-spacing="6" font-weight="700">BREAK DETECTION &middot; BASE RESOLUTION</text>
+          <text x="800" y="830" text-anchor="middle" fill="#e5ecf8" font-family="Space Grotesk,sans-serif" font-size="20" letter-spacing="6" font-weight="700">INSTABILITY DETECTION &middot; BASE RESOLUTION</text>
         </g>
 
         <defs>
@@ -1429,14 +1429,14 @@ img[loading="lazy"]{min-height:1px}
           </radialGradient>
         </defs>
       </svg>
-      <span class="zoom-caption">CELL → CHROMOSOME → HELIX → BREAK</span>
+      <span class="zoom-caption">CELL → CHROMOSOME → HELIX → INSTABILITY</span>
     </div>
 
     <!-- ====== POLEX PROPRIETARY DIAGNOSTIC PIPELINE ====== -->
     <div class="nn-wrap reveal" style="margin-top:60px;padding:50px 40px">
       <div style="text-align:center;margin-bottom:36px">
         <span style="font-size:13px;letter-spacing:.32em;text-transform:uppercase;color:var(--teal-bright);font-weight:700">POLEX &middot; Proprietary Diagnostic Engine</span>
-        <h3 style="color:#fff;font-size:30px;margin-top:12px;letter-spacing:-.01em">Signal to break call, end-to-end.</h3>
+        <h3 style="color:#fff;font-size:30px;margin-top:12px;letter-spacing:-.01em">Signal to instability call, end-to-end.</h3>
       </div>
       <svg viewBox="0 0 1260 460" xmlns="http://www.w3.org/2000/svg" role="img">
         <title>POLEX proprietary network — input features through hidden layers into the Core, out to break classification</title>
@@ -1870,7 +1870,7 @@ html{scroll-padding-top:86px}
           <line x1="875" y1="260" x2="1030" y2="350"/>
         </g>
 
-        <!-- output -> break map -->
+        <!-- output -> instability map -->
         <g fill="none" stroke="#ff4d6d" stroke-width="2" opacity=".65" class="e-edge">
           <line x1="1055" y1="170" x2="1200" y2="260"/>
           <line x1="1055" y1="260" x2="1200" y2="260"/>
@@ -2032,7 +2032,7 @@ html{scroll-padding-top:86px}
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-about">
-        <p style="color:var(--fog);font-size:14px">In2Cell Biosciences. DNA break detection powered by nanopore sequencing and AI.</p>
+        <p style="color:var(--fog);font-size:14px">In2Cell Biosciences. Genetic instability signature detection powered by nanopore sequencing and AI.</p>
       </div>
       <div><h5>Company</h5><a href="#about">About</a><a href="#team">Team</a><a href="#news">News</a></div>
       <div><h5>Platform</h5><a href="#platform">Pipeline</a><a href="#research">Applications</a></div>
