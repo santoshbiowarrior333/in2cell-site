@@ -1254,6 +1254,25 @@ html{scroll-padding-top:86px}
 </head>
 <body>
 
+<!-- Maintenance splash -->
+<div id="maintenance-splash" style="position:fixed;inset:0;width:100vw;height:100vh;background:#0a1020;color:#2fd4c1;display:flex;align-items:center;justify-content:center;z-index:999999;font-family:'Poppins',system-ui,sans-serif;font-size:clamp(20px,3vw,32px);font-weight:600;letter-spacing:.04em;padding:20px;text-align:center;overflow:hidden">
+  <span>Site under active maintenance</span>
+  <style>
+    @keyframes dino-run { 0% { left:-80px } 100% { left:calc(100vw + 40px) } }
+    @keyframes dino-bob { 0%,100% { transform:translateY(0) } 50% { transform:translateY(-10px) } }
+    @keyframes ground-scroll { 0% { background-position:0 0 } 100% { background-position:-16px 0 } }
+    #dino-runner { position:absolute; bottom:64px; left:0; font-size:42px; animation:dino-run 7s linear infinite; line-height:1; pointer-events:none; }
+    #dino-runner span { display:inline-block; animation:dino-bob 0.32s ease-in-out infinite; }
+    #dino-ground { position:absolute; bottom:60px; left:0; right:0; height:1px; background:linear-gradient(to right, transparent 50%, #2fd4c1 50%); background-size:8px 1px; opacity:.35; animation:ground-scroll 0.32s linear infinite; }
+  </style>
+  <div id="dino-ground"></div>
+  <div id="dino-runner"><span>🦖</span></div>
+</div>
+
+
+</div>
+
+
 <!-- Scroll progress bar -->
 <div id="scroll-progress" aria-hidden="true"></div>
 <!-- Back-to-top -->
