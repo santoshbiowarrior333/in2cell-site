@@ -1072,7 +1072,7 @@ html{scroll-padding-top:86px}
   <span>Site under active maintenance</span>
   <style>
     @keyframes dino-run { 0% { left:-80px } 100% { left:calc(100vw + 40px) } }
-    @keyframes dino-bob { 0%,100% { transform:translateY(0) } 50% { transform:translateY(-10px) } }
+    @keyframes dino-bob { 0%,100% { transform:scaleX(-1) translateY(0) } 50% { transform:scaleX(-1) translateY(-10px) } }
     @keyframes ground-scroll { 0% { background-position:0 0 } 100% { background-position:-16px 0 } }
     #dino-runner { position:absolute; bottom:64px; left:0; font-size:42px; animation:dino-run 7s linear infinite; line-height:1; pointer-events:none; }
     #dino-runner span { display:inline-block; animation:dino-bob 0.32s ease-in-out infinite; }
