@@ -28,8 +28,12 @@
   </div>
 </nav>
 
-<header class="page-hero">
-  <div class="wrap">
+<header class="page-hero" style="position:relative;overflow:hidden;padding-bottom:64px">
+  <video class="hero-video" autoplay muted loop playsinline aria-hidden="true">
+    <source src="assets/platform-bg.mp4" type="video/mp4"/>
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="wrap hero-content">
     <p class="eyebrow">The platform</p>
     <h1>POLEX™ maps a drug's impact on the genome.</h1>
     <p class="sub">POLEX reads the tumour's DNA directly and shows two things: how unstable its genome is, and the impact a drug is having on it. This is read on the genome itself, not on gene transcription, using Oxford Nanopore sequencing and a trained neural network. The result shows whether a drug is acting on the tumour, before it goes near the patient.</p>
