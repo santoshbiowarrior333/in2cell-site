@@ -177,3 +177,60 @@ footer{border-top:1px solid var(--line);padding:42px 0;color:var(--muted);font-s
     radial-gradient(680px 420px at 88% 16%, rgba(31,168,153,.16), transparent 60%),
     radial-gradient(560px 360px at 4% 92%, rgba(125,194,66,.13), transparent 62%)}
 .hero-content{position:relative;z-index:2}
+
+/* ============ ANIMATED STEP FLOW (platform) ============ */
+.flow{display:flex;align-items:stretch;gap:8px;margin-top:48px;flex-wrap:nowrap}
+.flow-step{flex:1;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:26px 22px;box-shadow:var(--shadow);
+  opacity:0;transform:translateY(18px);transition:opacity .5s ease, transform .5s ease, box-shadow .2s}
+.flow-step.in{opacity:1;transform:none}
+.flow-step:hover{transform:translateY(-5px);box-shadow:0 28px 54px -28px rgba(15,39,70,.32)}
+.flow-step:nth-child(3){transition-delay:.12s}
+.flow-step:nth-child(5){transition-delay:.24s}
+.flow-step:nth-child(7){transition-delay:.36s}
+.flow-step .n{font-family:'Poppins';font-size:12px;font-weight:700;letter-spacing:.16em;color:var(--teal)}
+.flow-step h3{font-size:17px;margin:12px 0 8px;line-height:1.25}
+.flow-step p{font-size:14px;color:var(--muted)}
+.flow-arrow{display:flex;align-items:center;color:var(--leaf);font-family:'Poppins';font-size:28px;font-weight:700;
+  animation:flowpulse 1.6s ease-in-out infinite}
+@keyframes flowpulse{0%,100%{transform:translateX(0);opacity:.45}50%{transform:translateX(5px);opacity:1}}
+@media(max-width:860px){
+  .flow{flex-direction:column}
+  .flow-arrow{transform:rotate(90deg);align-self:center;animation:flowpulseV 1.6s ease-in-out infinite}
+}
+@keyframes flowpulseV{0%,100%{transform:rotate(90deg) translateX(0);opacity:.45}50%{transform:rotate(90deg) translateX(5px);opacity:1}}
+@media(prefers-reduced-motion:reduce){.flow-step{opacity:1;transform:none}.flow-arrow{animation:none}}
+
+/* step icons */
+.flow-ic{width:54px;height:54px;margin-bottom:8px}
+.flow-ic svg{width:100%;height:100%;display:block}
+
+/* how-it-works animated infographic */
+.hiw-video{border-radius:22px;overflow:hidden;box-shadow:var(--shadow);background:#fbfdfb;margin-top:8px}
+.hiw-video video{width:100%;display:block}
+
+/* drug action report card (recreated, editable) */
+.report-card{max-width:660px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:28px 30px}
+.rc-eyebrow{font-family:'Poppins';font-size:12px;font-weight:700;letter-spacing:.2em;color:var(--teal)}
+.rc-go{display:flex;align-items:center;gap:16px;margin-top:16px}
+.rc-badge{font-family:'Poppins';font-weight:700;font-size:15px;color:#fff;background:var(--leaf-deep);border-radius:10px;padding:9px 16px;white-space:nowrap}
+.rc-go strong{font-family:'Poppins';font-size:17px;color:var(--ink);display:block}
+.rc-sub{font-size:13.5px;color:var(--muted);margin-top:2px}
+.rc-divider{height:1px;background:var(--line);margin:20px 0}
+.rc-label{font-size:13px;color:var(--muted);margin-bottom:14px}
+.rc-row{display:grid;grid-template-columns:1fr 210px 46px;align-items:center;gap:14px;margin:14px 0}
+.rc-name{font-family:'Poppins';font-weight:600;font-size:14.5px;color:var(--ink)}
+.rc-name .rc-tag{display:block;font-size:10px;letter-spacing:.12em;color:var(--leaf-deep);font-weight:700;margin-top:2px}
+.rc-row.dim .rc-name{font-weight:500}
+.rc-bar{height:9px;border-radius:6px;background:var(--mist-2);overflow:hidden}
+.rc-bar i{display:block;height:100%;width:0;border-radius:6px;background:linear-gradient(90deg,var(--teal),var(--leaf));transition:width 1.1s cubic-bezier(.2,.8,.2,1)}
+.rc-bar i.alt{background:var(--teal)}
+.rc-bar i.violet{background:#c084fc}
+.report-card.in .rc-bar i{width:var(--w)}
+.rc-pct{font-family:'Poppins';font-weight:700;font-size:14px;color:var(--ink);text-align:right}
+.rc-note{font-size:12px;color:#90a0ab;margin-top:18px}
+@media(max-width:600px){.rc-row{grid-template-columns:1fr 110px 42px}}
+
+/* neural network graphic */
+.ainet-wrap{margin-top:48px;background:#fff;border-radius:22px;box-shadow:var(--shadow);padding:26px 28px}
+.ainet-wrap svg{width:100%;height:auto;display:block;max-width:760px;margin:0 auto}
+.ainet-cap{text-align:center;font-family:'Poppins';font-weight:600;font-size:14px;color:var(--muted);margin-bottom:14px}
