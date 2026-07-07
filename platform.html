@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Platform · POLEX™ · In2Cell Biosciences</title>
+<meta name="description" content="POLEX maps a drug's impact on the genome. Oxford Nanopore sequencing and AI show whether a treatment is reaching the tumour, before it goes near the patient."/>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a class="logo" href="index.html" aria-label="In2Cell Biosciences"><img src="images/logos/in2cell-navy.svg" alt="In2Cell Biosciences"/></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="problem.html">Problem</a>
+      <a href="platform.html" class="active">Platform</a>
+      <a href="about.html">About</a>
+      <a href="team.html">Team</a>
+      <a href="publications.html">Publications</a>
+      <a class="btn" href="contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">The platform</p>
+    <h1>POLEX™ maps a drug's impact on the genome.</h1>
+    <p class="sub">POLEX reads the tumour's DNA directly and shows two things: how unstable its genome is, and the impact a drug is having on it. This is read on the genome itself, not on gene transcription, using Oxford Nanopore sequencing and a trained neural network. The result shows whether a drug is acting on the tumour, before it goes near the patient.</p>
+  </div>
+</header>
+
+<!-- how it works -->
+<section class="mech" style="margin-top:40px">
+  <div class="wrap">
+    <p class="eyebrow">Our breakthrough</p>
+    <h2 class="title">You can read a drug's effect where it happens: on the genome.</h2>
+    <p class="sub">When a drug acts on a tumour, it leaves a measurable signal on the DNA. POLEX reads that signal directly, so a drug can be checked on a sample before a patient ever takes it.</p>
+    <div class="steps">
+      <div class="step"><div class="n">01 / SAMPLE</div><h3>Start with the tumour</h3><p>A patient sample goes in. No need to dose first and wait months to see what happens.</p></div>
+      <div class="step"><div class="n">02 / READ</div><h3>Read the genome</h3><p>Oxford Nanopore sequencing and AI read the drug's impact on the DNA itself, at single-base resolution.</p></div>
+      <div class="step"><div class="n">03 / KNOW</div><h3>Know before you dose</h3><p>A clear read of whether the drug is reaching the tumour, before it goes near the patient.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- POLEX detail + report visual -->
+<section>
+  <div class="wrap polex-grid">
+    <div>
+      <p class="eyebrow">What POLEX measures</p>
+      <h2 class="title" style="max-width:none">The impact on the genome, and whether the drug landed.</h2>
+      <ul class="polex-list">
+        <li><span class="tick">✓</span> Measures both genetic instability and a drug's impact on the genome</li>
+        <li><span class="tick">✓</span> Reads the DNA itself at single-base resolution, not gene transcription</li>
+        <li><span class="tick">✓</span> Shows whether a drug is acting on the tumour, before it goes near the patient</li>
+        <li><span class="tick">✓</span> From raw signal to a clear report in hours, not weeks</li>
+      </ul>
+    </div>
+    <aside class="polex-card">
+      <p class="eyebrow">Why it matters</p>
+      <h3>Stop dosing by protocol and hope.</h3>
+      <p>When you can see whether a drug is reaching the tumour, you stop wasting the options a patient cannot afford to lose. Today no test does this at the genome. POLEX is the one that has been missing.</p>
+      <div class="mini">
+        <span class="chip">Oxford Nanopore</span>
+        <span class="chip">Genome impact</span>
+        <span class="chip">Base resolution</span>
+        <span class="chip">AI-read</span>
+      </div>
+    </aside>
+  </div>
+
+  <!-- sample report figure -->
+  <div class="wrap" style="margin-top:56px">
+    <div style="max-width:640px;margin:0 auto;border-radius:22px;background:#fff;box-shadow:var(--shadow);padding:24px 26px">
+      <svg viewBox="0 0 520 300" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto" role="img" aria-label="Example POLEX report: a drug's impact mapped across the genome, comparing a drug that reaches the tumour with one that does not.">
+        <defs><linearGradient id="tg2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1fa899"/><stop offset="1" stop-color="#7dc242"/></linearGradient></defs>
+        <circle cx="16" cy="18" r="5" fill="#7dc242"/>
+        <text x="30" y="22" font-family="Poppins, sans-serif" font-size="13" font-weight="700" fill="#0f2746">POLEX report</text>
+        <text x="520" y="22" text-anchor="end" font-family="'Space Grotesk', monospace" font-size="11" fill="#5b6a75">genome impact map</text>
+        <line x1="0" y1="38" x2="520" y2="38" stroke="#eef3ef" stroke-width="1"/>
+        <text x="0" y="70" font-family="Poppins, sans-serif" font-size="11" font-weight="600" fill="#5b6a75">Drug A · reaching the tumour</text>
+        <rect x="0" y="80" width="520" height="34" rx="8" fill="#f4f8f5"/>
+        <path fill="url(#tg2)" d="M0,114 L0,112 L28,112 L36,86 L44,112 L86,112 L94,90 L102,112 L146,112 L154,84 L162,112 L206,112 L214,92 L222,112 L266,112 L274,86 L282,112 L326,112 L334,90 L342,112 L386,112 L394,84 L402,112 L446,112 L454,90 L462,112 L496,112 L504,88 L512,112 L520,112 L520,114 Z"/>
+        <text x="0" y="150" font-family="Poppins, sans-serif" font-size="11" font-weight="600" fill="#5b6a75">Drug B · not reaching it</text>
+        <rect x="0" y="160" width="520" height="34" rx="8" fill="#f4f8f5"/>
+        <path fill="#c3d3c0" d="M0,194 L0,192 L140,192 L147,183 L154,192 L300,192 L307,186 L314,192 L520,192 L520,194 Z"/>
+        <g font-family="Poppins, sans-serif" font-size="11" font-weight="600">
+          <rect x="0" y="220" width="150" height="30" rx="8" fill="#eaf2ec"/><text x="14" y="239" fill="#5fa12e">Impact score: high</text>
+          <rect x="162" y="220" width="168" height="30" rx="8" fill="#eaf2ec"/><text x="176" y="239" fill="#0f2746">Whole genome · base-level</text>
+          <rect x="342" y="220" width="178" height="30" rx="8" fill="#eaf2ec"/><text x="356" y="239" fill="#0f2746">Result in hours, pre-dose</text>
+        </g>
+      </svg>
+      <p style="font-size:12.5px;color:#90a0ab;margin-top:14px;text-align:center">Illustrative example of a POLEX report.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-inner">
+      <a href="index.html" aria-label="In2Cell Biosciences" style="display:flex;align-items:center"><img src="images/logos/in2cell-navy.svg" alt="In2Cell Biosciences" style="height:26px;width:auto"/></a>
+      <div>sk017611@gmail.com</div>
+      <div>© 2026 In2Cell Biosciences</div>
+    </div>
+    <p class="fineprint">POLEX is an early-stage research platform under active development. The report shown is illustrative.</p>
+  </div>
+</footer>
+
+</body>
+</html>
