@@ -31,9 +31,10 @@ _archive/
 # Pitch decks — local working files, not for GitHub Pages
 decks/
 
-# Sensitive: team headshots, collaborator + funder logos
-# Kept locally on disk, NOT pushed to GitHub
-images/team/
+# Collaborator + funder logos kept off the repo.
+# Team folder is ignored EXCEPT the founder photo used on the site.
+images/team/*
+!images/team/Photo_santosh-cropped2.jpg
 images/partners/
 images/logos/bbsrc.png
 images/logos/crh.svg
@@ -51,9 +52,7 @@ UKRI.png
 UMBIZO.gif
 university_oxford.svg
 
-# Private pages — kept on disk, NOT pushed to GitHub
-team.html
-publications.html
+# Local demo pages — not for the live repo
 _demo/
 
 # If you ever add tooling (npm, yarn, build scripts)
