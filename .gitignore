@@ -74,5 +74,8 @@ yarn-error.log*
 
 new_updated_website/
 _parked-content.md
+
+# Founder bio page — kept locally, not published for now
+founder.html
 .DS_Store
 ._*

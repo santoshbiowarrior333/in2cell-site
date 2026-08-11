@@ -133,7 +133,13 @@ h2.title{font-size:clamp(28px,3.9vw,42px);margin-top:14px;max-width:20ch;line-he
 .member .role{font-family:'Poppins';font-size:12.5px;font-weight:600;color:var(--teal);letter-spacing:.02em;margin-bottom:8px}
 .member p{font-size:14.5px;color:var(--muted)}
 .member p a{color:var(--teal);font-weight:600}
+.member .email{display:inline-block;margin-top:8px;font-size:13px;color:var(--teal);font-weight:600}
+.member .email:hover{color:var(--leaf-deep)}
 .team-note{margin-top:30px;font-size:14.5px;color:var(--muted);max-width:70ch}
+.member.open{background:var(--mist);border:1px dashed #cdddd0;box-shadow:none}
+.member.open .avatar{background:none;border:2px dashed #b9cdbe;color:var(--muted);font-size:22px;font-weight:400}
+.member.open .role{color:var(--muted)}
+.member.open .tag-open{display:inline-block;margin-top:4px;font-family:'Poppins';font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--leaf-deep);background:var(--mist-2);padding:3px 10px;border-radius:999px}
 @media(max-width:760px){.team-grid{grid-template-columns:1fr}}
 
 /* publications */
