@@ -77,5 +77,8 @@ _parked-content.md
 
 # Founder bio page — kept locally, not published for now
 founder.html
+
+# Publications page — hidden for now
+publications.html
 .DS_Store
 ._*
