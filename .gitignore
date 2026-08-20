@@ -82,3 +82,6 @@ founder.html
 publications.html
 .DS_Store
 ._*
+
+# Team page - hidden for now
+team.html
